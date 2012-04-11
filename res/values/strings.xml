@@ -41,24 +41,18 @@
     <string name="graphsDetailsShipped">Shipped</string>
     <string name="graphsDetailsReceived">Received</string>
     
-    <string name="gettingStartedText1"></string>
-    <string name="gettingStartedText2">
+    <string name="gettingStartedText">
         Mobeelizer is a Synchronisation-as-a-Service for mobile developers. We strive to make it 
         ridiculously easy to get synchronisation for mobile apps up and running, so you can focus 
-        on creating mobile apps, without worrying about data exchange.\n\n
-        When using Mobeelizer, we automatically take care about the backend, configuration and 
-        complicated aspect of synchronisation conflicts.\n\n
-        Visit mobeelizer.com for more info.\n\n
-        This app contains examples of using mobeelizer in different scenarios. You can see how to 
+        on creating mobile apps, without worrying about data exchange.\n\nWhen using Mobeelizer, we automatically take care about the backend, configuration and 
+        complicated aspect of synchronisation conflicts.\n\nVisit mobeelizer.com for more info.\n\nThis app contains examples of using mobeelizer in different scenarios. You can see how to 
         sync data, binary files or how to handle conflicts. It\'s only a small possibilities what 
         mobeelizer can do for you. So have fun!
     </string>
     
-    <string name="whatNextText1"></string>
-    <string name="whatNextText2">
-        So you\'ve seen how revolutionary mobeelizer is and what Synchronization-as-a-Service means for your app.\n\n
-        Now it\'s time for you to code&amp;play with mobeelizer by yourself.\n\n
-        Visit mobeelizer.com for more info.
+    <string name="whatNextText">
+        So you\'ve seen how revolutionary mobeelizer is and what Synchronization-as-a-Service means for your app.\n\nNow it\'s time for you to code&amp;play
+        with mobeelizer by yourself.\n\nVisit mobeelizer.com for more info.
     </string>
     
     <string name="footerWarning">
