@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <attr name="LoginFrame" format="reference" />
+    <attr name="LoginInfoText" format="reference" />
+    
+    <attr name="WindowBackground" format="reference" />
+    <attr name="TitleBarText" format="reference" />
+    <attr name="TitleBarButton" format="reference" />
+    <attr name="FooterButton" format="reference" />
+    <attr name="FooterWarningText" format="reference" />
+    
+    <attr name="CreateSessionText" format="reference" />
+    <attr name="InformationText" format="reference" />
+    
+    <attr name="DefaultList" format="reference" />
+    <attr name="DefaultExpandableList" format="reference" />
+    <attr name="ListItemText" format="reference" />
+    <attr name="ListItemLowerText" format="reference" />
+    <attr name="PhotoListItemPhoto" format="reference" />
+    
+    <attr name="DialogInfoTitle" format="reference" />
+    <attr name="DialogErrorTitle" format="reference" />
+    <attr name="DialogText" format="reference" />
+    <attr name="DialogButton" format="reference" />
+    
+    <attr name="DarkButton" format="reference" />
+
+    
+    <!-- USED ONLY FOR VIEW TAG ID'S -->
+    <attr name="ViewHolder" />
+    <attr name="IsFooterView" />
+    <attr name="ExpandableListGroup" />
+    
+</resources>

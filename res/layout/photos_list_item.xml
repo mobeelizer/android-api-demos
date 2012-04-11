@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/listItemHeight"
+    android:minHeight="@dimen/listItemHeight"
+    android:orientation="vertical" >
+
+    <View
+        android:id="@+id/listItemOverlay"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/listItemSyncOverLayHeight"
+        android:layout_marginBottom="@dimen/listItemSyncOverlayMargin"
+        android:layout_marginTop="@dimen/listItemSyncOverlayMargin" />
+
+    <TextView
+        android:id="@+id/listItemText"
+        style="?ListItemText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_toLeftOf="@+id/listItemUser"
+        android:layout_toRightOf="@+id/listItemPhoto"
+        android:text="@string/t_listItem" />
+
+    <ImageView
+        android:id="@+id/listItemUser"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="@dimen/photosListItemMarginRight"
+        android:contentDescription="@string/d_owner"
+        android:src="@drawable/bt_user_a_small" />
+
+    <ImageView
+        android:id="@+id/listItemPhoto"
+        style="?PhotoListItemPhoto"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:contentDescription="@string/d_itemIcon"
+        android:src="@drawable/ic_info" />
+
+</RelativeLayout>

@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    
+    <item android:state_enabled="false">
+        <layer-list>
+			<item>
+		        <shape>
+		            <corners android:radius="@dimen/buttonCornerRadius"/>
+		        	<gradient
+						android:startColor="@color/shadowDarkStart"
+				        android:endColor="@color/shadowDarkEnd"
+				        android:type="radial"
+				        android:gradientRadius="250" />
+		        </shape>
+		    </item>
+		    <item 
+		        android:bottom="@dimen/buttonStroke"
+		        android:right="@dimen/buttonStroke">
+		        <shape>
+		            <corners android:radius="@dimen/buttonCornerRadius"/>
+		
+		            <gradient
+		                android:angle="270"
+		                android:startColor="@color/darkButtonDisabledTop"
+		                android:centerColor="@color/darkButtonDisabledCenter"
+		                android:endColor="@color/darkButtonDisabledBottom"
+		                android:centerY="0.65" />
+		            <padding
+		                android:top="@dimen/buttonOvalPaddingTop"
+		                android:bottom="@dimen/buttonOvalPaddingBottom"
+		                android:left="@dimen/buttonOvalPaddingHorizontal"
+		                android:right="@dimen/buttonOvalPaddingHorizontal"/>
+		        </shape>
+		    </item>
+		    <item>
+		        <clip
+		            android:clipOrientation="vertical"
+		            android:gravity="bottom">
+		            <shape android:shape="oval" >
+			            <gradient
+			                android:startColor="@color/darkButtonDisabledRectangleTop"
+			                android:endColor="@color/darkButtonDisabledRectangleBottom"
+			                android:centerY="0.75"
+			                android:angle="270" />
+			            
+			        </shape>
+		        </clip>
+		    </item>
+		</layer-list>
+    </item>
+    
+    <item android:state_pressed="true">
+        <layer-list>
+			<item>
+		        <shape>
+		            <corners android:radius="@dimen/buttonCornerRadius"/>
+		        	<gradient
+						android:startColor="@color/shadowDarkStart"
+				        android:endColor="@color/shadowDarkEnd"
+				        android:type="radial"
+				        android:gradientRadius="250" />
+		        </shape>
+		    </item>
+		    <item 
+		        android:bottom="@dimen/buttonStroke"
+		        android:right="@dimen/buttonStroke">
+		        <shape>
+		            <corners android:radius="@dimen/buttonCornerRadius"/>
+		
+		            <gradient
+		                android:angle="270"
+		                android:startColor="@color/darkButtonPressedTop"
+		                android:centerColor="@color/darkButtonPressedCenter"
+		                android:endColor="@color/darkButtonPressedBottom"
+		                android:centerY="0.65" />
+		            <padding
+		                android:top="@dimen/buttonOvalPaddingTop"
+		                android:bottom="@dimen/buttonOvalPaddingBottom"
+		                android:left="@dimen/buttonOvalPaddingHorizontal"
+		                android:right="@dimen/buttonOvalPaddingHorizontal"/>
+		        </shape>
+		    </item>
+		    <item>
+		        <clip
+		            android:clipOrientation="vertical"
+		            android:gravity="bottom">
+		            <shape android:shape="oval" >
+			            <gradient
+			                android:startColor="@color/darkButtonPressedRectangleTop"
+			                android:endColor="@color/darkButtonPressedRectangleBottom"
+			                android:centerY="0.75"
+			                android:angle="270" />
+			            
+			        </shape>
+		        </clip>
+		    </item>
+		</layer-list>
+    </item>
+    
+    <item android:state_selected="true">
+        <layer-list>
+			<item>
+		        <shape>
+		            <corners android:radius="@dimen/buttonCornerRadius"/>
+		        	<gradient
+						android:startColor="@color/shadowDarkStart"
+				        android:endColor="@color/shadowDarkEnd"
+				        android:type="radial"
+				        android:gradientRadius="250" />
+		        </shape>
+		    </item>
+		    <item 
+		        android:bottom="@dimen/buttonStroke"
+		        android:right="@dimen/buttonStroke">
+		        <shape>
+		            <corners android:radius="@dimen/buttonCornerRadius"/>
+		
+		            <gradient
+		                android:angle="270"
+		                android:startColor="@color/darkButtonSelectedTop"
+		                android:centerColor="@color/darkButtonSelectedCenter"
+		                android:endColor="@color/darkButtonSelectedBottom"
+		                android:centerY="0.65" />
+		            <padding
+		                android:top="@dimen/buttonOvalPaddingTop"
+		                android:bottom="@dimen/buttonOvalPaddingBottom"
+		                android:left="@dimen/buttonOvalPaddingHorizontal"
+		                android:right="@dimen/buttonOvalPaddingHorizontal"/>
+		        </shape>
+		    </item>
+		    <item>
+		        <clip
+		            android:clipOrientation="vertical"
+		            android:gravity="bottom">
+		            <shape android:shape="oval" >
+			            <gradient
+			                android:startColor="@color/darkButtonSelectedRectangleTop"
+			                android:endColor="@color/darkButtonSelectedRectangleBottom"
+			                android:centerY="0.75"
+			                android:angle="270" />
+			            
+			        </shape>
+		        </clip>
+		    </item>
+		</layer-list>
+    </item>
+    
+    <item>
+        <layer-list>
+			<item>
+		        <shape>
+		            <corners android:radius="@dimen/buttonCornerRadius"/>
+		        	<gradient
+						android:startColor="@color/shadowDarkStart"
+				        android:endColor="@color/shadowDarkEnd"
+				        android:type="radial"
+				        android:gradientRadius="250" />
+		        </shape>
+		    </item>
+		    <item 
+		        android:bottom="@dimen/buttonStroke"
+		        android:right="@dimen/buttonStroke">
+		        <shape>
+		            <corners android:radius="@dimen/buttonCornerRadius"/>
+		
+		            <gradient
+		                android:angle="270"
+		                android:startColor="@color/darkButtonTop"
+		                android:centerColor="@color/darkButtonCenter"
+		                android:endColor="@color/darkButtonBottom"
+		                android:centerY="0.65" />
+		            <padding
+		                android:top="@dimen/buttonOvalPaddingTop"
+		                android:bottom="@dimen/buttonOvalPaddingBottom"
+		                android:left="@dimen/buttonOvalPaddingHorizontal"
+		                android:right="@dimen/buttonOvalPaddingHorizontal"/>
+		        </shape>
+		    </item>
+		    <item
+		        android:top="@dimen/buttonStroke" >
+		        <clip
+		            android:clipOrientation="vertical"
+		            android:gravity="bottom">
+		            <shape android:shape="oval" >
+			            <gradient
+			                android:startColor="@color/darkButtonRectangleTop"
+			                android:endColor="@color/darkButtonRectangleBottom"
+			                android:centerY="0.75"
+			                android:angle="270" />
+			            
+			        </shape>
+		        </clip>
+		    </item>
+		</layer-list>
+    </item>
+    
+</selector>

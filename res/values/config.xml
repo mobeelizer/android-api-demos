@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    
+    <string name="c_apiURL">http://cloud.mobeelizer.com/sync/demos/create</string>
+    <integer name="c_connectionTimeout">10000</integer>
+    
+    <string name="c_userALogin">A</string>
+    <string name="c_userAPassword">+Su(w4KV4L</string>
+    <string name="c_userBLogin">B</string>
+    <string name="c_userBPassword">B9$zGOl6!n</string>
+    
+</resources>

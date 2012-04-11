@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content" >
+
+    <ImageButton
+        android:id="@+id/titleBarButton"
+        style="?TitleBarButton"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:background="@drawable/bt_user_a_big"
+        android:contentDescription="@string/d_titleBarButton" />
+
+    <ImageView
+        android:id="@+id/titleBarLogo"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/titleBarLogoHeight"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginBottom="@dimen/titleBarLogoMarginBottom"
+        android:layout_marginTop="@dimen/titleBarLogoMarginTop"
+        android:background="@drawable/ic_logo_h"
+        android:contentDescription="@string/d_loginLogo" />
+
+    <TextView
+        android:id="@+id/titleBarTitle"
+        style="?TitleBarText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/titleBarLogo"
+        android:layout_below="@+id/titleBarLogo"
+        android:text="@string/t_titleBarTitle" />
+
+    <TextView
+        android:id="@+id/titleBarSessionCode"
+        style="?TitleBarText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/titleBarButton"
+        android:text="@string/t_titleBarSessionCode"
+        android:visibility="gone" />
+
+    <View
+        android:id="@+id/titleBarSeparator"
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/titleBarSeparatorHeight"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/titleBarTitle"
+        android:background="@color/titleBarSeparator" />
+
+</RelativeLayout>

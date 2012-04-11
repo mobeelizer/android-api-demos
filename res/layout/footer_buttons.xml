@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingBottom="@dimen/footerButtonMarginBottom" >
+
+    <TextView
+        android:id="@+id/footerWarning"
+        style="?FooterWarningText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:bufferType="spannable"
+        android:text="@string/footerWarning"
+        android:visibility="gone" />
+
+    <Button
+        android:id="@+id/footerAdd"
+        style="?FooterButton"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/footerWarning"
+        android:text="@string/add" />
+
+    <ImageButton
+        android:id="@+id/footerInfo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@id/footerWarning"
+        android:layout_marginTop="@dimen/footerWarningPaddingVertical"
+        android:background="@drawable/bt_info_background"
+        android:contentDescription="@string/d_infoButton"
+        android:src="@drawable/ic_info" />
+
+    <Button
+        android:id="@+id/footerSync"
+        style="?FooterButton"
+        android:layout_below="@id/footerWarning"
+        android:layout_toRightOf="@+id/footerAdd"
+        android:text="@string/sync" />
+
+</RelativeLayout>

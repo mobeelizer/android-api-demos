@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    
+    <color name="applicationBackgroundTop">#FFE8E8E8</color>
+    <color name="applicationBackgroundBottom">#FFF7F7F7</color>
+    
+    <color name="loginFrameStartColor">#FF84C6E7</color>
+    <color name="loginFrameEndColor">#FF2C85AF</color>
+    <color name="loginFrameStroke">#FFD6D8D8</color>
+    <color name="loginInfoText">#FFFFFFFF</color>
+    
+    <color name="titleBarText">#FFB4B4B4</color>
+    <color name="titleBarSeparator">#FFB4B4B4</color>
+    <color name="footerWarningText">#FF000000</color>
+    
+    <color name="defaultText">#FF3C3D36</color>
+    <color name="defaultLowerText">#FFA2A2A2</color>
+    
+    <color name="listDivider">#88B4B4B4</color>
+    <color name="listItemStartText">#FFFFFFFF</color>
+    <color name="listItemAddedOverlay">#FFDFEBC0</color>
+    <color name="listItemRemovedOverlay">#FFF2CBCB</color>
+    <color name="listSelectorPressedTop">#FFE0E0E0</color>
+    <color name="listSelectorPressedCenter">#FFCCCCCC</color>
+    <color name="listSelectorPressedBottom">#FFE0E0E0</color>
+    <color name="listSelectorFocusedTop">#99E0E0E0</color>
+    <color name="listSelectorFocusedCenter">#99CCCCCC</color>
+    <color name="listSelectorFocusedBottom">#99E0E0E0</color>
+    
+    <color name="dialogInfoTitleSeparator">#FF33B5E5</color>
+    <color name="dialogErrorTitleSeparator">#FFE23B3B</color>
+    <color name="dialogTextSeparator">#FFE7E7E7</color>
+    <color name="dialogInfoTitleText">#FF3AB7E5</color>
+    <color name="dialogErrorTitleText">#FFE23B3B</color>
+    <color name="dialogText">#FF7C7A7A</color>
+    <color name="dialogButtonText">#FF000000</color>
+    <color name="dialogButtonBackground">#00FFFFFF</color>
+    <color name="dialogButtonBackgroundSelected">#6633B5E5</color>
+    <color name="dialogButtonBackgroundPressed">#E033B5E5</color>
+    
+    
+    <!-- BUTTONS -->
+    
+    <color name="userButtonText">#FFFFFFFF</color>
+    
+    <color name="darkButtonTop">#FF757575</color>
+    <color name="darkButtonCenter">#FF4B4B4B</color>
+    <color name="darkButtonBottom">#FF757575</color>
+    <color name="darkButtonRectangleTop">#FF747474</color>
+    <color name="darkButtonRectangleBottom">#FF737373</color>
+    <color name="darkButtonText">#FFFFFFFF</color>
+        
+    <color name="darkButtonSelectedTop">#FF757575</color>
+    <color name="darkButtonSelectedCenter">#FF4B4B4B</color>
+    <color name="darkButtonSelectedBottom">#FF757575</color>
+    <color name="darkButtonSelectedRectangleTop">#FF747474</color>
+    <color name="darkButtonSelectedRectangleBottom">#FF747474</color>
+    
+    <color name="darkButtonPressedTop">#FF4B4B4B</color>
+    <color name="darkButtonPressedCenter">#FF757575</color>
+    <color name="darkButtonPressedBottom">#FF4B4B4B</color>
+    <color name="darkButtonPressedRectangleTop">#FF4B4B4B</color>
+    <color name="darkButtonPressedRectangleBottom">#FF737373</color>
+    
+    <color name="darkButtonDisabledTop">#FF757575</color>
+    <color name="darkButtonDisabledCenter">#FF4B4B4B</color>
+    <color name="darkButtonDisabledBottom">#FF757575</color>
+    <color name="darkButtonDisabledRectangleTop">#FF747474</color>
+    <color name="darkButtonDisabledRectangleBottom">#FF747474</color>
+    
+    <color name="footerInfoButtonBackground">#00FFFFFF</color>
+    <color name="footerInfoButtonSelectedBackground">#6633B5E5</color>
+    <color name="footerInfoButtonPressedBackground">#E033B5E5</color>
+    
+    
+    <color name="shadowDarkStart">#88848484</color>
+    <color name="shadowDarkEnd">#55848484</color>
+    
+</resources>

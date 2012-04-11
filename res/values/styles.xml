@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    
+    <style name="LoginFrame">
+        <item name="android:background">@drawable/login_frame</item>
+        <item name="android:layout_marginTop">@dimen/loginFrameMarginTop</item>
+    </style>
+    
+    <style name="LoginInfoText" parent="@android:style/Widget.TextView">
+    	<item name="android:textColor">@color/loginInfoText</item>
+    	<item name="android:textSize">@dimen/loginInfoTextSize</item>
+    	<item name="android:layout_marginTop">@dimen/loginInfoTextMarginTop</item>
+    	<item name="android:layout_marginBottom">@dimen/loginInfoTextMarginBottom</item>
+    </style>
+    
+    <style name="WindowBackground">
+        <item name="android:background">@drawable/background</item>
+        <item name="android:paddingTop">@dimen/windowPadding</item>
+        <item name="android:paddingLeft">@dimen/windowPadding</item>
+        <item name="android:paddingRight">@dimen/windowPadding</item>
+    </style>
+    
+    <style name="TitleBarText" parent="@android:style/Widget.TextView">
+        <item name="android:textColor">@color/titleBarText</item>
+        <item name="android:textSize">@dimen/titleBarTextSize</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:layout_marginTop">@dimen/titleBarTextMarginTop</item>
+    </style>
+    
+    <style name="TitleBarButton" parent="@android:style/Widget.ImageButton">
+        <item name="android:textColor">@color/userButtonText</item>
+        <item name="android:textSize">@dimen/userButtonBigText</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:layout_width">@dimen/userButtonBigWidth</item>
+        <item name="android:layout_height">@dimen/userButtonBigHeight</item>
+    </style>
+    
+    <style name="CreateSessionText" parent="@android:style/Widget.TextView">
+        <item name="android:textColor">@color/defaultText</item>
+        <item name="android:textSize">@dimen/createSessionText</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:layout_marginTop">@dimen/createSessionTextMarginTop</item>
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:layout_gravity">center_horizontal</item>
+    </style>
+    
+    <style name="InformationText" parent="@android:style/Widget.TextView">
+        <item name="android:textColor">@color/defaultText</item>
+        <item name="android:textSize">@dimen/defaultText</item>
+        <item name="android:layout_marginTop">@dimen/informationTextMarginTop</item>
+        <item name="android:layout_marginBottom">@dimen/informationTextMarginBottom</item>
+    </style>
+    
+    <style name="DefaultList" parent="@android:style/Widget.ListView">
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:cacheColorHint">@android:color/transparent</item>
+        <item name="android:dividerHeight">@dimen/listDivider</item>
+        <item name="android:divider">@color/listDivider</item>
+        <item name="android:footerDividersEnabled">false</item>
+        <item name="android:listSelector">@drawable/list_selector</item>
+        <!-- <item name="android:transcriptMode">alwaysScroll</item> -->
+    </style>
+    
+    <style name="DefaultExpandableList" parent="@android:style/Widget.ExpandableListView">
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:cacheColorHint">@android:color/transparent</item>
+        <item name="android:dividerHeight">@dimen/listDivider</item>
+        <item name="android:divider">@color/listDivider</item>
+        <item name="android:childDivider">@drawable/child_divider</item>
+        <item name="android:footerDividersEnabled">false</item>
+        <item name="android:listSelector">@drawable/list_selector</item>
+        <item name="android:groupIndicator">@null</item>
+    </style>
+    
+    <style name="ListItemText" parent="@android:style/Widget.TextView">
+        <item name="android:textSize">@dimen/listItemText</item>
+        <item name="android:textColor">@color/defaultText</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:scrollHorizontally">true</item>
+    </style>
+    
+    <style name="ListItemLowerText" parent="@android:style/Widget.TextView">
+        <item name="android:textColor">@color/defaultLowerText</item>
+        <item name="android:maxLines">1</item>
+    </style>
+    
+    <style name="PhotoListItemPhoto">
+        <item name="android:layout_height">@dimen/photosListItemPhoto</item>
+        <item name="android:layout_width">@dimen/photosListItemPhoto</item>
+        <item name="android:layout_marginRight">@dimen/photosListItemPhotoMarginRight</item>
+    </style>
+    
+    
+    <!-- DIALOGS -->
+    
+    <style name="DialogInfoTitle" parent="@android:style/Widget.TextView">
+        <item name="android:textColor">@color/dialogInfoTitleText</item>
+        <item name="android:textSize">@dimen/dialogTitleText</item>
+        <item name="android:padding">@dimen/dialogTitlePadding</item>
+    </style>
+    
+    <style name="DialogErrorTitle" parent="@style/DialogInfoTitle">
+        <item name="android:textColor">@color/dialogErrorTitleText</item>
+    </style>
+    
+    <style name="DialogText" parent="@android:style/Widget.TextView">
+        <item name="android:textColor">@color/dialogText</item>
+        <item name="android:textSize">@dimen/dialogText</item>
+        <item name="android:padding">@dimen/dialogTextPadding</item>
+    </style>
+    
+    <style name="DialogButton" parent="@android:style/Widget.Button">
+        <item name="android:background">@drawable/bt_dialog</item>
+        <item name="android:paddingTop">@dimen/dialogButtonPadding</item>
+        <item name="android:paddingBottom">@dimen/dialogButtonPadding</item>
+        <item name="android:textColor">@color/dialogButtonText</item>
+        <item name="android:textSize">@dimen/dialogButtonText</item>
+    </style>
+    
+    
+    <!-- BUTTONS -->
+    
+    <style name="DarkButton" parent="@android:style/Widget.Button" >
+        <item name="android:background">@drawable/bt_dark</item>
+        <item name="android:textColor">@color/darkButtonText</item>
+        <item name="android:textSize">@dimen/buttonTextSize</item>
+        <item name="android:paddingTop">@dimen/buttonPaddingTop</item>
+        <item name="android:paddingBottom">@dimen/buttonPaddingBottom</item>
+        <item name="android:paddingLeft">@dimen/buttonPaddingHorizontal</item>
+        <item name="android:paddingRight">@dimen/buttonPaddingHorizontal</item>
+    </style>
+    
+    <style name="FooterButton" parent="@style/DarkButton">
+        <item name="android:layout_width">@dimen/footerButtonWidth</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginLeft">@dimen/footerButtonMarginLeft</item>
+        <item name="android:layout_marginTop">@dimen/footerWarningPaddingVertical</item>
+    </style>
+    
+    <style name="FooterWarningText" parent="@android:style/Widget.TextView">
+        <item name="android:textColor">@color/footerWarningText</item>
+        <item name="android:textSize">@dimen/footerWarningText</item>
+        <item name="android:paddingLeft">@dimen/footerWarningPaddingHorizontal</item>
+        <item name="android:paddingRight">@dimen/footerWarningPaddingHorizontal</item>
+        <item name="android:paddingTop">@dimen/footerWarningPaddingVertical</item>
+    </style>
+    
+</resources>

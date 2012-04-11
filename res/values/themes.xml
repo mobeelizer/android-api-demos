@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	
+    <style name="MobeelizerTheme" parent="@android:style/Theme.Light.NoTitleBar">
+        
+        <item name="LoginFrame">@style/LoginFrame</item>
+        <item name="LoginInfoText">@style/LoginInfoText</item>
+        
+        <item name="WindowBackground">@style/WindowBackground</item>
+        <item name="TitleBarText">@style/TitleBarText</item>
+        <item name="TitleBarButton">@style/TitleBarButton</item>
+        <item name="FooterButton">@style/FooterButton</item>
+        <item name="FooterWarningText">@style/FooterWarningText</item>
+        
+        <item name="CreateSessionText">@style/CreateSessionText</item>
+        <item name="InformationText">@style/InformationText</item>
+        
+        <item name="DefaultList">@style/DefaultList</item>
+        <item name="DefaultExpandableList">@style/DefaultExpandableList</item>
+        <item name="ListItemText">@style/ListItemText</item>
+        <item name="ListItemLowerText">@style/ListItemLowerText</item>
+        <item name="PhotoListItemPhoto">@style/PhotoListItemPhoto</item>
+        
+        <item name="DarkButton">@style/DarkButton</item>
+        
+    </style>
+    
+    <style name="MobeelizerDialogTheme" parent="@android:style/Theme.Dialog">
+        
+        <item name="DialogInfoTitle">@style/DialogInfoTitle</item>
+        <item name="DialogErrorTitle">@style/DialogErrorTitle</item>
+        <item name="DialogText">@style/DialogText</item>
+        <item name="DialogButton">@style/DialogButton</item>
+        
+    </style>
+	
+</resources>

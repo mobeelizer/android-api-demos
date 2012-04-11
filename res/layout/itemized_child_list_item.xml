@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/listItemHeight"
+    android:minHeight="@dimen/listItemHeight" >
+
+    <View
+        android:id="@+id/listItemOverlay"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/listItemSyncOverLayHeight"
+        android:layout_marginBottom="@dimen/listItemSyncOverlayMargin"
+        android:layout_marginTop="@dimen/listItemSyncOverlayMargin" />
+
+    <TextView
+        android:id="@+id/listItemText"
+        style="?ListItemText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="@dimen/itemizedChildListItemTextMarginLeft"
+        android:layout_toLeftOf="@+id/listItemIcons"
+        android:bufferType="spannable"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:scrollHorizontally="true"
+        android:text="@string/t_listItem"
+        android:textColor="@color/defaultText"
+        android:textSize="@dimen/listItemText" />
+
+    <LinearLayout
+        android:id="@+id/listItemIcons"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:gravity="center_vertical" >
+
+        <ImageView
+            android:id="@+id/listItemConflict"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_sync" android:visibility="gone"/>
+
+        <ImageView
+            android:id="@+id/listItemUser"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/photosListItemMarginRight"
+            android:contentDescription="@string/d_owner"
+            android:src="@drawable/bt_user_a_small" />
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/listItemAdd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="@dimen/itemizedChildListItemTextMarginLeft"
+        android:contentDescription="@string/d_itemAdd"
+        android:src="@drawable/ic_add"
+        android:visibility="gone" />
+
+</RelativeLayout>

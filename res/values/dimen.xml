@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    
+    <dimen name="defaultText">15sp</dimen>
+    
+    <dimen name="loginFrameCornerRadius">10dp</dimen>
+    <dimen name="loginFrameStroke">2dp</dimen>
+    <dimen name="loginFramePaddingHorizontal">10dp</dimen>
+    <dimen name="loginFramePaddingVertical">10dp</dimen>
+    <dimen name="loginFrameMarginTop">10dp</dimen>
+    
+    <dimen name="loginInfoTextSize">16sp</dimen>
+    <dimen name="loginInfoTextMarginTop">3dp</dimen>
+    <dimen name="loginInfoTextMarginBottom">5dp</dimen>
+    
+    <dimen name="loginSessionCodeWidth">110dp</dimen>
+    <dimen name="loginSessionCodeHeight">42dp</dimen>
+    
+    <dimen name="windowPadding">10dp</dimen>
+    
+    <dimen name="titleBarLogoHeight">33dp</dimen>
+    <dimen name="titleBarLogoMarginTop">7dp</dimen>
+    <dimen name="titleBarLogoMarginBottom">5dp</dimen>
+    <dimen name="titleBarTextSize">14sp</dimen>
+    <dimen name="titleBarTextMarginTop">4dp</dimen>
+    <dimen name="titleBarSeparatorHeight">2dp</dimen>
+    
+    <dimen name="createSessionText">19sp</dimen>
+    <dimen name="createSessionTextBig">35sp</dimen>
+    <dimen name="createSessionTextMarginTop">10dp</dimen>
+    <dimen name="createSessionButtonMarginTop">20dp</dimen>
+    <dimen name="createSessionProgressBarMargin">15dp</dimen>
+    
+    <dimen name="informationImageSize">80dp</dimen>
+    <dimen name="informationTextMarginTop">10dp</dimen>
+    <dimen name="informationTextMarginBottom">10dp</dimen>
+    
+    <dimen name="listDivider">0.5dp</dimen>
+    <dimen name="listItemHeight">50dp</dimen>
+    <dimen name="listItemSyncOverlayMargin">3dp</dimen>
+    <dimen name="listItemSyncOverLayHeight">44dp</dimen>
+    <dimen name="listItemText">17sp</dimen>
+    <dimen name="itemizedListItemIconMarginRight">5dp</dimen>
+    <dimen name="itemizedListItemStarMargin">1dp</dimen>
+    <dimen name="itemizedChildListItemTextMarginLeft">30dp</dimen>
+    <dimen name="photosListItemMarginRight">10dp</dimen>
+    <dimen name="photosListItemPhoto">35dp</dimen>
+    <dimen name="photosListItemPhotoMarginRight">5dp</dimen>
+    <dimen name="listItemStarText">12sp</dimen>
+    
+    <dimen name="conflictsDetailsTitleText">23sp</dimen>
+    <dimen name="conflictsDetailsPaddingHorizontal">15dp</dimen>
+    <dimen name="conflictsDetailsStarChooserMarginTop">50dp</dimen>
+    
+    <dimen name="dialogTitleText">18sp</dimen>
+    <dimen name="dialogText">15sp</dimen>
+    <dimen name="dialogTitlePadding">10dp</dimen>
+    <dimen name="dialogTextPadding">10dp</dimen>
+    <dimen name="dialogTitleSeparator">1dp</dimen>
+    <dimen name="dialogTextSeparator">1dp</dimen>
+    <dimen name="dialogButtonText">13sp</dimen>
+    <dimen name="dialogButtonPadding">10dp</dimen>
+    <dimen name="progressDialogPadding">10dp</dimen>
+    
+    <!-- BUTTONS -->
+    
+    <dimen name="userButtonBigWidth">46dp</dimen>
+    <dimen name="userButtonBigHeight">46dp</dimen>
+    <dimen name="userButtonBigText">28sp</dimen>
+    
+    <dimen name="footerButtonWidth">100dp</dimen>
+    <dimen name="footerButtonMarginLeft">10dp</dimen>
+    <dimen name="footerButtonMarginBottom">10dp</dimen>
+    <dimen name="footerWarningText">10sp</dimen>
+    <dimen name="footerWarningPaddingHorizontal">10dp</dimen>
+    <dimen name="footerWarningPaddingVertical">5dp</dimen>
+    
+    <dimen name="buttonCornerRadius">8dp</dimen>
+    <dimen name="buttonPaddingTop">5dp</dimen>
+    <dimen name="buttonPaddingBottom">7dp</dimen>
+    <dimen name="buttonPaddingHorizontal">10dp</dimen>
+    <dimen name="buttonOvalPaddingTop">-32dp</dimen>
+    <dimen name="buttonOvalPaddingBottom">20dp</dimen>
+    <dimen name="buttonOvalPaddingHorizontal">4dp</dimen>
+    <dimen name="buttonTextSize">16sp</dimen>
+    <dimen name="buttonStroke">2dp</dimen>
+    
+    <!-- 	LOGIN BUTTONS -->
+    <dimen name="loginButtonMarginTop">3dp</dimen>
+    <dimen name="loginButtonMarginBottom">5dp</dimen>
+    
+</resources>

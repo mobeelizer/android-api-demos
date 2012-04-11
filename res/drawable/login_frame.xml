@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <item>
+        <shape>
+            <corners android:radius="@dimen/loginFrameCornerRadius" />
+
+            <solid android:color="@color/loginFrameStroke" />
+        </shape>
+    </item>
+    <item
+        android:bottom="@dimen/loginFrameStroke"
+        android:right="@dimen/loginFrameStroke">
+        <shape>
+            <corners android:radius="@dimen/loginFrameCornerRadius" />
+
+            <gradient
+                android:centerX="0.5"
+                android:centerY="0.35"
+                android:endColor="@color/loginFrameEndColor"
+                android:gradientRadius="170"
+                android:startColor="@color/loginFrameStartColor"
+                android:type="radial" />
+
+            <padding
+                android:bottom="@dimen/loginFramePaddingVertical"
+                android:left="@dimen/loginFramePaddingHorizontal"
+                android:right="@dimen/loginFramePaddingHorizontal"
+                android:top="@dimen/loginFramePaddingVertical" />
+        </shape>
+    </item>
+
+</layer-list>

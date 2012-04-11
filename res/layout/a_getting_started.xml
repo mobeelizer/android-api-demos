@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="?WindowBackground"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <include
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        layout="@layout/titlebar" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <TextView
+                style="?InformationText"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/gettingStartedText1" />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/informationImageSize"
+                android:layout_gravity="center_horizontal"
+                android:contentDescription="@string/d_loginLogo"
+                android:src="@drawable/ic_logo" />
+
+            <TextView
+                style="?InformationText"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/gettingStartedText2" />
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

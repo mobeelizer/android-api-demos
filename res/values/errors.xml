@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    
+    <string name="e_syncFailed">Cannot perform synchronization. Please try again later.</string>
+    <string name="e_syncDisabled">Synchronization is disabled due to Manifest settings (MOBEELIZER_MODE = development).</string>
+    <string name="e_missingConnection">Mobeelizer Demos requires an active internet connection.</string>
+    <string name="e_cannotCreateSession">Cannot create demo session. Please try again later.</string>
+    <string name="e_cannotConnectToSession">Cannot connect to demo session. Please try again later.</string>
+    <string name="e_cannotChangeUser">Cannot change current user - synchronization in progress. Please try again later.</string>
+    <string name="e_cannotLogout">Cannot logout from current session - synchronization in progress. Please try again later.</string>
+    
+</resources>

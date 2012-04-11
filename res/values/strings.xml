@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Mobeelizer Demo</string>
+    
+    <string name="create">Create</string>
+    <string name="connect">Connect</string>
+    <string name="explore">Explore</string>
+    <string name="add">Add</string>
+    <string name="addPhoto">Add photo</string>
+    <string name="sync">Sync</string>
+    <string name="close">Close</string>
+    <string name="info">Information</string>
+    <string name="delete">Delete item</string>
+    
+    <string name="synchronizing">Synchronizing&#8230;</string>
+    <string name="loggingIn">Logging in&#8230;</string>
+    <string name="synchronizationCompleted">Synchronization completed.</string>
+    <string name="loginInfoText1">Create a new demo session</string>
+    <string name="loginInfoText2">or connect to an existing one</string>
+
+    <string name="titleBarExplore">EXPLORE</string>
+    <string name="titleBarGettingStarted">GETTING STARTED</string>
+    <string name="titleBarSimpleSync">SIMPLE SYNC</string>
+    <string name="titleBarPhotoSync">PHOTO SYNC</string>
+    <string name="titleBarPermissions">PERMISSIONS</string>
+    <string name="titleBarConflicts">CONFLICTS</string>
+    <string name="titleBarGraphsConflicts">GRAPH&#8217;S CONFLICTS</string>
+    <string name="titleBarWhatNext">WHAT NEXT?</string>
+    <string name="titleBarSessionCode">SESSION CODE</string>
+    <string name="titleBarSessionCodeN">SESSION CODE: %s</string>
+    
+    <string name="createSessionCreating">Creating demo session&#8230;</string>
+    <string name="createSessionCreated">Demo session has been created. Your session code is:</string>
+    <string name="createSessionNextDevice">You will need this code to connect to other devices.</string>
+    
+    <string name="graphsConflictOrder">Order %s</string>
+    <string name="graphsDetailsNew">New</string>
+    <string name="graphsDetailsPending">Pending</string>
+    <string name="graphsDetailsReady">Ready to ship</string>
+    <string name="graphsDetailsShipped">Shipped</string>
+    <string name="graphsDetailsReceived">Received</string>
+    
+    <string name="gettingStartedText1"></string>
+    <string name="gettingStartedText2">
+        Mobeelizer is a Synchronisation-as-a-Service for mobile developers. We strive to make it 
+        ridiculously easy to get synchronisation for mobile apps up and running, so you can focus 
+        on creating mobile apps, without worrying about data exchange.\n\n
+        When using Mobeelizer, we automatically take care about the backend, configuration and 
+        complicated aspect of synchronisation conflicts.\n\n
+        Visit mobeelizer.com for more info.\n\n
+        This app contains examples of using mobeelizer in different scenarios. You can see how to 
+        sync data, binary files or how to handle conflicts. It\'s only a small possibilities what 
+        mobeelizer can do for you. So have fun!
+    </string>
+    
+    <string name="whatNextText1"></string>
+    <string name="whatNextText2">
+        So you\'ve seen how revolutionary mobeelizer is and what Synchronization-as-a-Service means for your app.\n\n
+        Now it\'s time for you to code&amp;play with mobeelizer by yourself.\n\n
+        Visit mobeelizer.com for more info.
+    </string>
+    
+    <string name="footerWarning">
+        Warning: Items marked with | were not synchronized, because other user edited them at the same time.
+    </string>
+    
+    
+    <!-- EXPLORE LIST VALUES -->
+    <string-array name="exploreListValues">
+        <item>About Us</item>
+        <item>Simple Sync</item>
+        <item>Files</item>
+        <item>Permissions</item>
+        <item>Conflicts</item>
+        <item>Relation Conflicts</item>
+        <item>What to do next?</item>
+    </string-array>
+    
+    <!-- DIALOGS -->
+    <string name="dialogErrorTitle">An error occurred</string>
+    <string name="dialogSimpleSyncText">
+        This example shows a simple way to share data between multiple users and devices. Add movies to the list 
+        and sync them with the cloud. The other users will be able to see them on their devices.\n\nUse 
+        &#8220;add&#8221; button to add new title to the list and &#8220;sync&#8221; button to synchronize data 
+        with the cloud.
+    </string>
+    <string name="dialogTextPhotoSync">
+        This example shows how to share binary data between multiple users and devices. Take photos and sync 
+        them with the others.\n\nUse &#8220;add photo&#8221; button to take new photo and &#8220;sync&#8221; 
+        button to synchronize it with the cloud.
+    </string>
+    <string name="dialogTextPermissions">
+        This example shows how to protect your shared data. Add movies to the list and sync them with the cloud. 
+        The movie&#8217;s director is a protected field, only You can see it.\n\nUse &#8220;add&#8221; button to 
+        add new title to the list and &#8220;sync&#8221; button to synchronize data with the cloud.
+    </string>
+    <string name="dialogTextConflicts">
+        This example shows conflicts arise when two users modify the same data. Add movies to the list and sync 
+        them with the cloud. Next change the score of this movie on multiple devices. Try to sync.\n\nUse 
+        &#8220;add&#8221; button to add new title to the list and &#8220;sync&#8221; button to synchronize 
+        data with the cloud. The score of the movie can be changed by clicking on the &#8220;score&#8221; icon.
+    </string>
+    <string name="dialogTextGrapfsConflict">
+        This example shows conflicts arise when two users modify related data. Add order and movies to the list 
+        and sync them with the cloud. Next on one device change order&#8217;s status and on the other change, 
+        add or remove, movies from this order. Try to sync.\n\nUse &#8220;add&#8221; button to add new order to 
+        the list and &#8220;sync&#8221; button to synchronize data with the cloud. The status of the order can be 
+        changed by clicking on the &#8220;status&#8221; icon. Use &#8220;plus&#8221; to add movies to order and 
+        long-press to remove them.
+    </string>
+    
+    <!-- MENU -->
+    <string name="logout">Logout</string>
+    <string name="nextExample">Next Example</string>
+    
+    
+    <!-- DESCRIPTIONS -->
+    <string name="d_loginLogo">Mobeelizer logo</string>
+    <string name="d_titleBarButton">User type</string>
+    <string name="d_infoButton">Information button</string>
+    <string name="d_owner">Item owner</string>
+    <string name="d_photo">Photo</string>
+    <string name="d_itemIcon">Item photo</string>
+    <string name="d_itemAdd">Add order item</string>
+    <string name="d_itemRemove">Remove item</string>
+    <string name="d_orderStatus">Order status</string>
+    <string name="d_star">Rating star</string>
+    
+    
+    <!-- LAYOUT TEXTS -->
+    <string name="t_titleBarTitle">EXPLORE</string>
+    <string name="t_titleBarSessionCode">SESSION CODE: 1234</string>
+    <string name="t_sessionCode">1234</string>
+    <string name="t_dialog_text">
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore 
+        et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut 
+        aliquip ex ea commodo consequat.
+    </string>
+    <string name="t_listItem">List item</string>
+    
+</resources>

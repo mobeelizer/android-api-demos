@@ -1,0 +1,510 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- List of movie titles used by DataUtil class. -->
+    <string-array name="movieTitles">
+        <item>The Shawshank Redemption</item>
+        <item>The Godfather</item>
+        <item>The Godfather: Part II</item>
+        <item>Pulp Fiction</item>
+        <item>Il buono, il brutto, il cattivo.</item>
+        <item>12 Angry Men</item>
+        <item>Schindler’s List</item>
+        <item>The Dark Knight</item>
+        <item>The Lord of the Rings: The Return of the King</item>
+        <item>One Flew Over the Cuckoo’s Nest</item>
+        <item>Star Wars: Episode V - The Empire Strikes Back</item>
+        <item>Fight Club</item>
+        <item>Inception</item>
+        <item>Shichinin no samurai</item>
+        <item>The Lord of the Rings: The Fellowship of the Ring</item>
+        <item>Goodfellas</item>
+        <item>Star Wars</item>
+        <item>Cidade de Deus</item>
+        <item>Casablanca</item>
+        <item>The Matrix</item>
+        <item>C’era una volta il West</item>
+        <item>Rear Window</item>
+        <item>Raiders of the Lost Ark</item>
+        <item>The Silence of the Lambs</item>
+        <item>The Usual Suspects</item>
+        <item>Se7en</item>
+        <item>The Lord of the Rings: The Two Towers</item>
+        <item>Forrest Gump</item>
+        <item>Psycho</item>
+        <item>It’s a Wonderful Life</item>
+        <item>Léon</item>
+        <item>Sunset Blvd.</item>
+        <item>Memento</item>
+        <item>Dr. Strangelove or: How I Learned to Stop Worrying and Love the Bomb</item>
+        <item>Apocalypse Now</item>
+        <item>American History X</item>
+        <item>North by Northwest</item>
+        <item>Terminator 2: Judgment Day</item>
+        <item>Citizen Kane</item>
+        <item>Saving Private Ryan</item>
+        <item>American Beauty</item>
+        <item>Toy Story 3</item>
+        <item>Alien</item>
+        <item>City Lights</item>
+        <item>Taxi Driver</item>
+        <item>Sen to Chihiro no kamikakushi</item>
+        <item>Vertigo</item>
+        <item>The Shining</item>
+        <item>Paths of Glory</item>
+        <item>M</item>
+        <item>The Pianist</item>
+        <item>Le fabuleux destin d’Amélie Poulain</item>
+        <item>The Departed</item>
+        <item>Modern Times</item>
+        <item>Double Indemnity</item>
+        <item>WALL·E</item>
+        <item>Das Leben der Anderen</item>
+        <item>Aliens</item>
+        <item>A Clockwork Orange</item>
+        <item>Lawrence of Arabia</item>
+        <item>To Kill a Mockingbird</item>
+        <item>La vita è bella</item>
+        <item>Back to the Future</item>
+        <item>Das Boot</item>
+        <item>Requiem for a Dream</item>
+        <item>Eternal Sunshine of the Spotless Mind</item>
+        <item>Reservoir Dogs</item>
+        <item>The Third Man</item>
+        <item>Jodaeiye Nader az Simin</item>
+        <item>The Prestige</item>
+        <item>The Green Mile</item>
+        <item>L.A. Confidential</item>
+        <item>Nuovo Cinema Paradiso</item>
+        <item>Chinatown</item>
+        <item>The Treasure of the Sierra Madre</item>
+        <item>The Great Dictator</item>
+        <item>Gladiator</item>
+        <item>Once Upon a Time in America</item>
+        <item>Monty Python and the Holy Grail</item>
+        <item>Rashômon</item>
+        <item>Full Metal Jacket</item>
+        <item>Amadeus</item>
+        <item>Ladri di biciclette</item>
+        <item>Singin’ in the Rain</item>
+        <item>Some Like It Hot</item>
+        <item>Raging Bull</item>
+        <item>All About Eve</item>
+        <item>Braveheart</item>
+        <item>Metropolis</item>
+        <item>Oldeuboi</item>
+        <item>2001: A Space Odyssey</item>
+        <item>The Bridge on the River Kwai</item>
+        <item>The Apartment</item>
+        <item>El laberinto del fauno</item>
+        <item>Star Wars: Episode VI - Return of the Jedi</item>
+        <item>Unforgiven</item>
+        <item>The Sting</item>
+        <item>Der Untergang</item>
+        <item>Mononoke-hime</item>
+        <item>Indiana Jones and the Last Crusade</item>
+        <item>Inglourious Basterds</item>
+        <item>Mr. Smith Goes to Washington</item>
+        <item>The Lion King</item>
+        <item>Die Hard</item>
+        <item>On the Waterfront</item>
+        <item>Up</item>
+        <item>The Elephant Man</item>
+        <item>Hotaru no haka</item>
+        <item>Det sjunde inseglet</item>
+        <item>The Great Escape</item>
+        <item>The Maltese Falcon</item>
+        <item>Gran Torino</item>
+        <item>Rebecca</item>
+        <item>Yôjinbô</item>
+        <item>Batman Begins</item>
+        <item>Witness for the Prosecution</item>
+        <item>Per qualche dollaro in più</item>
+        <item>The Artist</item>
+        <item>The General</item>
+        <item>Snatch.</item>
+        <item>Heat</item>
+        <item>Fargo</item>
+        <item>Blade Runner</item>
+        <item>Sin City</item>
+        <item>Ran</item>
+        <item>Smultronstället</item>
+        <item>Toy Story</item>
+        <item>Touch of Evil</item>
+        <item>Jaws</item>
+        <item>The Big Lebowski</item>
+        <item>No Country for Old Men</item>
+        <item>Hotel Rwanda</item>
+        <item>The Deer Hunter</item>
+        <item>Black Swan</item>
+        <item>The King’s Speech</item>
+        <item>Cool Hand Luke</item>
+        <item>The Wizard of Oz</item>
+        <item>Ikiru</item>
+        <item>The Sixth Sense</item>
+        <item>It Happened One Night</item>
+        <item>Scarface</item>
+        <item>Strangers on a Train</item>
+        <item>Annie Hall</item>
+        <item>Kill Bill: Vol. 1</item>
+        <item>The Kid</item>
+        <item>Le salaire de la peur</item>
+        <item>Warrior</item>
+        <item>High Noon</item>
+        <item>Platoon</item>
+        <item>The Gold Rush</item>
+        <item>Trainspotting</item>
+        <item>Into the Wild</item>
+        <item>Butch Cassidy and the Sundance Kid</item>
+        <item>Lock, Stock and Two Smoking Barrels</item>
+        <item>Donnie Darko</item>
+        <item>El secreto de sus ojos</item>
+        <item>Sunrise: A Song of Two Humans</item>
+        <item>The Grapes of Wrath</item>
+        <item>Notorious</item>
+        <item>Gone with the Wind</item>
+        <item>The Thing</item>
+        <item>Million Dollar Baby</item>
+        <item>Slumdog Millionaire</item>
+        <item>Casino</item>
+        <item>There Will Be Blood</item>
+        <item>Life of Brian</item>
+        <item>Amores perros</item>
+        <item>Les diaboliques</item>
+        <item>Ben-Hur</item>
+        <item>Groundhog Day</item>
+        <item>Finding Nemo</item>
+        <item>Tonari no Totoro</item>
+        <item>How to Train Your Dragon</item>
+        <item>The Terminator</item>
+        <item>The Big Sleep</item>
+        <item>The Best Years of Our Lives</item>
+        <item>V for Vendetta</item>
+        <item>The Graduate</item>
+        <item>Stand by Me</item>
+        <item>Good Will Hunting</item>
+        <item>Twelve Monkeys</item>
+        <item>Dog Day Afternoon</item>
+        <item>Judgment at Nuremberg</item>
+        <item>The Bourne Ultimatum</item>
+        <item>The Manchurian Candidate</item>
+        <item>Network</item>
+        <item>District 9</item>
+        <item>The Night of the Hunter</item>
+        <item>Mary and Max</item>
+        <item>Les quatre cents coups</item>
+        <item>Gandhi</item>
+        <item>Persona</item>
+        <item>La battaglia di Algeri</item>
+        <item>Dial M for Murder</item>
+        <item>8½</item>
+        <item>The Princess Bride</item>
+        <item>The Killing</item>
+        <item>Seppuku</item>
+        <item>La strada</item>
+        <item>The Wrestler</item>
+        <item>The Hustler</item>
+        <item>Ratatouille</item>
+        <item>Who’s Afraid of Virginia Woolf?</item>
+        <item>La passion de Jeanne d’Arc</item>
+        <item>Fanny och Alexander</item>
+        <item>Hauru no ugoku shiro</item>
+        <item>Harry Potter and the Deathly Hallows: Part 2</item>
+        <item>The Exorcist</item>
+        <item>Sherlock Jr.</item>
+        <item>Le scaphandre et le papillon</item>
+        <item>The Wild Bunch</item>
+        <item>Stalag 17</item>
+        <item>A Streetcar Named Desire</item>
+        <item>Barry Lyndon</item>
+        <item>Rocky</item>
+        <item>Star Trek</item>
+        <item>Kind Hearts and Coronets</item>
+        <item>All Quiet on the Western Front</item>
+        <item>Intouchables</item>
+        <item>The Truman Show</item>
+        <item>Le notti di Cabiria</item>
+        <item>Mou gaan dou</item>
+        <item>A Beautiful Mind</item>
+        <item>Roman Holiday</item>
+        <item>Rope</item>
+        <item>Rosemary’s Baby</item>
+        <item>Yip Man</item>
+        <item>Tôkyô monogatari</item>
+        <item>Mystic River</item>
+        <item>Låt den rätte komma in</item>
+        <item>Avatar</item>
+        <item>The Man Who Shot Liberty Valance</item>
+        <item>Pirates of the Caribbean: The Curse of the Black Pearl</item>
+        <item>Stalker</item>
+        <item>Manhattan</item>
+        <item>Magnolia</item>
+        <item>Big Fish</item>
+        <item>Beauty and the Beast</item>
+        <item>The Incredibles</item>
+        <item>Kaze no tani no Naushika</item>
+        <item>Monsters, Inc.</item>
+        <item>Tropa de Elite 2 - O Inimigo Agora É Outro</item>
+        <item>Nosferatu, eine Symphonie des Grauens</item>
+        <item>In Bruges</item>
+        <item>Anatomy of a Murder</item>
+        <item>Drive</item>
+        <item>Shutter Island</item>
+        <item>Fa yeung nin wa</item>
+        <item>Trois couleurs: Rouge</item>
+    </string-array>
+
+    <!-- List of movie directors of the list above. -->
+    <string-array name="movieDirectors">
+        <item>Frank Darabont</item>
+        <item>Francis Ford Coppola</item>
+        <item>Francis Ford Coppola</item>
+        <item>Quentin Tarantino</item>
+        <item>Sergio Leone</item>
+        <item>Sidney Lumet</item>
+        <item>Steven Spielberg</item>
+        <item>Christopher Nolan</item>
+        <item>Peter Jackson</item>
+        <item>Milos Forman</item>
+        <item>Irvin Kershner</item>
+        <item>David Fincher</item>
+        <item>Christopher Nolan</item>
+        <item>Akira Kurosawa</item>
+        <item>Peter Jackson</item>
+        <item>Martin Scorsese</item>
+        <item>George Lucas</item>
+        <item>Fernando Meirelles</item>
+        <item>Michael Curtiz</item>
+        <item>Andy Wachowski</item>
+        <item>Sergio Leone</item>
+        <item>Alfred Hitchcock</item>
+        <item>Steven Spielberg</item>
+        <item>Jonathan Demme</item>
+        <item>Bryan Singer</item>
+        <item>David Fincher</item>
+        <item>Peter Jackson</item>
+        <item>Robert Zemeckis</item>
+        <item>Alfred Hitchcock</item>
+        <item>Frank Capra</item>
+        <item>Luc Besson</item>
+        <item>Billy Wilder</item>
+        <item>Christopher Nolan</item>
+        <item>Stanley Kubrick</item>
+        <item>Francis Ford Coppola</item>
+        <item>Tony Kaye</item>
+        <item>Alfred Hitchcock</item>
+        <item>James Cameron</item>
+        <item>Orson Welles</item>
+        <item>Steven Spielberg</item>
+        <item>Sam Mendes</item>
+        <item>Lee Unkrich</item>
+        <item>Ridley Scott</item>
+        <item>Charles Chaplin</item>
+        <item>Martin Scorsese</item>
+        <item>Hayao Miyazaki</item>
+        <item>Alfred Hitchcock</item>
+        <item>Stanley Kubrick</item>
+        <item>Stanley Kubrick</item>
+        <item>Fritz Lang</item>
+        <item>Roman Polanski</item>
+        <item>Jean-Pierre Jeunet</item>
+        <item>Martin Scorsese</item>
+        <item>Charles Chaplin</item>
+        <item>Billy Wilder</item>
+        <item>Andrew Stanton</item>
+        <item>Florian Henckel von Donnersmarck</item>
+        <item>James Cameron</item>
+        <item>Stanley Kubrick</item>
+        <item>David Lean</item>
+        <item>Robert Mulligan</item>
+        <item>Roberto Benigni</item>
+        <item>Robert Zemeckis</item>
+        <item>Wolfgang Petersen</item>
+        <item>Darren Aronofsky</item>
+        <item>Michel Gondry</item>
+        <item>Quentin Tarantino</item>
+        <item>Carol Reed</item>
+        <item>Asghar Farhadi</item>
+        <item>Christopher Nolan</item>
+        <item>Frank Darabont</item>
+        <item>Curtis Hanson</item>
+        <item>Giuseppe Tornatore</item>
+        <item>Roman Polanski</item>
+        <item>John Huston</item>
+        <item>Charles Chaplin</item>
+        <item>Ridley Scott</item>
+        <item>Sergio Leone</item>
+        <item>Terry Gilliam</item>
+        <item>Akira Kurosawa</item>
+        <item>Stanley Kubrick</item>
+        <item>Milos Forman</item>
+        <item>Vittorio De Sica</item>
+        <item>Stanley Donen</item>
+        <item>Billy Wilder</item>
+        <item>Martin Scorsese</item>
+        <item>Joseph L. Mankiewicz</item>
+        <item>Mel Gibson</item>
+        <item>Fritz Lang</item>
+        <item>Chan-wook Park</item>
+        <item>Stanley Kubrick</item>
+        <item>David Lean</item>
+        <item>Billy Wilder</item>
+        <item>Guillermo del Toro</item>
+        <item>Richard Marquand</item>
+        <item>Clint Eastwood</item>
+        <item>George Roy Hill</item>
+        <item>Oliver Hirschbiegel</item>
+        <item>Hayao Miyazaki</item>
+        <item>Steven Spielberg</item>
+        <item>Quentin Tarantino</item>
+        <item>Frank Capra</item>
+        <item>Roger Allers</item>
+        <item>John McTiernan</item>
+        <item>Elia Kazan</item>
+        <item>Pete Docter</item>
+        <item>David Lynch</item>
+        <item>Isao Takahata</item>
+        <item>Ingmar Bergman</item>
+        <item>John Sturges</item>
+        <item>John Huston</item>
+        <item>Clint Eastwood</item>
+        <item>Alfred Hitchcock</item>
+        <item>Akira Kurosawa</item>
+        <item>Christopher Nolan</item>
+        <item>Billy Wilder</item>
+        <item>Sergio Leone</item>
+        <item>Michel Hazanavicius</item>
+        <item>Clyde Bruckman</item>
+        <item>Guy Ritchie</item>
+        <item>Michael Mann</item>
+        <item>Joel Coen</item>
+        <item>Ridley Scott</item>
+        <item>Frank Miller</item>
+        <item>Akira Kurosawa</item>
+        <item>Ingmar Bergman</item>
+        <item>John Lasseter</item>
+        <item>Orson Welles</item>
+        <item>Steven Spielberg</item>
+        <item>Joel Coen</item>
+        <item>Ethan Coen</item>
+        <item>Terry George</item>
+        <item>Michael Cimino</item>
+        <item>Darren Aronofsky</item>
+        <item>Tom Hooper</item>
+        <item>Stuart Rosenberg</item>
+        <item>Victor Fleming</item>
+        <item>Akira Kurosawa</item>
+        <item>M. Night Shyamalan</item>
+        <item>Frank Capra</item>
+        <item>Brian De Palma</item>
+        <item>Alfred Hitchcock</item>
+        <item>Woody Allen</item>
+        <item>Quentin Tarantino</item>
+        <item>Charles Chaplin</item>
+        <item>Henri-Georges Clouzot</item>
+        <item>Gavin O&#8217;Connor</item>
+        <item>Fred Zinnemann</item>
+        <item>Oliver Stone</item>
+        <item>Charles Chaplin</item>
+        <item>Danny Boyle</item>
+        <item>Sean Penn</item>
+        <item>George Roy Hill</item>
+        <item>Guy Ritchie</item>
+        <item>Richard Kelly</item>
+        <item>Juan José Campanella</item>
+        <item>F.W. Murnau</item>
+        <item>John Ford</item>
+        <item>Alfred Hitchcock</item>
+        <item>Victor Fleming</item>
+        <item>John Carpenter</item>
+        <item>Clint Eastwood</item>
+        <item>Danny Boyle</item>
+        <item>Martin Scorsese</item>
+        <item>Paul Thomas Anderson</item>
+        <item>Terry Jones</item>
+        <item>Alejandro González Iñárritu</item>
+        <item>Henri-Georges Clouzot</item>
+        <item>William Wyler</item>
+        <item>Harold Ramis</item>
+        <item>Andrew Stanton</item>
+        <item>Hayao Miyazaki</item>
+        <item>Dean DeBlois</item>
+        <item>James Cameron</item>
+        <item>Howard Hawks</item>
+        <item>William Wyler</item>
+        <item>James McTeigue</item>
+        <item>Mike Nichols</item>
+        <item>Rob Reiner</item>
+        <item>Gus Van Sant</item>
+        <item>Terry Gilliam</item>
+        <item>Sidney Lumet</item>
+        <item>Stanley Kramer</item>
+        <item>Paul Greengrass</item>
+        <item>John Frankenheimer</item>
+        <item>Sidney Lumet</item>
+        <item>Neill Blomkamp</item>
+        <item>Charles Laughton</item>
+        <item>Adam Elliot</item>
+        <item>François Truffaut</item>
+        <item>Richard Attenborough</item>
+        <item>Ingmar Bergman</item>
+        <item>Gillo Pontecorvo</item>
+        <item>Alfred Hitchcock</item>
+        <item>Federico Fellini</item>
+        <item>Rob Reiner</item>
+        <item>Stanley Kubrick</item>
+        <item>Masaki Kobayashi</item>
+        <item>Federico Fellini</item>
+        <item>Darren Aronofsky</item>
+        <item>Robert Rossen</item>
+        <item>Brad Bird</item>
+        <item>Mike Nichols</item>
+        <item>Carl Theodor Dreyer</item>
+        <item>Ingmar Bergman</item>
+        <item>Hayao Miyazaki</item>
+        <item>David Yates</item>
+        <item>William Friedkin</item>
+        <item>Buster Keaton</item>
+        <item>Julian Schnabel</item>
+        <item>Sam Peckinpah</item>
+        <item>Billy Wilder</item>
+        <item>Elia Kazan</item>
+        <item>Stanley Kubrick</item>
+        <item>John G. Avildsen</item>
+        <item>J.J. Abrams</item>
+        <item>Robert Hamer</item>
+        <item>Lewis Milestone</item>
+        <item>Olivier Nakache</item>
+        <item>Peter Weir</item>
+        <item>Federico Fellini</item>
+        <item>Wai-keung Lau</item>
+        <item>Ron Howard</item>
+        <item>William Wyler</item>
+        <item>Alfred Hitchcock</item>
+        <item>Roman Polanski</item>
+        <item>Wilson Yip</item>
+        <item>Yasujirô Ozu</item>
+        <item>Clint Eastwood</item>
+        <item>Tomas Alfredson</item>
+        <item>James Cameron</item>
+        <item>John Ford</item>
+        <item>Gore Verbinski</item>
+        <item>Andrey Tarkovskiy</item>
+        <item>Woody Allen</item>
+        <item>Paul Thomas Anderson</item>
+        <item>Tim Burton</item>
+        <item>Gary Trousdale</item>
+        <item>Brad Bird</item>
+        <item>Hayao Miyazaki</item>
+        <item>Pete Docter</item>
+        <item>José Padilha</item>
+        <item>F.W. Murnau</item>
+        <item>Martin McDonagh</item>
+        <item>Otto Preminger</item>
+        <item>Nicolas Winding Refn</item>
+        <item>Martin Scorsese</item>
+        <item>Kar Wai Wong</item>
+        <item>Krzysztof Kieslowski</item>
+    </string-array>
+
+</resources>

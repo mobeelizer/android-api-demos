@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="?WindowBackground"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <include
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        layout="@layout/titlebar" />
+
+    <LinearLayout
+        android:id="@+id/creatingSession"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="visible" >
+
+        <TextView
+            style="?CreateSessionText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:text="@string/createSessionCreating" />
+
+        <ProgressBar
+            android:id="@+id/createSessionProgressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_margin="@dimen/createSessionProgressBarMargin" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/sessionCreated"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="gone" >
+
+        <TextView
+            android:id="@+id/createSessionCreated"
+            style="?CreateSessionText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:text="@string/createSessionCreated" />
+
+        <TextView
+            android:id="@+id/createSessionCode"
+            style="?CreateSessionText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/t_sessionCode"
+            android:textSize="@dimen/createSessionTextBig" />
+
+        <TextView
+            android:id="@+id/createSessionInfo"
+            style="?CreateSessionText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/createSessionNextDevice" />
+
+        <Button
+            android:id="@+id/createSessionExplore"
+            style="?DarkButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/createSessionButtonMarginTop"
+            android:text="@string/explore" />
+    </LinearLayout>
+
+</LinearLayout>

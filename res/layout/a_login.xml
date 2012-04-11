@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/background"
+    android:gravity="center_vertical"
+    android:orientation="vertical" >
+
+    <ImageView
+        android:id="@+id/loginLogo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:contentDescription="@string/d_loginLogo"
+        android:src="@drawable/ic_logo" />
+
+    <RelativeLayout
+        style="?LoginFrame"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/loginLogo"
+        android:layout_centerHorizontal="true" >
+
+        <TextView
+            android:id="@+id/loginInfoText1"
+            style="?LoginInfoText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="0dp"
+            android:text="@string/loginInfoText1" />
+
+        <Button
+            android:id="@+id/loginCreateSession"
+            style="?DarkButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/loginInfoText1"
+            android:layout_alignRight="@+id/loginInfoText1"
+            android:layout_below="@id/loginInfoText1"
+            android:layout_marginBottom="@dimen/loginButtonMarginBottom"
+            android:layout_marginTop="@dimen/loginButtonMarginTop"
+            android:text="@string/create" />
+
+        <TextView
+            android:id="@+id/loginInfoText2"
+            style="?LoginInfoText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/loginCreateSession"
+            android:layout_centerHorizontal="true"
+            android:text="@string/loginInfoText2" />
+
+        <EditText
+            android:id="@+id/loginSessionCode"
+            android:layout_width="@dimen/loginSessionCodeWidth"
+            android:layout_height="@dimen/loginSessionCodeHeight"
+            android:layout_alignLeft="@+id/loginCreateSession"
+            android:layout_below="@id/loginInfoText2"
+            android:inputType="numberDecimal"
+            android:lines="1" />
+
+        <Button
+            android:id="@+id/loginSessionConnect"
+            style="?DarkButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/loginSessionCode"
+            android:layout_alignRight="@+id/loginCreateSession"
+            android:text="@string/connect" />
+    </RelativeLayout>
+
+</RelativeLayout>
