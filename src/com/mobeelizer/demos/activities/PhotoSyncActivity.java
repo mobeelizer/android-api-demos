@@ -36,7 +36,6 @@ import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Handler;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.Menu;
@@ -232,25 +231,11 @@ public class PhotoSyncActivity extends BaseActivity<FileSyncEntity> implements O
 
                 // merge new items to old list and mark them as new,
                 // find removed items in old list and mark them as such
-                boolean showAnim = mergeLists(oldList, newList);
+                mergeLists(oldList, newList);
                 mAdapter.sort(new FileSyncEntity());
                 // refresh the list to display animation
                 mAdapter.notifyDataSetChanged();
-
-                // wait for animation to complete
-                new Handler().postDelayed(new Runnable() {
-
-                    @Override
-                    public void run() {
-                        // and switch old list to new one
-                        mAdapter.clear();
-                        mAdapter.addAll(newList);
-                        mAdapter.sort(new FileSyncEntity());
-                        mAdapter.notifyDataSetChanged();
-                        // then scroll the list to first position
-                        mList.setSelection(0);
-                    }
-                }, showAnim ? 2000 : 0);
+                mList.setSelection(0);
 
                 break;
             case FINISHED_WITH_FAILURE:

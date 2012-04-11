@@ -226,19 +226,26 @@ public class ConflictsActivity extends BaseActivity<ConflictsEntity> implements 
                 showWarning(conflictsCount > 0);
                 // refresh the list to display animation
                 mAdapter.notifyDataSetChanged();
+                mList.setSelection(0);
+
+                final UserType loggedUserType = mUserType;
 
                 // wait for animation to complete
                 new Handler().postDelayed(new Runnable() {
 
                     @Override
                     public void run() {
+                        // skip, if user has changed
+                        if (loggedUserType != mUserType) {
+                            return;
+                        }
+
                         // and switch old list to new one
                         mAdapter.clear();
                         mAdapter.addAll(newList);
                         mAdapter.sort(new ConflictsEntity());
                         mAdapter.notifyDataSetChanged();
                         // then scroll the list to first position
-                        mList.setSelection(0);
                     }
                 }, showAnim ? 2000 : 0);
 

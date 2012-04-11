@@ -201,10 +201,17 @@ public class GraphsConflictActivity extends BaseActivity<GraphsConflictsItemEnti
             gItem.setEntityState(EntityState.REMOVED_A);
             mAdapter.notifyDataSetChanged();
 
+            final UserType loggedUserType = mUserType;
+
             new Handler().postDelayed(new Runnable() {
 
                 @Override
                 public void run() {
+                    // skip, if user has changed
+                    if (loggedUserType != mUserType) {
+                        return;
+                    }
+
                     mAdapter.removeOrderItem(gItem);
                     mAdapter.notifyDataSetChanged();
                 }
@@ -242,7 +249,7 @@ public class GraphsConflictActivity extends BaseActivity<GraphsConflictsItemEnti
                 final List<GraphsConflictsItemEntity> newItems = Mobeelizer.getDatabase().list(GraphsConflictsItemEntity.class);
 
                 boolean showAnim = false;
-                
+
                 // mark new orders to show green overlay animation
                 List<GraphsConflictsOrderEntity> addedOrders = new ArrayList<GraphsConflictsOrderEntity>();
                 for (GraphsConflictsOrderEntity gOrder : newOrders) {
@@ -305,10 +312,17 @@ public class GraphsConflictActivity extends BaseActivity<GraphsConflictsItemEnti
                         .add(MobeelizerRestrictions.isConflicted()).count();
                 showWarning(conflictsCount > 0);
 
+                final UserType loggedUserType = mUserType;
+
                 new Handler().postDelayed(new Runnable() {
 
                     @Override
                     public void run() {
+                        // skip, if user has changed
+                        if (loggedUserType != mUserType) {
+                            return;
+                        }
+
                         mAdapter.clearAllOrders();
                         mAdapter.addAllOrders(newOrders);
                         mAdapter.addAllItems(newItems);
@@ -318,7 +332,7 @@ public class GraphsConflictActivity extends BaseActivity<GraphsConflictsItemEnti
                         mList.setSelection(0);
                     }
                 }, showAnim ? 2000 : 0);
-                
+
                 break;
             case FINISHED_WITH_FAILURE:
                 b = new Bundle();

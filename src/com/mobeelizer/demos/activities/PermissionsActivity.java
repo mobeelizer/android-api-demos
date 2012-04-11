@@ -23,7 +23,6 @@ import java.util.List;
 import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -156,25 +155,11 @@ public class PermissionsActivity extends BaseActivity<PermissionsEntity> impleme
 
                 // merge new items to old list and mark them as new,
                 // find removed items in old list and mark them as such
-                boolean showAnim = mergeLists(oldList, newList);
+                mergeLists(oldList, newList);
                 mAdapter.sort(new PermissionsEntity());
                 // refresh the list to display animation
                 mAdapter.notifyDataSetChanged();
-
-                // wait for animation to complete
-                new Handler().postDelayed(new Runnable() {
-
-                    @Override
-                    public void run() {
-                        // and switch old list to new one
-                        mAdapter.clear();
-                        mAdapter.addAll(newList);
-                        mAdapter.sort(new PermissionsEntity());
-                        mAdapter.notifyDataSetChanged();
-                        // then scroll the list to first position
-                        mList.setSelection(0);
-                    }
-                }, showAnim ? 2000 : 0);
+                mList.setSelection(0);
 
                 break;
             case FINISHED_WITH_FAILURE:

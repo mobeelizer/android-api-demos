@@ -104,6 +104,7 @@ public class PermissionsSyncAdapter extends MyArrayAdapter<PermissionsEntity> {
         if (pe.getEntityState() != EntityState.NONE) {
             Animation anim = null;
             int delay = 0;
+
             switch (pe.getEntityState()) {
             // animation played when the item was added or removed by the user
                 case NEW_A:
@@ -115,7 +116,7 @@ public class PermissionsSyncAdapter extends MyArrayAdapter<PermissionsEntity> {
                 case NEW_S:
                 case REMOVED_S:
                     anim = AnimationUtils.loadAnimation(getContext(), R.anim.list_item_sync_overlay);
-                    delay = 2500;
+                    delay = 2000;
                     break;
             }
             int color = 0;

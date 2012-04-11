@@ -1,6 +1,6 @@
 # Mobeelizer Demos for Android
 
-The Mobeelizer Demos application is a set of examples for how to use the [Mobeelizer SDK](https://github.com/mobeelizer/ios-sdk/) on Android platform.
+The Mobeelizer Demos application is a set of examples for how to use the [Mobeelizer SDK](https://github.com/mobeelizer/android-sdk/) on Android platform.
 
 Please visit the [Mobeelizer site](http://www.mobeelizer.com/) to get more informations.
 

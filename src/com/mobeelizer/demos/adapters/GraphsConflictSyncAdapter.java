@@ -288,7 +288,7 @@ public class GraphsConflictSyncAdapter extends BaseExpandableListAdapter {
                     case NEW_S:
                     case REMOVED_S:
                         anim = AnimationUtils.loadAnimation(mContext, R.anim.list_item_sync_overlay);
-                        delay = 2500;
+                        delay = 2000;
                         break;
                 }
                 int color = 0;
