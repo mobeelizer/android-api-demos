@@ -201,28 +201,27 @@ public abstract class BaseActivity<T extends OverlayedEntity> extends Activity i
                 }
             }
         } else {
-            dialog.setContentView(R.layout.info_dialog);
-            text = (TextView) dialog.findViewById(R.id.dialogText);
             closeButton = (Button) dialog.findViewById(R.id.dialogButton);
 
             // list of help informations for each example
             switch (id) {
                 case D_SIMPLE_SYNC:
-                    text.setText(R.string.dialogSimpleSyncText);
+                    dialog.setContentView(R.layout.info_dialog_simple_sync);
                     break;
                 case D_PHOTO_SYNC:
-                    text.setText(R.string.dialogTextPhotoSync);
+                    dialog.setContentView(R.layout.info_dialog_files_sync);
                     break;
                 case D_PERMISSIONS:
-                    text.setText(R.string.dialogTextPermissions);
+                    dialog.setContentView(R.layout.info_dialog_permissions_sync);
                     break;
                 case D_CONFLICTS:
-                    text.setText(R.string.dialogTextConflicts);
+                    dialog.setContentView(R.layout.info_dialog_conflicts_sync);
                     break;
                 case D_GRAPHS_CONFLICT:
-                    text.setText(R.string.dialogTextGrapfsConflict);
+                    dialog.setContentView(R.layout.info_dialog_relation_conflicts_sync);
                     break;
             }
+            closeButton = (Button) dialog.findViewById(R.id.dialogButton);
         }
 
         final Dialog tmp = dialog;
