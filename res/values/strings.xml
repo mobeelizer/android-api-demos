@@ -104,6 +104,37 @@
         long-press to remove them.
     </string>
     
+    <string name="dialogInfoAddText">Add new elements</string>
+    <string name="dialogInfoSyncText1">Synchronize added elements with the cloud</string>
+    <string name="dialogInfoChengeUserText">Now switch user or connect another device</string>
+    <string name="dialogInfoSyncText2">Sync to see new elements</string>
+    <string name="dialogInfoSyncText3">Add, sync, switch user, sync…</string>
+    <string name="dialogInfoSyncText4">But do not sync data yet!</string>
+    
+    <string name="dialogSimpleSyncTitle">Simple way to share data…</string>
+    <string name="dialogSimpleSyncText1">Exchange simple data between users.</string>
+    <string name="dialogSimpleSyncText2">Now it\'s your turn! Try to add more records and exchange them between as many devices and users as you can find…</string>
+    
+    <string name="dialogFilesSyncTitle">Also simple way to share binaries…</string>
+    <string name="dialogFilesSyncText1">Find out how easy data exchange can be!</string>
+    <string name="dialogFilesSyncAddText">Add new images</string>
+    
+    <string name="dialogPermissionsSyncTitle">Protect your shared data…</string>
+    <string name="dialogPermissionsSyncText1">In your app you can easily define who will see what.</string>
+    <string name="dialogPermissionsSyncText2">See difference? That\'s right! Some data are accesible only to creator, some to everyone. But you can do so much more…</string>
+    
+    <string name="dialogConflictsSyncTitle">Warning, conflicts arise…</string>
+    <string name="dialogConflictsSyncText1">Two users modify one record at the same time? You can easily cope with that!</string>
+    <string name="dialogConflictsSyncText2">Choose one movie title that all users have. Now change movie rating and synchronize updated data…</string>
+    <string name="dialogConflictsSyncText3">Modify the same record with another user and then synchronize…</string>
+    <string name="dialogConflictsSyncText4">And… don\'t worry anymore. No data is lost! Your record is in conflict state, but it\'s easy to resolve it - although not it this demo…</string>
+    
+    <string name="dialogRelationConflictsSyncTitle">Relations, conflicts - no problem at all…</string>
+    <string name="dialogRelationConflictsSyncText1">See how users can interfere with each other working on common Orders.</string>
+    <string name="dialogRelationConflictsSyncText2">As in previous example - choose one order and change it\'s status, synchronize data…</string>
+    <string name="dialogRelationConflictsSyncText3">Now using another user add or remove position in previously choosen order. Synchronize data.</string>
+    <string name="dialogRelationConflictsSyncText4">Don\'t be afraid. You orders are secure. Conflicts can also occour in more complicated structures - like orders and positions. Of course you can feel safe, we will handle them for you…</string>
+    
     <!-- MENU -->
     <string name="logout">Logout</string>
     <string name="nextExample">Next Example</string>
@@ -132,5 +163,6 @@
         aliquip ex ea commodo consequat.
     </string>
     <string name="t_listItem">List item</string>
+    <string name="switch_user_icon">Switch user icon</string>
     
 </resources>

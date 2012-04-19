@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/background"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/dialogTitle"
+        style="?DialogInfoTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/dialogConflictsSyncTitle" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dialogTitleSeparator"
+        android:background="@color/dialogInfoTitleSeparator" />
+
+    <ScrollView
+        android:id="@+id/scrollView1"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:fillViewport="true" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+            
+            <TextView
+		        android:id="@+id/dialogText"
+		        style="?DialogText"
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		        android:text="@string/dialogConflictsSyncText1" />
+            <TextView
+		        android:id="@+id/textView1"
+		        style="@style/DialogTextPoint"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:text="@string/dialogInfoSyncText3" >
+		    </TextView>
+		    
+            <TextView
+		        android:id="@+id/dialogText2"
+		        style="@style/DialogTextPoint"
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		        android:text="@string/dialogConflictsSyncText2" />
+		
+		    <LinearLayout
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		        android:layout_marginBottom="5dp"
+		        android:layout_marginTop="10dp"
+		        android:orientation="vertical" >
+		
+		        <TextView
+		            android:id="@+id/textView3"
+		            style="@style/DialogTextSwitchUser"
+		            android:layout_width="match_parent"
+		            android:layout_height="wrap_content"
+		            android:layout_weight="0.03"
+		            android:gravity="center"
+		            android:text="@string/dialogInfoChengeUserText" />
+		
+		        <ImageView
+		            android:id="@+id/imageView1"
+		            android:layout_width="match_parent"
+		            android:layout_height="30dp"
+		            android:layout_weight="0.24"
+		            android:src="@drawable/help_switch_user"
+		            android:contentDescription="@string/switch_user_icon" />
+		        
+		        <TextView
+		            android:id="@+id/textView4"
+		            style="@style/DialogTextDoNotSynchronize"
+		            android:layout_width="match_parent"
+		            android:layout_height="wrap_content"
+		            android:layout_weight="0.03"
+		            android:gravity="center"
+		            android:text="@string/dialogInfoSyncText4" />
+		        
+		    </LinearLayout>
+		
+		    <TextView
+		        android:id="@+id/textView5"
+		        style="@style/DialogTextPoint"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:text="@string/dialogConflictsSyncText3" >
+		    </TextView>
+		    
+		    <TextView
+		        android:id="@+id/dialogText3"
+		        style="?DialogText"
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		        android:text="@string/dialogConflictsSyncText4" />
+            
+        </LinearLayout>
+    </ScrollView>
+
+    <View
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/dialogTextSeparator"
+        android:background="@color/dialogTextSeparator" />
+
+    <Button
+        android:id="@+id/dialogButton"
+        style="?DialogButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/close" />
+
+</LinearLayout>
