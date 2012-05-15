@@ -139,7 +139,7 @@
     
     <string name="dialogPushNotificationsTitle">Notify users with minimum effort…</string>
     <string name="dialogPushNotificationsText1">You can simply send push notifications without thinking about operating systems and devices.</string>
-    <string name="dialogPushNotificationsText2">Also you can also specify receiver of your notification. He will get it - on every device he\'s logged in (even if application is turned off).</string>
+    <string name="dialogPushNotificationsText2">Also you can specify receiver of your notification. He will get it - on every device he\'s logged in (even if application is turned off).</string>
     
     <!-- MENU -->
     <string name="logout">Logout</string>
@@ -173,8 +173,8 @@
     
     <!-- PUSH NOTIFICATIONS TEXTS -->
     <string name="pushNotificationsText1">Send to everyone</string>
-    <string name="pushNotificationsText2">Sent to users</string>
-    <string name="pushNotificationsButtonSendToAll">Sned push notification</string>
+    <string name="pushNotificationsText2">Send to users</string>
+    <string name="pushNotificationsButtonSendToAll">Send push notification</string>
     <string name="pushNotificationsButtonSendToA">Send to A</string>
     <string name="pushNotificationsButtonSendToB">Send to B</string>
     
