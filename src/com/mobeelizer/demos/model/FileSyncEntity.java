@@ -20,8 +20,8 @@ package com.mobeelizer.demos.model;
 
 import java.util.Comparator;
 
+import com.mobeelizer.java.api.MobeelizerFile;
 import com.mobeelizer.mobile.android.api.MobeelizerDatabase;
-import com.mobeelizer.mobile.android.api.MobeelizerFile;
 
 /**
  * {@link MobeelizerDatabase} data mapping object used in photo sync example.

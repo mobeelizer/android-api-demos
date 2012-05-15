@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     
-    <string name="c_apiURL">http://cloud.mobeelizer.com/sync/demos/create</string>
+    <string name="c_apiURL_host">http://cloud.mobeelizer.com/sync</string>
+    <string name="c_apiURL_path">/demos/create</string>
     <integer name="c_connectionTimeout">10000</integer>
     
     <string name="c_userALogin">A</string>

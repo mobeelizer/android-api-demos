@@ -81,6 +81,11 @@ public class ConflictsActivity extends BaseActivity<ConflictsEntity> implements 
 
     private Dialog mSyncDialog = null;
 
+    @Override
+    protected Integer getHelpDialog() {
+        return D_CONFLICTS;
+    }
+
     /**
      * {@inheritDoc}
      */
@@ -106,13 +111,7 @@ public class ConflictsActivity extends BaseActivity<ConflictsEntity> implements 
         // clip the sync button drawable
         UIUtils.prepareClip(mSyncButton);
 
-        boolean initialized = mSharedPrefs.getBoolean(this.getClass().getSimpleName(), false);
-
         List<ConflictsEntity> data = Mobeelizer.getDatabase().list(ConflictsEntity.class);
-        if (data.size() == 0 && !initialized) {
-            showDialog(D_CONFLICTS);
-            mSharedPrefs.edit().putBoolean(this.getClass().getSimpleName(), true).commit();
-        }
 
         long conflictsCount = Mobeelizer.getDatabase().find(ConflictsEntity.class).add(MobeelizerRestrictions.isConflicted())
                 .count();

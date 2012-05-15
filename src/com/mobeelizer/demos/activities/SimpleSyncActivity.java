@@ -64,6 +64,11 @@ public class SimpleSyncActivity extends BaseActivity<SimpleSyncEntity> implement
 
     private Dialog mSyncDialog = null;
 
+    @Override
+    protected Integer getHelpDialog() {
+        return D_SIMPLE_SYNC;
+    }
+
     /**
      * {@inheritDoc}
      */
@@ -88,13 +93,7 @@ public class SimpleSyncActivity extends BaseActivity<SimpleSyncEntity> implement
         // clip the sync button drawable
         UIUtils.prepareClip(mSyncButton);
 
-        boolean initialized = mSharedPrefs.getBoolean(this.getClass().getSimpleName(), false);
-
         List<SimpleSyncEntity> data = Mobeelizer.getDatabase().list(SimpleSyncEntity.class);
-        if (!initialized) {
-            showDialog(D_SIMPLE_SYNC);
-            mSharedPrefs.edit().putBoolean(this.getClass().getSimpleName(), true).commit();
-        }
 
         mAdapter = new SimpleSyncAdapter(this, data);
         mAdapter.sort(new SimpleSyncEntity());

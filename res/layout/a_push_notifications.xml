@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="?WindowBackground"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <include
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        layout="@layout/titlebar" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" >
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content" 
+            android:orientation="vertical" >
+            <TextView
+                android:id="@+id/TextView01"
+                style="@style/PushInformationText"
+                android:text="@string/pushNotificationsText1" />
+
+		    <Button
+		        android:id="@+id/pushNotificationsSendToAllButton"
+		        style="@style/PushButton"
+		        android:onClick="performSendToAll"
+		        android:text="@string/pushNotificationsButtonSendToAll" />
+
+		    <TextView
+		        android:id="@+id/textView1"
+		        style="@style/PushInformationText"
+		        android:text="@string/pushNotificationsText2" />
+
+		    <Button
+		        android:id="@+id/pushNotificationsSendToAButton"
+		        style="@style/PushButton"
+		        android:onClick="performSendToA"
+		        android:text="@string/pushNotificationsButtonSendToA" />
+				    <Button
+		        android:id="@+id/pushNotificationsSendToBButton"
+		        style="@style/PushButton"
+		        android:layout_marginTop="10dp"
+		        android:onClick="performSendToB"
+		        android:text="@string/pushNotificationsButtonSendToB" />
+    
+    	</LinearLayout>
+    </ScrollView>
+    
+    <include
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        layout="@layout/footer_buttons_simple" />
+
+</LinearLayout>

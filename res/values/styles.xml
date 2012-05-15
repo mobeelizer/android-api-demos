@@ -161,4 +161,18 @@
         <item name="android:paddingTop">@dimen/footerWarningPaddingVertical</item>
     </style>
     
+    <!-- PUSH -->
+    <style name="PushButton" parent="@style/DarkButton">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginLeft">20dp</item>
+        <item name="android:layout_marginRight">20dp</item>
+    </style>
+    
+    <style name="PushInformationText" parent="@style/InformationText">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">15dp</item>
+    </style>
+    
 </resources>

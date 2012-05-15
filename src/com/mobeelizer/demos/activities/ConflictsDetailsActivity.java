@@ -26,6 +26,7 @@ import android.widget.RadioGroup;
 import android.widget.TableRow;
 import android.widget.TextView;
 
+import com.mobeelizer.demos.ApplicationStatus;
 import com.mobeelizer.demos.R;
 
 /**
@@ -87,6 +88,24 @@ public class ConflictsDetailsActivity extends Activity implements View.OnClickLi
         }
         mTitle.setText(title);
         mRadioGroup.check(mRadioIds[rating - 1]);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    protected void onResume() {
+        ApplicationStatus.activityResumed(this);
+        super.onResume();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    protected void onPause() {
+        ApplicationStatus.activityPaused();
+        super.onPause();
     }
 
     /**

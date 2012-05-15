@@ -8,6 +8,11 @@
         android:minSdkVersion="8"
         android:targetSdkVersion="8" />
 
+    <!-- Only this application can receive the messages and registration result --> 
+	<permission android:name="com.mobeelizer.demos.permission.C2D_MESSAGE" android:protectionLevel="signature" />
+	<uses-permission android:name="com.mobeelizer.demos.permission.C2D_MESSAGE" />
+    
+	<uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
@@ -60,9 +65,22 @@
             android:name=".activities.GraphsConflictDetailsActivity" 
             android:configChanges="orientation|keyboardHidden" />
         <activity 
+            android:name=".activities.PushNotificationsActivity" 
+            android:configChanges="orientation|keyboardHidden" />
+        <activity 
             android:name=".activities.WhatNextActivity" 
             android:configChanges="orientation|keyboardHidden" />
         
+        <receiver android:name=".activities.C2DMReceiver" android:permission="com.google.android.c2dm.permission.SEND">
+			<intent-filter>
+				<action android:name="com.google.android.c2dm.intent.RECEIVE" />
+				<category android:name="com.mobeelizer.demos" />
+			</intent-filter>
+			<intent-filter>
+				<action android:name="com.google.android.c2dm.intent.REGISTRATION" />
+				<category android:name="com.mobeelizer.demos" />
+			</intent-filter>
+		</receiver>
         
         <service android:name="com.mobeelizer.mobile.android.MobeelizerSyncService" />
 
@@ -78,6 +96,7 @@
         <meta-data
             android:name="MOBEELIZER_MODE"
             android:value="production" />
+        
     </application>
 
 </manifest>

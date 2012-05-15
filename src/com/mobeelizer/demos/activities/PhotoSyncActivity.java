@@ -56,8 +56,8 @@ import com.mobeelizer.demos.custom.EntityState;
 import com.mobeelizer.demos.model.FileSyncEntity;
 import com.mobeelizer.demos.utils.DataUtil;
 import com.mobeelizer.demos.utils.UIUtils;
+import com.mobeelizer.java.api.MobeelizerFile;
 import com.mobeelizer.mobile.android.Mobeelizer;
-import com.mobeelizer.mobile.android.api.MobeelizerFile;
 import com.mobeelizer.mobile.android.api.MobeelizerLoginCallback;
 import com.mobeelizer.mobile.android.api.MobeelizerSyncCallback;
 import com.mobeelizer.mobile.android.api.MobeelizerSyncStatus;
@@ -82,6 +82,11 @@ public class PhotoSyncActivity extends BaseActivity<FileSyncEntity> implements O
     private FileSyncAdapter mAdapter;
 
     private Dialog mSyncDialog = null;
+
+    @Override
+    protected Integer getHelpDialog() {
+        return D_PHOTO_SYNC;
+    }
 
     /**
      * {@inheritDoc}
@@ -108,13 +113,7 @@ public class PhotoSyncActivity extends BaseActivity<FileSyncEntity> implements O
         // clip the sync button drawable
         UIUtils.prepareClip(mSyncButton);
 
-        boolean initialized = mSharedPrefs.getBoolean(this.getClass().getSimpleName(), false);
-
         List<FileSyncEntity> data = Mobeelizer.getDatabase().list(FileSyncEntity.class);
-        if (!initialized) {
-            showDialog(D_PHOTO_SYNC);
-            mSharedPrefs.edit().putBoolean(this.getClass().getSimpleName(), true).commit();
-        }
 
         mAdapter = new FileSyncAdapter(this, data);
         mAdapter.sort(new FileSyncEntity());

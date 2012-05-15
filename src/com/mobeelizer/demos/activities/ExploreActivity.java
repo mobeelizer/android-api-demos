@@ -44,6 +44,11 @@ public class ExploreActivity extends BaseActivity implements OnItemClickListener
 
     private ArrayAdapter<String> mAdapter;
 
+    @Override
+    protected Integer getHelpDialog() {
+        return null;
+    }
+
     /**
      * {@inheritDoc}
      */
@@ -100,7 +105,11 @@ public class ExploreActivity extends BaseActivity implements OnItemClickListener
                 i = new Intent(getApplicationContext(), GraphsConflictActivity.class);
                 break;
             case 6:
+                i = new Intent(getApplicationContext(), PushNotificationsActivity.class);
+                break;
+            case 7:
                 i = new Intent(getApplicationContext(), WhatNextActivity.class);
+                break;
         }
         if (i != null) {
             startActivity(i);

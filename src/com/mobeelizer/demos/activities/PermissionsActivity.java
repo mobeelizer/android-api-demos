@@ -63,6 +63,11 @@ public class PermissionsActivity extends BaseActivity<PermissionsEntity> impleme
 
     private Dialog mSyncDialog = null;
 
+    @Override
+    protected Integer getHelpDialog() {
+        return D_PERMISSIONS;
+    }
+
     /**
      * {@inheritDoc}
      */
@@ -87,13 +92,7 @@ public class PermissionsActivity extends BaseActivity<PermissionsEntity> impleme
         // clip the sync button drawable
         UIUtils.prepareClip(mSyncButton);
 
-        boolean initialized = mSharedPrefs.getBoolean(this.getClass().getSimpleName(), false);
-
         List<PermissionsEntity> data = Mobeelizer.getDatabase().list(PermissionsEntity.class);
-        if (data.size() == 0 && !initialized) {
-            showDialog(D_PERMISSIONS);
-            mSharedPrefs.edit().putBoolean(this.getClass().getSimpleName(), true).commit();
-        }
 
         mAdapter = new PermissionsSyncAdapter(this, data);
         mAdapter.sort(new PermissionsEntity());

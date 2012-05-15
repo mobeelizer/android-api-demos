@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/background"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/dialogTitle"
+        style="?DialogInfoTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/dialogPushNotificationsTitle" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dialogTitleSeparator"
+        android:background="@color/dialogInfoTitleSeparator" />
+
+    <ScrollView
+        android:id="@+id/scrollView1"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:fillViewport="true" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+            
+            <TextView
+		        android:id="@+id/dialogText"
+		        style="?DialogText"
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		        android:text="@string/dialogPushNotificationsText1" />
+            
+            <TextView
+		        android:id="@+id/textView1"
+		        style="?DialogText"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:text="@string/dialogPushNotificationsText2" />
+            
+        </LinearLayout>
+    </ScrollView>
+
+    <View
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/dialogTextSeparator"
+        android:background="@color/dialogTextSeparator" />
+
+    <Button
+        android:id="@+id/dialogButton"
+        style="?DialogButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/close" />
+
+</LinearLayout>

@@ -34,6 +34,11 @@ import com.mobeelizer.demos.R;
 @SuppressWarnings("rawtypes")
 public class GettingStartedActivity extends BaseActivity {
 
+    @Override
+    protected Integer getHelpDialog() {
+        return null;
+    }
+
     /**
      * {@inheritDoc}
      */

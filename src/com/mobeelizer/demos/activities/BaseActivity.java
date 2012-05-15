@@ -38,6 +38,7 @@ import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.mobeelizer.demos.ApplicationStatus;
 import com.mobeelizer.demos.R;
 import com.mobeelizer.demos.custom.EntityState;
 import com.mobeelizer.demos.model.OverlayedEntity;
@@ -76,13 +77,13 @@ public abstract class BaseActivity<T extends OverlayedEntity> extends Activity i
 
     /** Id of the help dialog that can be created without providing any additional data. */
     public static final int D_SIMPLE_SYNC = 0x100, D_PHOTO_SYNC = 0x101, D_PERMISSIONS = 0x102, D_CONFLICTS = 0x103,
-            D_GRAPHS_CONFLICT = 0x104;
+            D_GRAPHS_CONFLICT = 0x104, D_PUSH_NOTIFICATIONS = 0x105;
 
     /**
      * Id of the dialog that can be customized to display any information or error stored in Android {@link Resources} or
      * {@link String} object.
      */
-    public static final int D_CUSTOM = 0x105;
+    public static final int D_CUSTOM = 0x106;
 
     private ImageButton mUserButton;
 
@@ -99,6 +100,8 @@ public abstract class BaseActivity<T extends OverlayedEntity> extends Activity i
     /** Currently logged in user */
     protected UserType mUserType;
 
+    protected abstract Integer getHelpDialog();
+
     /**
      * {@inheritDoc}
      */
@@ -108,6 +111,14 @@ public abstract class BaseActivity<T extends OverlayedEntity> extends Activity i
         mSharedPrefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         mSessionCode = mSharedPrefs.getString(SESSION_CODE, null);
         mUserType = UserType.valueOf(mSharedPrefs.getString(USER_TYPE, "A"));
+
+        boolean initialized = mSharedPrefs.getBoolean(getClass().getSimpleName(), false);
+        if (!initialized) {
+            if (getHelpDialog() != null) {
+                showDialog(getHelpDialog());
+            }
+            mSharedPrefs.edit().putBoolean(this.getClass().getSimpleName(), true).commit();
+        }
     }
 
     /**
@@ -115,11 +126,21 @@ public abstract class BaseActivity<T extends OverlayedEntity> extends Activity i
      */
     @Override
     protected void onResume() {
+        ApplicationStatus.activityResumed(this);
         super.onResume();
         mUserType = UserType.valueOf(mSharedPrefs.getString(USER_TYPE, "A"));
         if (mUserButton != null) {
             setUserType();
         }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    protected void onPause() {
+        ApplicationStatus.activityPaused();
+        super.onPause();
     }
 
     /**
@@ -158,6 +179,7 @@ public abstract class BaseActivity<T extends OverlayedEntity> extends Activity i
             case D_PERMISSIONS:
             case D_CONFLICTS:
             case D_GRAPHS_CONFLICT:
+            case D_PUSH_NOTIFICATIONS:
                 break;
             // if the value is out of range no dialog should be shown
             default:
@@ -201,8 +223,6 @@ public abstract class BaseActivity<T extends OverlayedEntity> extends Activity i
                 }
             }
         } else {
-            closeButton = (Button) dialog.findViewById(R.id.dialogButton);
-
             // list of help informations for each example
             switch (id) {
                 case D_SIMPLE_SYNC:
@@ -219,6 +239,9 @@ public abstract class BaseActivity<T extends OverlayedEntity> extends Activity i
                     break;
                 case D_GRAPHS_CONFLICT:
                     dialog.setContentView(R.layout.info_dialog_relation_conflicts_sync);
+                    break;
+                case D_PUSH_NOTIFICATIONS:
+                    dialog.setContentView(R.layout.info_dialog_push_notifications);
                     break;
             }
             closeButton = (Button) dialog.findViewById(R.id.dialogButton);
@@ -251,6 +274,7 @@ public abstract class BaseActivity<T extends OverlayedEntity> extends Activity i
                     return true;
                 }
 
+                Mobeelizer.unregisterForRemoteNotifications();
                 Mobeelizer.logout();
 
                 // remove both the user and session information from shared preferences
@@ -414,6 +438,7 @@ public abstract class BaseActivity<T extends OverlayedEntity> extends Activity i
         mLoginDialog.show();
 
         // logout current user
+        Mobeelizer.unregisterForRemoteNotifications();
         Mobeelizer.logout();
 
         // remove user login data so it won't be automatically logged in if the application will be closed
@@ -450,6 +475,8 @@ public abstract class BaseActivity<T extends OverlayedEntity> extends Activity i
         Bundle err;
         switch (status) {
             case OK:
+                C2DMReceiver.performPushRegistration();
+
                 succeed = true;
                 // change the title bar user indicator
                 setUserType();

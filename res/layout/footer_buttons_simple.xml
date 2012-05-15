@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingBottom="@dimen/footerButtonMarginBottom" >
+
+    <ImageButton
+        android:id="@+id/footerInfo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="@dimen/footerWarningPaddingVertical"
+        android:background="@drawable/bt_info_background"
+        android:contentDescription="@string/d_infoButton"
+        android:src="@drawable/ic_info" />
+
+</RelativeLayout>

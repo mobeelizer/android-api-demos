@@ -26,6 +26,7 @@
     <string name="titleBarPermissions">PERMISSIONS</string>
     <string name="titleBarConflicts">CONFLICTS</string>
     <string name="titleBarGraphsConflicts">GRAPH&#8217;S CONFLICTS</string>
+    <string name="titleBarPushNotifications">PUSH NOTIFICATIONS</string>
     <string name="titleBarWhatNext">WHAT NEXT?</string>
     <string name="titleBarSessionCode">SESSION CODE</string>
     <string name="titleBarSessionCodeN">SESSION CODE: %s</string>
@@ -42,10 +43,10 @@
     <string name="graphsDetailsReceived">Received</string>
     
     <string name="gettingStartedText">
-        Mobeelizer is a Synchronisation-as-a-Service for mobile developers. We strive to make it 
-        ridiculously easy to get synchronisation for mobile apps up and running, so you can focus 
+        Mobeelizer is a Synchronization-as-a-Service for mobile developers. We strive to make it 
+        ridiculously easy to get synchronization for mobile apps up and running, so you can focus 
         on creating mobile apps, without worrying about data exchange.\n\nWhen using Mobeelizer, we automatically take care about the backend, configuration and 
-        complicated aspect of synchronisation conflicts.\n\nVisit mobeelizer.com for more info.\n\nThis app contains examples of using mobeelizer in different scenarios. You can see how to 
+        complicated aspect of synchronization conflicts.\n\nVisit mobeelizer.com for more info.\n\nThis app contains examples of using mobeelizer in different scenarios. You can see how to 
         sync data, binary files or how to handle conflicts. It\'s only a small possibilities what 
         mobeelizer can do for you. So have fun!
     </string>
@@ -68,6 +69,7 @@
         <item>Permissions</item>
         <item>Conflicts</item>
         <item>Relation Conflicts</item>
+        <item>Push Notifications</item>
         <item>What to do next?</item>
     </string-array>
     
@@ -127,13 +129,17 @@
     <string name="dialogConflictsSyncText1">Two users modify one record at the same time? You can easily cope with that!</string>
     <string name="dialogConflictsSyncText2">Choose one movie title that all users have. Now change movie rating and synchronize updated data…</string>
     <string name="dialogConflictsSyncText3">Modify the same record with another user and then synchronize…</string>
-    <string name="dialogConflictsSyncText4">And… don\'t worry anymore. No data is lost! Your record is in conflict state, but it\'s easy to resolve it - although not it this demo…</string>
+    <string name="dialogConflictsSyncText4">And… don\'t worry anymore. No data is lost! Your record is in conflict state, but it\'s easy to resolve it - although not in this demo…</string>
     
     <string name="dialogRelationConflictsSyncTitle">Relations, conflicts - no problem at all…</string>
     <string name="dialogRelationConflictsSyncText1">See how users can interfere with each other working on common Orders.</string>
     <string name="dialogRelationConflictsSyncText2">As in previous example - choose one order and change it\'s status, synchronize data…</string>
     <string name="dialogRelationConflictsSyncText3">Now using another user add or remove position in previously choosen order. Synchronize data.</string>
-    <string name="dialogRelationConflictsSyncText4">Don\'t be afraid. You orders are secure. Conflicts can also occour in more complicated structures - like orders and positions. Of course you can feel safe, we will handle them for you…</string>
+    <string name="dialogRelationConflictsSyncText4">Don\'t be afraid. Your orders are secure. Conflicts can also occour in more complicated structures - like orders and positions. Of course you can feel safe, we will handle them for you…</string>
+    
+    <string name="dialogPushNotificationsTitle">Notify users with minimum effort…</string>
+    <string name="dialogPushNotificationsText1">You can simply send push notifications without thinking about operating systems and devices.</string>
+    <string name="dialogPushNotificationsText2">Also you can also specify receiver of your notification. He will get it - on every device he\'s logged in (even if application is turned off).</string>
     
     <!-- MENU -->
     <string name="logout">Logout</string>
@@ -164,5 +170,12 @@
     </string>
     <string name="t_listItem">List item</string>
     <string name="switch_user_icon">Switch user icon</string>
+    
+    <!-- PUSH NOTIFICATIONS TEXTS -->
+    <string name="pushNotificationsText1">Send to everyone</string>
+    <string name="pushNotificationsText2">Sent to users</string>
+    <string name="pushNotificationsButtonSendToAll">Sned push notification</string>
+    <string name="pushNotificationsButtonSendToA">Send to A</string>
+    <string name="pushNotificationsButtonSendToB">Send to B</string>
     
 </resources>

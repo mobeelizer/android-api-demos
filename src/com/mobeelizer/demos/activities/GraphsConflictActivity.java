@@ -86,6 +86,11 @@ public class GraphsConflictActivity extends BaseActivity<GraphsConflictsItemEnti
 
     private Dialog mSyncDialog = null;
 
+    @Override
+    protected Integer getHelpDialog() {
+        return D_GRAPHS_CONFLICT;
+    }
+
     /**
      * {@inheritDoc}
      */
@@ -111,13 +116,7 @@ public class GraphsConflictActivity extends BaseActivity<GraphsConflictsItemEnti
         // clip the sync button drawable
         UIUtils.prepareClip(mSyncButton);
 
-        boolean initialized = mSharedPrefs.getBoolean(this.getClass().getSimpleName(), false);
-
         List<GraphsConflictsOrderEntity> orders = Mobeelizer.getDatabase().list(GraphsConflictsOrderEntity.class);
-        if (orders.size() == 0 && !initialized) {
-            showDialog(D_GRAPHS_CONFLICT);
-            mSharedPrefs.edit().putBoolean(this.getClass().getSimpleName(), true).commit();
-        }
         List<GraphsConflictsItemEntity> items = Mobeelizer.getDatabase().list(GraphsConflictsItemEntity.class);
 
         long conflictsCount = Mobeelizer.getDatabase().find(GraphsConflictsOrderEntity.class)
@@ -154,7 +153,7 @@ public class GraphsConflictActivity extends BaseActivity<GraphsConflictsItemEnti
     public boolean onMenuItemSelected(final int featureId, final MenuItem item) {
         switch (item.getItemId()) {
             case R.id.m_next:
-                Intent i = new Intent(getApplicationContext(), WhatNextActivity.class);
+                Intent i = new Intent(getApplicationContext(), PushNotificationsActivity.class);
                 startActivity(i);
                 finish();
                 return true;

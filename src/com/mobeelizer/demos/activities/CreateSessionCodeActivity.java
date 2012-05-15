@@ -29,6 +29,8 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
+import android.content.pm.PackageManager.NameNotFoundException;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -38,6 +40,7 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.mobeelizer.demos.ApplicationStatus;
 import com.mobeelizer.demos.R;
 import com.mobeelizer.demos.activities.BaseActivity.UserType;
 import com.mobeelizer.demos.utils.UIUtils;
@@ -90,6 +93,7 @@ public class CreateSessionCodeActivity extends Activity implements MobeelizerLog
      */
     @Override
     protected void onResume() {
+        ApplicationStatus.activityResumed(this);
         super.onResume();
         mCreateSessionTask = new CreateSessionTask();
         mCreateSessionTask.execute();
@@ -100,6 +104,7 @@ public class CreateSessionCodeActivity extends Activity implements MobeelizerLog
      */
     @Override
     protected void onPause() {
+        ApplicationStatus.activityPaused();
         mCreateSessionTask.cancel(true);
         super.onPause();
     }
@@ -166,6 +171,8 @@ public class CreateSessionCodeActivity extends Activity implements MobeelizerLog
         // If logging in succeeded show examples list. Otherwise show an error dialog
         switch (status) {
             case OK:
+                C2DMReceiver.performPushRegistration();
+
                 // start explore activity
                 Intent i = new Intent(getApplicationContext(), ExploreActivity.class);
                 startActivity(i);
@@ -244,7 +251,28 @@ public class CreateSessionCodeActivity extends Activity implements MobeelizerLog
         @Override
         protected String doInBackground(final Void... params) {
             try {
-                URL url = new URL(getString(R.string.c_apiURL));
+                Bundle metaData = getApplication().getPackageManager().getApplicationInfo(getApplication().getPackageName(),
+                        PackageManager.GET_META_DATA).metaData;
+
+                String propUrl = metaData.getString("MOBEELIZER_URL");
+                String mode = metaData.getString("MOBEELIZER_MODE");
+
+                StringBuilder baseUrlBuilder = new StringBuilder();
+                if (propUrl == null) {
+                    baseUrlBuilder.append(getString(R.string.c_apiURL_host));
+                } else {
+                    baseUrlBuilder.append(propUrl);
+                }
+
+                baseUrlBuilder.append(getString(R.string.c_apiURL_path));
+
+                if ("test".equals(mode.toLowerCase())) {
+                    baseUrlBuilder.append("?test=true");
+                } else {
+                    baseUrlBuilder.append("?test=false");
+                }
+
+                URL url = new URL(baseUrlBuilder.toString());
                 URLConnection connection = url.openConnection();
                 connection.setConnectTimeout(getResources().getInteger(R.integer.c_connectionTimeout));
                 BufferedInputStream bis = new BufferedInputStream(connection.getInputStream());
@@ -267,6 +295,8 @@ public class CreateSessionCodeActivity extends Activity implements MobeelizerLog
             } catch (MalformedURLException e) {
                 e.printStackTrace();
             } catch (IOException e) {
+                e.printStackTrace();
+            } catch (NameNotFoundException e) {
                 e.printStackTrace();
             }
             return null;

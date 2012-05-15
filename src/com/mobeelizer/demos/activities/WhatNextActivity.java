@@ -33,6 +33,11 @@ import com.mobeelizer.demos.R;
 @SuppressWarnings("rawtypes")
 public class WhatNextActivity extends BaseActivity {
 
+    @Override
+    protected Integer getHelpDialog() {
+        return null;
+    }
+
     /**
      * {@inheritDoc}
      */

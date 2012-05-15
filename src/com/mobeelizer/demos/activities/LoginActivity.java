@@ -20,6 +20,7 @@ package com.mobeelizer.demos.activities;
 
 import android.app.Activity;
 import android.app.Dialog;
+import android.app.PendingIntent;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -32,6 +33,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.mobeelizer.demos.ApplicationStatus;
 import com.mobeelizer.demos.R;
 import com.mobeelizer.demos.activities.BaseActivity.UserType;
 import com.mobeelizer.demos.utils.UIUtils;
@@ -54,6 +56,8 @@ public class LoginActivity extends Activity implements MobeelizerLoginCallback {
 
     private Dialog mLoginDialog = null;
 
+    private SharedPreferences mSharedPrefs;
+
     /**
      * {@inheritDoc}
      */
@@ -74,8 +78,8 @@ public class LoginActivity extends Activity implements MobeelizerLoginCallback {
         UIUtils.prepareClip(mCreateSessionButton);
         UIUtils.prepareClip(mConnectButton);
 
-        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-        String code = sp.getString(BaseActivity.SESSION_CODE, null);
+        mSharedPrefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        String code = mSharedPrefs.getString(BaseActivity.SESSION_CODE, null);
 
         // check for stored user data
         if (code != null) {
@@ -88,13 +92,37 @@ public class LoginActivity extends Activity implements MobeelizerLoginCallback {
             mLoginDialog.show();
 
             // If present try to login using them
-            UserType user = UserType.valueOf(sp.getString(BaseActivity.USER_TYPE, null));
+            UserType user = UserType.valueOf(mSharedPrefs.getString(BaseActivity.USER_TYPE, null));
             if (user == UserType.A) {
                 Mobeelizer.login(code, getString(R.string.c_userALogin), getString(R.string.c_userAPassword), this);
             } else if (user == UserType.B) {
                 Mobeelizer.login(code, getString(R.string.c_userBLogin), getString(R.string.c_userBPassword), this);
             }
         }
+
+        // register for push notifications
+        Intent registrationIntent = new Intent("com.google.android.c2dm.intent.REGISTER");
+        registrationIntent.putExtra("app", PendingIntent.getBroadcast(this, 0, new Intent(), 0)); // boilerplate
+        registrationIntent.putExtra("sender", "google_services@mobeelizer.com");
+        startService(registrationIntent);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    protected void onResume() {
+        ApplicationStatus.activityResumed(this);
+        super.onResume();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    protected void onPause() {
+        ApplicationStatus.activityPaused();
+        super.onPause();
     }
 
     /**
@@ -160,6 +188,8 @@ public class LoginActivity extends Activity implements MobeelizerLoginCallback {
         // If logging in succeeded show examples list. Otherwise show an error dialog
         switch (status) {
             case OK:
+                C2DMReceiver.performPushRegistration();
+
                 // start explore activity
                 Intent i = new Intent(getApplicationContext(), ExploreActivity.class);
                 startActivity(i);

@@ -42,7 +42,7 @@ import com.mobeelizer.demos.activities.BaseActivity.UserType;
 import com.mobeelizer.demos.custom.EntityState;
 import com.mobeelizer.demos.custom.MyArrayAdapter;
 import com.mobeelizer.demos.model.FileSyncEntity;
-import com.mobeelizer.mobile.android.api.MobeelizerFile;
+import com.mobeelizer.java.api.MobeelizerFile;
 
 /**
  * An adapter for a list view in "File Sync" example.
