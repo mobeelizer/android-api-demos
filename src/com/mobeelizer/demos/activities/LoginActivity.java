@@ -92,7 +92,7 @@ public class LoginActivity extends Activity implements MobeelizerLoginCallback {
             mLoginDialog.show();
 
             // If present try to login using them
-            UserType user = UserType.valueOf(mSharedPrefs.getString(BaseActivity.USER_TYPE, null));
+            UserType user = UserType.valueOf(mSharedPrefs.getString(BaseActivity.USER_TYPE, "A"));
             if (user == UserType.A) {
                 Mobeelizer.login(code, getString(R.string.c_userALogin), getString(R.string.c_userAPassword), this);
             } else if (user == UserType.B) {
