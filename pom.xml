@@ -58,6 +58,14 @@
 					</zipalign>
                 </configuration>              
             </plugin>
+            <plugin>
+			    <groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-release-plugin</artifactId>
+				<version>2.3</version>
+				<configuration>
+					<arguments>-DreleaseVersion=${releaseVersion} -DsignKeystore=${signKeystore} -DsignStorepass=${signStorepass} -DsignKeypass=${signKeypass} -DsignAlias=${signAlias}</arguments>
+				</configuration>			    
+			</plugin>
         </plugins>
     </build>
     
