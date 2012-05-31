@@ -27,8 +27,11 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.List;
 
+import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.Bitmap.CompressFormat;
 import android.graphics.BitmapFactory;
@@ -72,6 +75,8 @@ import com.mobeelizer.mobile.android.api.MobeelizerSyncStatus;
 public class PhotoSyncActivity extends BaseActivity<FileSyncEntity> implements OnItemClickListener, MobeelizerSyncCallback {
 
     private static final int TAKE_PHOTO = 0x100;
+
+    private static final int CHOOSE_PHOTO = 0x101;
 
     private Button mAddButton, mSyncButton;
 
@@ -126,7 +131,7 @@ public class PhotoSyncActivity extends BaseActivity<FileSyncEntity> implements O
      */
     @Override
     public void onActivityResult(final int requestCode, final int resultCode, final Intent data) {
-        if (requestCode == TAKE_PHOTO && resultCode == RESULT_OK) {
+        if ((requestCode == TAKE_PHOTO || requestCode == CHOOSE_PHOTO) && resultCode == RESULT_OK) {
             MobeelizerFile photo;
 
             File photoFile = null;
@@ -134,15 +139,21 @@ public class PhotoSyncActivity extends BaseActivity<FileSyncEntity> implements O
                 // get the photo file from external storage
                 photoFile = new File(getExternalFilesDir(null), "tmp_photo");
 
-                // decode the bitmap to scale it to around 600 pixels width to avoid out of memory exception
+                String filePath = null;
+                if (requestCode == TAKE_PHOTO) {
+                    filePath = photoFile.getAbsolutePath();
+                } else {
+                    Uri chosenImageUri = data.getData();
+                    filePath = getRealPathFromURI(chosenImageUri);
+                }
+
                 BitmapFactory.Options opt = new BitmapFactory.Options();
                 opt.inJustDecodeBounds = true;
-                BitmapFactory.decodeFile(photoFile.getAbsolutePath(), opt);
+                BitmapFactory.decodeFile(filePath, opt);
                 opt.inJustDecodeBounds = false;
                 opt.inSampleSize = (int) Math.ceil(opt.outWidth / 600.0);
+                Bitmap scaled = BitmapFactory.decodeFile(filePath, opt);
 
-                // create scaled bitmap
-                Bitmap scaled = BitmapFactory.decodeFile(photoFile.getAbsolutePath(), opt);
                 Log.d("TEST", "Width: " + scaled.getWidth() + "\tHeight: " + scaled.getHeight());
                 photoFile.delete();
                 photoFile.createNewFile();
@@ -173,6 +184,19 @@ public class PhotoSyncActivity extends BaseActivity<FileSyncEntity> implements O
                 }
             }
         }
+    }
+
+    private String getRealPathFromURI(final Uri contentUri) {
+        // can post image
+        String[] proj = { MediaStore.Images.Media.DATA };
+        Cursor cursor = managedQuery(contentUri, proj, // Which columns to return
+                null, // WHERE clause; which rows to return (all rows)
+                null, // WHERE clause selection arguments (none)
+                null); // Order-by clause (ascending by name)
+        int column_index = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+        cursor.moveToFirst();
+
+        return cursor.getString(column_index);
     }
 
     /**
@@ -271,40 +295,80 @@ public class PhotoSyncActivity extends BaseActivity<FileSyncEntity> implements O
 
             @Override
             public void onClick(final View v) {
-                // detect if the app is running on emulator
-                if ("google_sdk".equals(Build.PRODUCT) || "sdk".equals(Build.PRODUCT)) {
-                    // get a random photo from application resources
-                    FileSyncEntity fse = new FileSyncEntity();
-                    MobeelizerFile photo = Mobeelizer.createFile("photo",
-                            getResources().openRawResource(DataUtil.getRandomImage()));
-                    fse.setPhoto(photo);
 
-                    // add it to database and display on a list view
-                    Mobeelizer.getDatabase().save(fse);
-                    fse.setEntityState(EntityState.NEW_A);
-                    mAdapter.add(fse);
-                    mAdapter.sort(new FileSyncEntity());
-                    mAdapter.notifyDataSetChanged();
-                    // scroll the list to the last position
-                    mList.smoothScrollToPosition(mAdapter.getPosition(fse));
-                } else {
-                    // if the application runs on the actual device
-                    try {
-                        // take a photo using built in camera
-                        File photo = new File(getExternalFilesDir(null), "tmp_photo");
-                        if (photo.exists()) {
-                            photo.delete();
-                        }
-                        photo.createNewFile();
-                        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                        intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(photo));
-                        startActivityForResult(intent, TAKE_PHOTO);
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
+                CharSequence[] items = { "Camera", "Photo gallery", "Random image" };
+                final boolean isEmulator = "google_sdk".equals(Build.PRODUCT) || "sdk".equals(Build.PRODUCT);
+
+                if (isEmulator) {
+                    items = new CharSequence[] { "Photo gallery", "Random image" };
                 }
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext());
+                builder.setTitle("Choose source:");
+                builder.setItems(items, new DialogInterface.OnClickListener() {
+
+                    @Override
+                    public void onClick(final DialogInterface dialog, final int item) {
+                        if (isEmulator) {
+                            if (item == 0) {
+                                getImageFromGallery();
+                            } else {
+                                getRandomImage();
+                            }
+                        } else {
+                            if (item == 0) {
+                                getImageFromCamera();
+                            } else if (item == 1) {
+                                getImageFromGallery();
+                            } else {
+                                getRandomImage();
+                            }
+                        }
+                    }
+                });
+                AlertDialog alert = builder.create();
+                alert.show();
             }
+
         };
+    }
+
+    private void getImageFromCamera() {
+        try {
+            // take a photo using built in camera
+            File photo = new File(getExternalFilesDir(null), "tmp_photo");
+            if (photo.exists()) {
+                photo.delete();
+            }
+            photo.createNewFile();
+            Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+            intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(photo));
+            startActivityForResult(intent, TAKE_PHOTO);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void getImageFromGallery() {
+        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+        intent.setType("image/*");
+        startActivityForResult(intent, CHOOSE_PHOTO);
+    }
+
+    private void getRandomImage() {
+        // get a random photo from application resources
+        FileSyncEntity fse = new FileSyncEntity();
+        MobeelizerFile photo = Mobeelizer.createFile("photo", getResources().openRawResource(DataUtil.getRandomImage()));
+        fse.setPhoto(photo);
+
+        // add it to database and display on a list view
+        Mobeelizer.getDatabase().save(fse);
+        fse.setEntityState(EntityState.NEW_A);
+        mAdapter.add(fse);
+        mAdapter.sort(new FileSyncEntity());
+        mAdapter.notifyDataSetChanged();
+        // scroll the list to the last position
+        mList.smoothScrollToPosition(mAdapter.getPosition(fse));
     }
 
     /**

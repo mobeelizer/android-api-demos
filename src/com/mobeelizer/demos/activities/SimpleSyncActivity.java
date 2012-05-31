@@ -23,6 +23,7 @@ import java.util.List;
 import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -152,12 +153,12 @@ public class SimpleSyncActivity extends BaseActivity<SimpleSyncEntity> implement
                 final List<SimpleSyncEntity> newList = Mobeelizer.getDatabase().list(SimpleSyncEntity.class);
                 // get old items from list adapter
                 final List<SimpleSyncEntity> oldList = mAdapter.getItems();
-
                 // merge new items to old list and mark them as new,
                 // find removed items in old list and mark them as such
                 mergeLists(oldList, newList);
                 mAdapter.sort(new SimpleSyncEntity());
                 // refresh the list to display animation
+                Log.i("AAA", "=================== SYNC FINISHED");
                 mAdapter.notifyDataSetChanged();
                 mList.setSelection(0);
 
