@@ -20,7 +20,6 @@ package com.mobeelizer.demos.activities;
 
 import android.app.Activity;
 import android.app.Dialog;
-import android.app.PendingIntent;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -63,6 +62,11 @@ public class LoginActivity extends Activity implements MobeelizerLoginCallback {
      */
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
+        try {
+            Class.forName("android.os.AsyncTask");
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
         super.onCreate(savedInstanceState);
         setContentView(R.layout.a_login);
 
@@ -100,11 +104,11 @@ public class LoginActivity extends Activity implements MobeelizerLoginCallback {
             }
         }
 
-        // register for push notifications
-        Intent registrationIntent = new Intent("com.google.android.c2dm.intent.REGISTER");
-        registrationIntent.putExtra("app", PendingIntent.getBroadcast(this, 0, new Intent(), 0)); // boilerplate
-        registrationIntent.putExtra("sender", "google_services@mobeelizer.com");
-        startService(registrationIntent);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
     }
 
     /**
@@ -168,7 +172,6 @@ public class LoginActivity extends Activity implements MobeelizerLoginCallback {
             final Dialog tmp = dialog;
             closeButton.setOnClickListener(new View.OnClickListener() {
 
-                @Override
                 public void onClick(final View paramView) {
                     tmp.dismiss();
                 }
@@ -181,7 +184,6 @@ public class LoginActivity extends Activity implements MobeelizerLoginCallback {
     /**
      * {@inheritDoc}
      */
-    @Override
     public void onLoginFinished(final MobeelizerLoginStatus status) {
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         Bundle err;
@@ -232,7 +234,6 @@ public class LoginActivity extends Activity implements MobeelizerLoginCallback {
     private View.OnClickListener getOnCreateSessionClickListenter() {
         return new View.OnClickListener() {
 
-            @Override
             public void onClick(final View v) {
                 Intent i = new Intent(getApplicationContext(), CreateSessionCodeActivity.class);
                 startActivity(i);
@@ -248,7 +249,6 @@ public class LoginActivity extends Activity implements MobeelizerLoginCallback {
     private View.OnClickListener getOnConnectClickListenter() {
         return new View.OnClickListener() {
 
-            @Override
             public void onClick(final View v) {
                 String sessionCode = mSessionCodeEditText.getText().toString();
                 if ("".equals(sessionCode)) {

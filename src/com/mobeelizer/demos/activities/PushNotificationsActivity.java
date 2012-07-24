@@ -39,7 +39,6 @@ public class PushNotificationsActivity extends BaseActivity implements Mobeelize
 
         mInfoButton.setOnClickListener(new View.OnClickListener() {
 
-            @Override
             public void onClick(final View v) {
                 showDialog(D_PUSH_NOTIFICATIONS);
             }
@@ -108,7 +107,6 @@ public class PushNotificationsActivity extends BaseActivity implements Mobeelize
     /**
      * {@inheritDoc}
      */
-    @Override
     public void onSyncFinished(final MobeelizerSyncStatus arg0) {
         // do nothing
     }

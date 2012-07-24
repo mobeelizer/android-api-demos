@@ -165,7 +165,6 @@ public class FileSyncEntity extends OverlayedEntity implements Comparator<FileSy
     /**
      * {@inheritDoc}
      */
-    @Override
     public int compare(final FileSyncEntity lhs, final FileSyncEntity rhs) {
         if (lhs.photo == null && rhs.photo != null) {
             return -1;

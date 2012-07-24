@@ -205,7 +205,6 @@ public class GraphsConflictSyncAdapter extends BaseExpandableListAdapter {
     /**
      * {@inheritDoc}
      */
-    @Override
     public Object getChild(final int groupPosition, final int childPosition) {
         return mItems.get(mOrders.get(groupPosition).getGuid()).get(childPosition);
     }
@@ -213,7 +212,6 @@ public class GraphsConflictSyncAdapter extends BaseExpandableListAdapter {
     /**
      * {@inheritDoc}
      */
-    @Override
     public long getChildId(final int groupPosition, final int childPosition) {
         return childPosition;
     }
@@ -221,7 +219,6 @@ public class GraphsConflictSyncAdapter extends BaseExpandableListAdapter {
     /**
      * {@inheritDoc}
      */
-    @Override
     public View getChildView(final int groupPosition, final int childPosition, final boolean isLastChild, View convertView,
             final ViewGroup parent) {
         ViewHolder vh;
@@ -314,7 +311,6 @@ public class GraphsConflictSyncAdapter extends BaseExpandableListAdapter {
                 final View overlay = vh.overlay;
                 new Handler().postDelayed(new Runnable() {
 
-                    @Override
                     public void run() {
                         overlay.setBackgroundColor(mContext.getResources().getColor(android.R.color.transparent));
                     }
@@ -333,7 +329,6 @@ public class GraphsConflictSyncAdapter extends BaseExpandableListAdapter {
     /**
      * {@inheritDoc}
      */
-    @Override
     public int getChildrenCount(final int groupPosition) {
         String guid = ((GraphsConflictsOrderEntity) getGroup(groupPosition)).getGuid();
         return mItems.get(guid).size() + 1;
@@ -342,7 +337,6 @@ public class GraphsConflictSyncAdapter extends BaseExpandableListAdapter {
     /**
      * {@inheritDoc}
      */
-    @Override
     public Object getGroup(final int groupPosition) {
         return mOrders.get(groupPosition);
     }
@@ -350,7 +344,6 @@ public class GraphsConflictSyncAdapter extends BaseExpandableListAdapter {
     /**
      * {@inheritDoc}
      */
-    @Override
     public int getGroupCount() {
         return mOrders.size();
     }
@@ -358,7 +351,6 @@ public class GraphsConflictSyncAdapter extends BaseExpandableListAdapter {
     /**
      * {@inheritDoc}
      */
-    @Override
     public long getGroupId(final int groupPosition) {
         return groupPosition;
     }
@@ -366,7 +358,6 @@ public class GraphsConflictSyncAdapter extends BaseExpandableListAdapter {
     /**
      * {@inheritDoc}
      */
-    @Override
     public View getGroupView(final int groupPosition, final boolean isExpanded, View convertView, final ViewGroup parent) {
         ViewHolder vh;
         // check whether the view can be reused
@@ -473,7 +464,6 @@ public class GraphsConflictSyncAdapter extends BaseExpandableListAdapter {
             final View overlay = vh.overlay;
             new Handler().postDelayed(new Runnable() {
 
-                @Override
                 public void run() {
                     overlay.setBackgroundColor(mContext.getResources().getColor(android.R.color.transparent));
                 }
@@ -500,7 +490,6 @@ public class GraphsConflictSyncAdapter extends BaseExpandableListAdapter {
     /**
      * {@inheritDoc}
      */
-    @Override
     public boolean hasStableIds() {
         return true;
     }
@@ -508,7 +497,6 @@ public class GraphsConflictSyncAdapter extends BaseExpandableListAdapter {
     /**
      * {@inheritDoc}
      */
-    @Override
     public boolean isChildSelectable(final int groupPosition, final int childPosition) {
         return true;
     }

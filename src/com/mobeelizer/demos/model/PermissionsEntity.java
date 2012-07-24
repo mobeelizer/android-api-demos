@@ -182,7 +182,6 @@ public class PermissionsEntity extends OverlayedEntity implements Comparator<Per
     /**
      * {@inheritDoc}
      */
-    @Override
     public int compare(final PermissionsEntity lhs, final PermissionsEntity rhs) {
         if (lhs.title == null && rhs.title != null) {
             return -1;

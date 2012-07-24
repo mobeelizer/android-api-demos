@@ -241,7 +241,6 @@ public class PhotoSyncActivity extends BaseActivity<FileSyncEntity> implements O
     /**
      * {@inheritDoc}
      */
-    @Override
     public void onSyncFinished(final MobeelizerSyncStatus status) {
         Bundle b = null;
         // If synchronization succeeded show examples list. Otherwise show an error dialog
@@ -293,7 +292,6 @@ public class PhotoSyncActivity extends BaseActivity<FileSyncEntity> implements O
     private View.OnClickListener getOnAddClickListener() {
         return new View.OnClickListener() {
 
-            @Override
             public void onClick(final View v) {
 
                 CharSequence[] items = { "Camera", "Photo gallery", "Random image" };
@@ -307,7 +305,6 @@ public class PhotoSyncActivity extends BaseActivity<FileSyncEntity> implements O
                 builder.setTitle("Choose source:");
                 builder.setItems(items, new DialogInterface.OnClickListener() {
 
-                    @Override
                     public void onClick(final DialogInterface dialog, final int item) {
                         if (isEmulator) {
                             if (item == 0) {
@@ -379,7 +376,6 @@ public class PhotoSyncActivity extends BaseActivity<FileSyncEntity> implements O
     private View.OnClickListener getOnSyncClickListener() {
         return new View.OnClickListener() {
 
-            @Override
             public void onClick(final View v) {
                 // show synchronization progress dialog
                 mSyncDialog = new Dialog(PhotoSyncActivity.this, R.style.MobeelizerDialogTheme);
@@ -401,7 +397,6 @@ public class PhotoSyncActivity extends BaseActivity<FileSyncEntity> implements O
     private View.OnClickListener getOnInfoClickListener() {
         return new View.OnClickListener() {
 
-            @Override
             public void onClick(final View v) {
                 showDialog(D_PHOTO_SYNC);
             }
@@ -411,7 +406,6 @@ public class PhotoSyncActivity extends BaseActivity<FileSyncEntity> implements O
     /**
      * {@inheritDoc}
      */
-    @Override
     public void onItemClick(final AdapterView<?> parent, final View view, final int position, final long id) {
         final MobeelizerFile photo = ((FileSyncEntity) parent.getItemAtPosition(position)).getPhoto();
 

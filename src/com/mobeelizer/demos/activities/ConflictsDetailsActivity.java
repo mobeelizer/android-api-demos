@@ -114,7 +114,6 @@ public class ConflictsDetailsActivity extends Activity implements View.OnClickLi
      * When the user clicks the desired rating {@link ConflictsDetailsActivity} is finishes and the rating is returned as a
      * result.
      */
-    @Override
     public void onClick(final View v) {
         int newRating = -1;
         switch (v.getId()) {

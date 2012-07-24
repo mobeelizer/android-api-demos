@@ -28,7 +28,9 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import com.google.android.gcm.GCMRegistrar;
 import com.mobeelizer.demos.R;
+import com.mobeelizer.mobile.android.Mobeelizer;
 
 /**
  * Activity responsible for displaying list of examples provided by the application and the getting started screen.
@@ -67,6 +69,20 @@ public class ExploreActivity extends BaseActivity implements OnItemClickListener
 
         setTitleBarTitle(R.string.titleBarExplore);
         setSessionCodeVisibility(true);
+
+        GCMRegistrar.checkDevice(this);
+        GCMRegistrar.checkManifest(this);
+        final String regId = GCMRegistrar.getRegistrationId(this);
+        if (regId.equals("")) {
+            GCMRegistrar.register(this, "273557760831");
+        } else {
+            Mobeelizer.registerForRemoteNotifications(regId);
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
     }
 
     /**
@@ -82,7 +98,6 @@ public class ExploreActivity extends BaseActivity implements OnItemClickListener
     /**
      * {@inheritDoc}
      */
-    @Override
     public void onItemClick(final AdapterView<?> parent, final View view, final int position, final long id) {
         Intent i = null;
         switch (position) {
@@ -122,4 +137,5 @@ public class ExploreActivity extends BaseActivity implements OnItemClickListener
     @Override
     protected void onUserChanged() {
     }
+
 }

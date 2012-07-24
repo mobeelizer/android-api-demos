@@ -191,7 +191,6 @@ public class GraphsConflictsItemEntity extends OverlayedEntity implements Compar
     /**
      * {@inheritDoc}
      */
-    @Override
     public int compare(final GraphsConflictsItemEntity lhs, final GraphsConflictsItemEntity rhs) {
         if (lhs.title == null && rhs.title != null) {
             return -1;

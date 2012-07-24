@@ -110,7 +110,6 @@ public class GraphsConflictDetailsActivity extends Activity implements OnClickLi
      * When the user clicks the desired status {@link GraphsConflictDetailsActivity} finishes and the rating is returned as a
      * result.
      */
-    @Override
     public void onClick(final View v) {
         int newStatus = -1;
         switch (v.getId()) {

@@ -169,7 +169,6 @@ public class FileSyncAdapter extends MyArrayAdapter<FileSyncEntity> {
             final View overlay = vh.overlay;
             new Handler().postDelayed(new Runnable() {
 
-                @Override
                 public void run() {
                     overlay.setBackgroundColor(mRes.getColor(android.R.color.transparent));
                 }

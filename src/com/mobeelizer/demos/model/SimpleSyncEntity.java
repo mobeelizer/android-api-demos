@@ -163,7 +163,6 @@ public class SimpleSyncEntity extends OverlayedEntity implements Comparator<Simp
     /**
      * {@inheritDoc}
      */
-    @Override
     public int compare(final SimpleSyncEntity lhs, final SimpleSyncEntity rhs) {
         if (lhs.title == null && rhs.title != null) {
             return -1;

@@ -23,7 +23,10 @@ import java.util.List;
 
 import android.app.Activity;
 import android.app.Dialog;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.content.res.Resources;
@@ -59,6 +62,10 @@ import com.mobeelizer.mobile.android.api.MobeelizerLoginStatus;
  */
 public abstract class BaseActivity<T extends OverlayedEntity> extends Activity implements OnClickListener,
         MobeelizerLoginCallback {
+
+    public static final String DISPLAY_PUSH_MESSAGE_ACTION = "DISPLAY_PUSH_MESSAGE";
+
+    public static final String DISPLAY_PUSH_MESSAGE_ACTION_EXTRA_MESSAGE = "message";
 
     /** Parameter name for {@link Bundle} object used to pass information about dialog type (info or error) */
     public static final String IS_INFO = "IS_INFO_DIALOG";
@@ -127,6 +134,7 @@ public abstract class BaseActivity<T extends OverlayedEntity> extends Activity i
     @Override
     protected void onResume() {
         ApplicationStatus.activityResumed(this);
+        registerReceiver(mHandleMessageReceiver, new IntentFilter(DISPLAY_PUSH_MESSAGE_ACTION));
         super.onResume();
         mUserType = UserType.valueOf(mSharedPrefs.getString(USER_TYPE, "A"));
         if (mUserButton != null) {
@@ -140,6 +148,7 @@ public abstract class BaseActivity<T extends OverlayedEntity> extends Activity i
     @Override
     protected void onPause() {
         ApplicationStatus.activityPaused();
+        unregisterReceiver(mHandleMessageReceiver);
         super.onPause();
     }
 
@@ -250,10 +259,10 @@ public abstract class BaseActivity<T extends OverlayedEntity> extends Activity i
         final Dialog tmp = dialog;
         closeButton.setOnClickListener(new View.OnClickListener() {
 
-            @Override
-            public void onClick(final View paramView) {
+            public void onClick(final View v) {
                 tmp.dismiss();
             }
+
         });
     }
 
@@ -416,7 +425,6 @@ public abstract class BaseActivity<T extends OverlayedEntity> extends Activity i
      * Called when the title bar user indicator has been clicked. It's responsible for logging out the current user and trying to
      * login as a new one.
      */
-    @Override
     public void onClick(final View paramView) {
         // check if there is synchronization in progress
         if (Mobeelizer.checkSyncStatus().isRunning()) {
@@ -468,7 +476,6 @@ public abstract class BaseActivity<T extends OverlayedEntity> extends Activity i
     /**
      * {@inheritDoc}
      */
-    @Override
     public void onLoginFinished(final MobeelizerLoginStatus status) {
         Editor editor = mSharedPrefs.edit();
         boolean succeed = false;
@@ -540,4 +547,32 @@ public abstract class BaseActivity<T extends OverlayedEntity> extends Activity i
         /** User B */
         B
     }
+
+    private final BroadcastReceiver mHandleMessageReceiver = new BroadcastReceiver() {
+
+        @Override
+        public void onReceive(final Context context, final Intent intent) {
+            String title = "Push received!";
+            String message = intent.getExtras().getString(DISPLAY_PUSH_MESSAGE_ACTION_EXTRA_MESSAGE);
+
+            final Dialog dialog = new Dialog(ApplicationStatus.getCurrentActivity(), R.style.MobeelizerDialogTheme);
+
+            dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+            dialog.setContentView(R.layout.info_dialog);
+            TextView titleView = (TextView) dialog.findViewById(R.id.dialogTitle);
+            titleView.setText(title);
+            TextView textView = (TextView) dialog.findViewById(R.id.dialogText);
+            textView.setText(message);
+            Button closeButton = (Button) dialog.findViewById(R.id.dialogButton);
+            closeButton.setOnClickListener(new View.OnClickListener() {
+
+                public void onClick(final View paramView) {
+                    dialog.dismiss();
+                }
+            });
+
+            dialog.show();
+        }
+    };
+
 }

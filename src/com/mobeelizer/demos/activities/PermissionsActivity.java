@@ -141,7 +141,6 @@ public class PermissionsActivity extends BaseActivity<PermissionsEntity> impleme
     /**
      * {@inheritDoc}
      */
-    @Override
     public void onSyncFinished(final MobeelizerSyncStatus status) {
         Bundle b = null;
         // If synchronization succeeded show examples list. Otherwise show an error dialog
@@ -193,7 +192,6 @@ public class PermissionsActivity extends BaseActivity<PermissionsEntity> impleme
     private View.OnClickListener getOnAddClickListener() {
         return new View.OnClickListener() {
 
-            @Override
             public void onClick(final View v) {
                 // choose a random movie and create a database entity object
                 Movie m = DataUtil.getRandomMovie(getResources());
@@ -221,7 +219,6 @@ public class PermissionsActivity extends BaseActivity<PermissionsEntity> impleme
     private View.OnClickListener getOnSyncClickListener() {
         return new View.OnClickListener() {
 
-            @Override
             public void onClick(final View v) {
                 // show synchronization progress dialog
                 mSyncDialog = new Dialog(PermissionsActivity.this, R.style.MobeelizerDialogTheme);
@@ -243,7 +240,6 @@ public class PermissionsActivity extends BaseActivity<PermissionsEntity> impleme
     private View.OnClickListener getOnInfoClickListener() {
         return new View.OnClickListener() {
 
-            @Override
             public void onClick(final View v) {
                 showDialog(D_PERMISSIONS);
             }

@@ -183,7 +183,6 @@ public class GraphsConflictsOrderEntity extends OverlayedEntity implements Compa
     /**
      * {@inheritDoc}
      */
-    @Override
     public int compare(final GraphsConflictsOrderEntity lhs, final GraphsConflictsOrderEntity rhs) {
         if (lhs.name == null && rhs.name != null) {
             return -1;

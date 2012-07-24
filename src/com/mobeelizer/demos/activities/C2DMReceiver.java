@@ -46,7 +46,6 @@ public class C2DMReceiver extends BroadcastReceiver {
             Button closeButton = (Button) dialog.findViewById(R.id.dialogButton);
             closeButton.setOnClickListener(new View.OnClickListener() {
 
-                @Override
                 public void onClick(final View paramView) {
                     dialog.dismiss();
                 }

@@ -182,7 +182,6 @@ public class ConflictsEntity extends OverlayedEntity implements Comparator<Confl
     /**
      * {@inheritDoc}
      */
-    @Override
     public int compare(final ConflictsEntity lhs, final ConflictsEntity rhs) {
         if (lhs.title == null && rhs.title != null) {
             return -1;

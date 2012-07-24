@@ -152,7 +152,6 @@ public class CreateSessionCodeActivity extends Activity implements MobeelizerLog
             final Dialog tmp = dialog;
             closeButton.setOnClickListener(new View.OnClickListener() {
 
-                @Override
                 public void onClick(final View paramView) {
                     tmp.dismiss();
                 }
@@ -165,7 +164,6 @@ public class CreateSessionCodeActivity extends Activity implements MobeelizerLog
     /**
      * {@inheritDoc}
      */
-    @Override
     public void onLoginFinished(final MobeelizerLoginStatus status) {
         Bundle err;
         // If logging in succeeded show examples list. Otherwise show an error dialog
@@ -213,7 +211,6 @@ public class CreateSessionCodeActivity extends Activity implements MobeelizerLog
     private View.OnClickListener getOnExploreClickListenter() {
         return new View.OnClickListener() {
 
-            @Override
             public void onClick(final View v) {
                 mLoginDialog = new Dialog(CreateSessionCodeActivity.this, R.style.MobeelizerDialogTheme);
                 mLoginDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -284,7 +281,6 @@ public class CreateSessionCodeActivity extends Activity implements MobeelizerLog
                 e.printStackTrace();
                 runOnUiThread(new Runnable() {
 
-                    @Override
                     public void run() {
                         Bundle b = new Bundle();
                         b.putBoolean(BaseActivity.IS_INFO, false);

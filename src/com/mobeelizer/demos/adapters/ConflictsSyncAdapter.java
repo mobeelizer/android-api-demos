@@ -164,7 +164,6 @@ public class ConflictsSyncAdapter extends MyArrayAdapter<ConflictsEntity> {
             final View overlay = vh.overlay;
             new Handler().postDelayed(new Runnable() {
 
-                @Override
                 public void run() {
                     overlay.setBackgroundColor(getContext().getResources().getColor(android.R.color.transparent));
                 }
