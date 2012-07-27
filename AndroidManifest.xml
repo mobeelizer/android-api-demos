@@ -97,7 +97,12 @@
         <meta-data
             android:name="MOBEELIZER_MODE"
             android:value="production" />
-        
+        <!-- <meta-data
+            android:name="MOBEELIZER_URL"
+            android:value="http://mobeelizer-test.elasticbeanstalk.com/sync" /> -->
+        <meta-data
+            android:name="MOBEELIZER_URL"
+            android:value="http://192.168.0.17:8080/sync" />
         
     </application>
 

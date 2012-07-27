@@ -10,42 +10,8 @@
     <role device="mobile" group="users"/>
   </roles>
   <models>
-    <model name="fileSyncEntity">
-      <fields>
-        <field name="photo" required="true" type="FILE">
-          <credentials>
-            <credential createAllowed="ALL" readAllowed="ALL" role="users-mobile" updateAllowed="ALL"/>
-          </credentials>
-        </field>
-      </fields>
-      <credentials>
-        <credential createAllowed="ALL" deleteAllowed="ALL" readAllowed="ALL" resolveConflictAllowed="false" role="users-mobile" updateAllowed="ALL"/>
-      </credentials>
-    </model>
-    <model name="permissionsEntity">
-      <fields>
-        <field name="title" required="true" type="TEXT">
-          <credentials>
-            <credential createAllowed="ALL" readAllowed="ALL" role="users-mobile" updateAllowed="ALL"/>
-          </credentials>
-        </field>
-        <field name="director" required="false" type="TEXT">
-          <credentials>
-            <credential createAllowed="OWN" readAllowed="OWN" role="users-mobile" updateAllowed="OWN"/>
-          </credentials>
-        </field>
-      </fields>
-      <credentials>
-        <credential createAllowed="ALL" deleteAllowed="ALL" readAllowed="ALL" resolveConflictAllowed="false" role="users-mobile" updateAllowed="ALL"/>
-      </credentials>
-    </model>
     <model name="conflictsEntity">
       <fields>
-        <field name="title" required="true" type="TEXT">
-          <credentials>
-            <credential createAllowed="ALL" readAllowed="ALL" role="users-mobile" updateAllowed="ALL"/>
-          </credentials>
-        </field>
         <field defaultValue="1" name="score" required="true" type="INTEGER">
           <credentials>
             <credential createAllowed="ALL" readAllowed="ALL" role="users-mobile" updateAllowed="ALL"/>
@@ -53,22 +19,6 @@
           <options>
             <option name="minValue">1</option>
             <option name="maxValue">5</option>
-          </options>
-        </field>
-      </fields>
-      <credentials>
-        <credential createAllowed="ALL" deleteAllowed="ALL" readAllowed="ALL" resolveConflictAllowed="false" role="users-mobile" updateAllowed="ALL"/>
-      </credentials>
-    </model>
-    <model name="graphsConflictsItemEntity">
-      <fields>
-        <field name="orderGuid" required="true" type="BELONGS_TO">
-          <credentials>
-            <credential createAllowed="ALL" readAllowed="ALL" role="users-mobile" updateAllowed="ALL"/>
-          </credentials>
-          <options>
-            <option name="model">graphsConflictsOrderEntity</option>
-            <option name="analyzeConflict">true</option>
           </options>
         </field>
         <field name="title" required="true" type="TEXT">
@@ -90,16 +40,32 @@
         </field>
       </fields>
       <credentials>
-        <credential createAllowed="ALL" deleteAllowed="ALL" readAllowed="ALL" resolveConflictAllowed="false" role="users-mobile" updateAllowed="ALL"/>
+        <credential createAllowed="NONE" deleteAllowed="ALL" readAllowed="ALL" resolveConflictAllowed="false" role="users-mobile" updateAllowed="ALL"/>
       </credentials>
     </model>
-    <model name="graphsConflictsOrderEntity">
+    <model name="graphsConflictsItemEntity">
       <fields>
-        <field name="name" required="true" type="TEXT">
+        <field name="orderGuid" required="true" type="BELONGS_TO">
+          <credentials>
+            <credential createAllowed="ALL" readAllowed="ALL" role="users-mobile" updateAllowed="ALL"/>
+          </credentials>
+          <options>
+            <option name="analyzeConflict">true</option>
+            <option name="model">graphsConflictsOrderEntity</option>
+          </options>
+        </field>
+        <field name="title" required="true" type="TEXT">
           <credentials>
             <credential createAllowed="ALL" readAllowed="ALL" role="users-mobile" updateAllowed="ALL"/>
           </credentials>
         </field>
+      </fields>
+      <credentials>
+        <credential createAllowed="ALL" deleteAllowed="NONE" readAllowed="ALL" resolveConflictAllowed="false" role="users-mobile" updateAllowed="ALL"/>
+      </credentials>
+    </model>
+    <model name="graphsConflictsOrderEntity">
+      <fields>
         <field defaultValue="1" name="status" required="true" type="INTEGER">
           <credentials>
             <credential createAllowed="ALL" readAllowed="ALL" role="users-mobile" updateAllowed="ALL"/>
@@ -108,6 +74,40 @@
             <option name="minValue">1</option>
             <option name="maxValue">5</option>
           </options>
+        </field>
+        <field name="name" required="true" type="TEXT">
+          <credentials>
+            <credential createAllowed="ALL" readAllowed="ALL" role="users-mobile" updateAllowed="ALL"/>
+          </credentials>
+        </field>
+      </fields>
+      <credentials>
+        <credential createAllowed="ALL" deleteAllowed="ALL" readAllowed="ALL" resolveConflictAllowed="false" role="users-mobile" updateAllowed="ALL"/>
+      </credentials>
+    </model>
+    <model name="fileSyncEntity">
+      <fields>
+        <field name="photo" required="true" type="FILE">
+          <credentials>
+            <credential createAllowed="ALL" readAllowed="ALL" role="users-mobile" updateAllowed="ALL"/>
+          </credentials>
+        </field>
+      </fields>
+      <credentials>
+        <credential createAllowed="ALL" deleteAllowed="ALL" readAllowed="ALL" resolveConflictAllowed="false" role="users-mobile" updateAllowed="ALL"/>
+      </credentials>
+    </model>
+    <model name="permissionsEntity">
+      <fields>
+        <field name="director" required="false" type="TEXT">
+          <credentials>
+            <credential createAllowed="OWN" readAllowed="OWN" role="users-mobile" updateAllowed="OWN"/>
+          </credentials>
+        </field>
+        <field name="title" required="true" type="TEXT">
+          <credentials>
+            <credential createAllowed="ALL" readAllowed="ALL" role="users-mobile" updateAllowed="ALL"/>
+          </credentials>
         </field>
       </fields>
       <credentials>
