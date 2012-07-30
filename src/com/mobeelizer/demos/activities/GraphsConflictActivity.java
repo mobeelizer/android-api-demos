@@ -196,7 +196,9 @@ public class GraphsConflictActivity extends BaseActivity<GraphsConflictsItemEnti
 
             // get the order item which will be deleted
             final GraphsConflictsItemEntity gItem = (GraphsConflictsItemEntity) mAdapter.getChild(groupPosition, childPosition);
+
             Mobeelizer.getDatabase().delete(gItem);
+
             gItem.setEntityState(EntityState.REMOVED_A);
             mAdapter.notifyDataSetChanged();
 
@@ -204,6 +206,7 @@ public class GraphsConflictActivity extends BaseActivity<GraphsConflictsItemEnti
 
             new Handler().postDelayed(new Runnable() {
 
+                @Override
                 public void run() {
                     // skip, if user has changed
                     if (loggedUserType != mUserType) {
@@ -235,6 +238,7 @@ public class GraphsConflictActivity extends BaseActivity<GraphsConflictsItemEnti
     /**
      * {@inheritDoc}
      */
+    @Override
     public void onSyncFinished(final MobeelizerSyncStatus status) {
         Bundle b = null;
         // If synchronization succeeded show examples list. Otherwise show an error dialog
@@ -313,6 +317,7 @@ public class GraphsConflictActivity extends BaseActivity<GraphsConflictsItemEnti
 
                 new Handler().postDelayed(new Runnable() {
 
+                    @Override
                     public void run() {
                         // skip, if user has changed
                         if (loggedUserType != mUserType) {
@@ -418,6 +423,7 @@ public class GraphsConflictActivity extends BaseActivity<GraphsConflictsItemEnti
     private View.OnClickListener getOnAddClickListener() {
         return new View.OnClickListener() {
 
+            @Override
             public void onClick(final View v) {
                 GraphsConflictsOrderEntity gOrder = new GraphsConflictsOrderEntity();
                 gOrder.setName(getOrderNumber());
@@ -451,6 +457,7 @@ public class GraphsConflictActivity extends BaseActivity<GraphsConflictsItemEnti
     private View.OnClickListener getOnSyncClickListener() {
         return new View.OnClickListener() {
 
+            @Override
             public void onClick(final View v) {
                 // show synchronization progress dialog
                 mSyncDialog = new Dialog(GraphsConflictActivity.this, R.style.MobeelizerDialogTheme);
@@ -472,6 +479,7 @@ public class GraphsConflictActivity extends BaseActivity<GraphsConflictsItemEnti
     private View.OnClickListener getOnInfoClickListener() {
         return new View.OnClickListener() {
 
+            @Override
             public void onClick(final View v) {
                 showDialog(D_GRAPHS_CONFLICT);
             }
@@ -481,6 +489,7 @@ public class GraphsConflictActivity extends BaseActivity<GraphsConflictsItemEnti
     /**
      * {@inheritDoc}
      */
+    @Override
     public boolean onGroupClick(final ExpandableListView paramExpandableListView, final View paramView, final int paramInt,
             final long paramLong) {
         GraphsConflictsOrderEntity gOrder = (GraphsConflictsOrderEntity) mAdapter.getGroup(paramInt);
@@ -496,6 +505,7 @@ public class GraphsConflictActivity extends BaseActivity<GraphsConflictsItemEnti
     /**
      * {@inheritDoc}
      */
+    @Override
     public boolean onChildClick(final ExpandableListView parent, final View v, final int groupPosition, final int childPosition,
             final long id) {
         Boolean isFooter = (Boolean) v.getTag(R.attr.IsFooterView);

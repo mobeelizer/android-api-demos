@@ -204,6 +204,7 @@ public class ConflictsActivity extends BaseActivity<ConflictsEntity> implements 
     /**
      * {@inheritDoc}
      */
+    @Override
     public void onSyncFinished(final MobeelizerSyncStatus status) {
         Bundle b = null;
         // If synchronization succeeded show examples list. Otherwise show an error dialog
@@ -231,6 +232,7 @@ public class ConflictsActivity extends BaseActivity<ConflictsEntity> implements 
                 // wait for animation to complete
                 new Handler().postDelayed(new Runnable() {
 
+                    @Override
                     public void run() {
                         // skip, if user has changed
                         if (loggedUserType != mUserType) {
@@ -279,6 +281,7 @@ public class ConflictsActivity extends BaseActivity<ConflictsEntity> implements 
     private View.OnClickListener getOnAddClickListener() {
         return new View.OnClickListener() {
 
+            @Override
             public void onClick(final View v) {
                 // choose a random movie and create a database entity object
                 Movie m = DataUtil.getRandomMovie(getResources());
@@ -306,6 +309,7 @@ public class ConflictsActivity extends BaseActivity<ConflictsEntity> implements 
     private View.OnClickListener getOnSyncClickListener() {
         return new View.OnClickListener() {
 
+            @Override
             public void onClick(final View v) {
                 // show synchronization progress dialog
                 mSyncDialog = new Dialog(ConflictsActivity.this, R.style.MobeelizerDialogTheme);
@@ -327,12 +331,14 @@ public class ConflictsActivity extends BaseActivity<ConflictsEntity> implements 
     private View.OnClickListener getOnInfoClickListener() {
         return new View.OnClickListener() {
 
+            @Override
             public void onClick(final View v) {
                 showDialog(D_CONFLICTS);
             }
         };
     }
 
+    @Override
     public void onItemClick(final AdapterView<?> parent, final View view, final int position, final long id) {
         ConflictsEntity ce = mAdapter.getItem(position);
 
