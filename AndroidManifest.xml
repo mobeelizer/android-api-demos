@@ -97,6 +97,9 @@
         <meta-data
             android:name="MOBEELIZER_MODE"
             android:value="production" />
+        <meta-data
+            android:name="MOBEELIZER_URL"
+            android:value="http://cloud.mobeelizer.com/sync" />
         
     </application>
 
