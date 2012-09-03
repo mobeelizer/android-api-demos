@@ -39,6 +39,7 @@ public class PushNotificationsActivity extends BaseActivity implements Mobeelize
 
         mInfoButton.setOnClickListener(new View.OnClickListener() {
 
+            @Override
             public void onClick(final View v) {
                 showDialog(D_PUSH_NOTIFICATIONS);
             }
@@ -77,9 +78,7 @@ public class PushNotificationsActivity extends BaseActivity implements Mobeelize
      * @param v
      */
     public void performSendToAll(final View v) {
-        Map<String, String> message = new HashMap<String, String>();
-        message.put("alert", "Android device greets all users!");
-        Mobeelizer.sendRemoteNotification(message);
+        Mobeelizer.sendRemoteNotification(createNotification("Android device greets all users!"));
     }
 
     /**
@@ -88,9 +87,8 @@ public class PushNotificationsActivity extends BaseActivity implements Mobeelize
      * @param v
      */
     public void performSendToA(final View v) {
-        Map<String, String> message = new HashMap<String, String>();
-        message.put("alert", "Android device greets user A!");
-        Mobeelizer.sendRemoteNotificationToUsers(message, Arrays.asList(new String[] { "A" }));
+        Mobeelizer.sendRemoteNotificationToUsers(createNotification("Android device greets user A!"),
+                Arrays.asList(new String[] { "A" }));
     }
 
     /**
@@ -99,14 +97,25 @@ public class PushNotificationsActivity extends BaseActivity implements Mobeelize
      * @param v
      */
     public void performSendToB(final View v) {
+        Mobeelizer.sendRemoteNotificationToUsers(createNotification("Android device greets user B!"),
+                Arrays.asList(new String[] { "B" }));
+    }
+
+    private Map<String, String> createNotification(final String content) {
         Map<String, String> message = new HashMap<String, String>();
-        message.put("alert", "Android device greets user B!");
-        Mobeelizer.sendRemoteNotificationToUsers(message, Arrays.asList(new String[] { "B" }));
+        message.put("alert", content);
+        message.put("X-NotificationClass", "2"); // microsoft notification priority
+        message.put("X-WindowsPhone-Target", "toast"); // notification type
+        message.put("Text1", "Push received!");
+        message.put("Text2", content);
+        message.put("Param", "/View/MainPage.xaml"); // wp7 toast page
+        return message;
     }
 
     /**
      * {@inheritDoc}
      */
+    @Override
     public void onSyncFinished(final MobeelizerSyncStatus arg0) {
         // do nothing
     }

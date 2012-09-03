@@ -23,7 +23,6 @@ import java.util.List;
 import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -143,6 +142,7 @@ public class SimpleSyncActivity extends BaseActivity<SimpleSyncEntity> implement
     /**
      * {@inheritDoc}
      */
+    @Override
     public void onSyncFinished(final MobeelizerSyncStatus status) {
         Bundle b = null;
         // If synchronization succeeded show examples list. Otherwise show an error dialog
@@ -157,7 +157,6 @@ public class SimpleSyncActivity extends BaseActivity<SimpleSyncEntity> implement
                 mergeLists(oldList, newList);
                 mAdapter.sort(new SimpleSyncEntity());
                 // refresh the list to display animation
-                Log.i("AAA", "=================== SYNC FINISHED");
                 mAdapter.notifyDataSetChanged();
                 mList.setSelection(0);
 
@@ -195,6 +194,7 @@ public class SimpleSyncActivity extends BaseActivity<SimpleSyncEntity> implement
     private View.OnClickListener getOnAddClickListener() {
         return new View.OnClickListener() {
 
+            @Override
             public void onClick(final View v) {
                 // choose a random movie and create a database entity object
                 Movie m = DataUtil.getRandomMovie(getResources());
@@ -221,6 +221,7 @@ public class SimpleSyncActivity extends BaseActivity<SimpleSyncEntity> implement
     private View.OnClickListener getOnSyncClickListener() {
         return new View.OnClickListener() {
 
+            @Override
             public void onClick(final View v) {
                 // show synchronization progress dialog
                 mSyncDialog = new Dialog(SimpleSyncActivity.this, R.style.MobeelizerDialogTheme);
@@ -242,6 +243,7 @@ public class SimpleSyncActivity extends BaseActivity<SimpleSyncEntity> implement
     private View.OnClickListener getOnInfoClickListener() {
         return new View.OnClickListener() {
 
+            @Override
             public void onClick(final View v) {
                 showDialog(D_SIMPLE_SYNC);
             }

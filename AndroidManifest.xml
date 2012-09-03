@@ -99,7 +99,7 @@
             android:value="production" />
         <meta-data
             android:name="MOBEELIZER_URL"
-            android:value="http://cloud.mobeelizer.com/sync" />
+            android:value="http://192.168.0.65:8080/sync" />
         
     </application>
 

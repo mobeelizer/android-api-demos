@@ -70,7 +70,6 @@ public class ExploreActivity extends BaseActivity implements OnItemClickListener
         setTitleBarTitle(R.string.titleBarExplore);
         setSessionCodeVisibility(true);
 
-        GCMRegistrar.checkDevice(this);
         GCMRegistrar.checkManifest(this);
         final String regId = GCMRegistrar.getRegistrationId(this);
         if (regId.equals("")) {
@@ -98,6 +97,7 @@ public class ExploreActivity extends BaseActivity implements OnItemClickListener
     /**
      * {@inheritDoc}
      */
+    @Override
     public void onItemClick(final AdapterView<?> parent, final View view, final int position, final long id) {
         Intent i = null;
         switch (position) {
