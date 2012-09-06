@@ -36,16 +36,16 @@ import com.mobeelizer.demos.ApplicationStatus;
 import com.mobeelizer.demos.R;
 import com.mobeelizer.demos.activities.BaseActivity.UserType;
 import com.mobeelizer.demos.utils.UIUtils;
+import com.mobeelizer.java.api.MobeelizerOperationError;
 import com.mobeelizer.mobile.android.Mobeelizer;
-import com.mobeelizer.mobile.android.api.MobeelizerLoginCallback;
-import com.mobeelizer.mobile.android.api.MobeelizerLoginStatus;
+import com.mobeelizer.mobile.android.api.MobeelizerOperationCallback;
 
 /**
  * Application starting point, allows the user to create or connect to an existing session.
  * 
- * @see MobeelizerLoginCallback
+ * @see MobeelizerOperationCallback
  */
-public class LoginActivity extends Activity implements MobeelizerLoginCallback {
+public class LoginActivity extends Activity implements MobeelizerOperationCallback {
 
     private Button mCreateSessionButton, mConnectButton;
 
@@ -172,6 +172,7 @@ public class LoginActivity extends Activity implements MobeelizerLoginCallback {
             final Dialog tmp = dialog;
             closeButton.setOnClickListener(new View.OnClickListener() {
 
+                @Override
                 public void onClick(final View paramView) {
                     tmp.dismiss();
                 }
@@ -184,38 +185,28 @@ public class LoginActivity extends Activity implements MobeelizerLoginCallback {
     /**
      * {@inheritDoc}
      */
-    public void onLoginFinished(final MobeelizerLoginStatus status) {
-        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-        Bundle err;
-        // If logging in succeeded show examples list. Otherwise show an error dialog
-        switch (status) {
-            case OK:
-                C2DMReceiver.performPushRegistration();
+    @Override
+    public void onSuccess() {
+        C2DMReceiver.performPushRegistration();
 
-                // start explore activity
-                Intent i = new Intent(getApplicationContext(), ExploreActivity.class);
-                startActivity(i);
-                // and close current one
-                finish();
-                break;
-            case MISSING_CONNECTION_FAILURE:
-                err = new Bundle();
-                err.putBoolean(BaseActivity.IS_INFO, false);
-                err.putInt(BaseActivity.TEXT_RES_ID, R.string.e_missingConnection);
-                showDialog(BaseActivity.D_CUSTOM, err);
-                sp.edit().remove(BaseActivity.SESSION_CODE).remove(BaseActivity.USER_TYPE).commit();
-                break;
-            case CONNECTION_FAILURE:
-            case AUTHENTICATION_FAILURE:
-            case OTHER_FAILURE:
-                err = new Bundle();
-                err.putBoolean(BaseActivity.IS_INFO, false);
-                err.putInt(BaseActivity.TEXT_RES_ID, R.string.e_cannotConnectToSession);
-                showDialog(BaseActivity.D_CUSTOM, err);
-                sp.edit().remove(BaseActivity.SESSION_CODE).remove(BaseActivity.USER_TYPE).commit();
-                break;
+        // start explore activity
+        Intent i = new Intent(getApplicationContext(), ExploreActivity.class);
+        startActivity(i);
+        // and close current one
+        finish();
+        if (mLoginDialog != null) {
+            mLoginDialog.dismiss();
         }
+    }
 
+    @Override
+    public void onFailure(final MobeelizerOperationError error) {
+        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        Bundle err = new Bundle();
+        err.putBoolean(BaseActivity.IS_INFO, false);
+        err.putInt(BaseActivity.TEXT_RES_ID, R.string.e_cannotConnectToSession);
+        showDialog(BaseActivity.D_CUSTOM, err);
+        sp.edit().remove(BaseActivity.SESSION_CODE).remove(BaseActivity.USER_TYPE).commit();
         if (mLoginDialog != null) {
             mLoginDialog.dismiss();
         }
@@ -234,6 +225,7 @@ public class LoginActivity extends Activity implements MobeelizerLoginCallback {
     private View.OnClickListener getOnCreateSessionClickListenter() {
         return new View.OnClickListener() {
 
+            @Override
             public void onClick(final View v) {
                 Intent i = new Intent(getApplicationContext(), CreateSessionCodeActivity.class);
                 startActivity(i);
@@ -249,6 +241,7 @@ public class LoginActivity extends Activity implements MobeelizerLoginCallback {
     private View.OnClickListener getOnConnectClickListenter() {
         return new View.OnClickListener() {
 
+            @Override
             public void onClick(final View v) {
                 String sessionCode = mSessionCodeEditText.getText().toString();
                 if ("".equals(sessionCode)) {

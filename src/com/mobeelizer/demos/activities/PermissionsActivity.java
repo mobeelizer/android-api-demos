@@ -39,9 +39,9 @@ import com.mobeelizer.demos.model.PermissionsEntity;
 import com.mobeelizer.demos.utils.DataUtil;
 import com.mobeelizer.demos.utils.DataUtil.Movie;
 import com.mobeelizer.demos.utils.UIUtils;
+import com.mobeelizer.java.api.MobeelizerOperationError;
 import com.mobeelizer.mobile.android.Mobeelizer;
-import com.mobeelizer.mobile.android.api.MobeelizerLoginCallback;
-import com.mobeelizer.mobile.android.api.MobeelizerSyncCallback;
+import com.mobeelizer.mobile.android.api.MobeelizerOperationCallback;
 import com.mobeelizer.mobile.android.api.MobeelizerSyncStatus;
 
 /**
@@ -49,9 +49,9 @@ import com.mobeelizer.mobile.android.api.MobeelizerSyncStatus;
  * are synchronized both users can see title but director is visible only to the owner of the data.
  * 
  * @see BaseActivity
- * @see MobeelizerLoginCallback
+ * @see MobeelizerOperationCallback
  */
-public class PermissionsActivity extends BaseActivity<PermissionsEntity> implements MobeelizerSyncCallback {
+public class PermissionsActivity extends BaseActivity<PermissionsEntity> implements MobeelizerOperationCallback {
 
     private Button mAddButton, mSyncButton;
 
@@ -141,44 +141,35 @@ public class PermissionsActivity extends BaseActivity<PermissionsEntity> impleme
     /**
      * {@inheritDoc}
      */
-    public void onSyncFinished(final MobeelizerSyncStatus status) {
-        Bundle b = null;
-        // If synchronization succeeded show examples list. Otherwise show an error dialog
-        switch (status) {
-            case FINISHED_WITH_SUCCESS:
-                // get newly synchronized items from database
-                final List<PermissionsEntity> newList = Mobeelizer.getDatabase().list(PermissionsEntity.class);
-                // get old items from list adapter
-                final List<PermissionsEntity> oldList = mAdapter.getItems();
+    @Override
+    public void onSuccess() {
+        // get newly synchronized items from database
+        final List<PermissionsEntity> newList = Mobeelizer.getDatabase().list(PermissionsEntity.class);
+        // get old items from list adapter
+        final List<PermissionsEntity> oldList = mAdapter.getItems();
 
-                // merge new items to old list and mark them as new,
-                // find removed items in old list and mark them as such
-                mergeLists(oldList, newList);
-                mAdapter.sort(new PermissionsEntity());
-                // refresh the list to display animation
-                mAdapter.notifyDataSetChanged();
-                mList.setSelection(0);
-
-                break;
-            case FINISHED_WITH_FAILURE:
-                b = new Bundle();
-                b.putBoolean(BaseActivity.IS_INFO, false);
-                b.putInt(BaseActivity.TEXT_RES_ID, R.string.e_syncFailed);
-                break;
-            case NONE:
-                b = new Bundle();
-                b.putBoolean(BaseActivity.IS_INFO, true);
-                b.putInt(BaseActivity.TEXT_RES_ID, R.string.e_syncDisabled);
-                break;
+        // merge new items to old list and mark them as new,
+        // find removed items in old list and mark them as such
+        mergeLists(oldList, newList);
+        mAdapter.sort(new PermissionsEntity());
+        // refresh the list to display animation
+        mAdapter.notifyDataSetChanged();
+        mList.setSelection(0);
+        if (mSyncDialog != null) {
+            mSyncDialog.dismiss();
         }
+    }
 
+    @Override
+    public void onFailure(final MobeelizerOperationError error) {
+        Bundle b = new Bundle();
+        b.putBoolean(BaseActivity.IS_INFO, false);
+        b.putInt(BaseActivity.TEXT_RES_ID, R.string.e_syncFailed);
         if (mSyncDialog != null) {
             mSyncDialog.dismiss();
         }
 
-        if (b != null) {
-            PermissionsActivity.this.showDialog(BaseActivity.D_CUSTOM, b);
-        }
+        PermissionsActivity.this.showDialog(BaseActivity.D_CUSTOM, b);
     }
 
     // =====================================================================================
@@ -192,6 +183,7 @@ public class PermissionsActivity extends BaseActivity<PermissionsEntity> impleme
     private View.OnClickListener getOnAddClickListener() {
         return new View.OnClickListener() {
 
+            @Override
             public void onClick(final View v) {
                 // choose a random movie and create a database entity object
                 Movie m = DataUtil.getRandomMovie(getResources());
@@ -219,6 +211,7 @@ public class PermissionsActivity extends BaseActivity<PermissionsEntity> impleme
     private View.OnClickListener getOnSyncClickListener() {
         return new View.OnClickListener() {
 
+            @Override
             public void onClick(final View v) {
                 // show synchronization progress dialog
                 mSyncDialog = new Dialog(PermissionsActivity.this, R.style.MobeelizerDialogTheme);
@@ -240,6 +233,7 @@ public class PermissionsActivity extends BaseActivity<PermissionsEntity> impleme
     private View.OnClickListener getOnInfoClickListener() {
         return new View.OnClickListener() {
 
+            @Override
             public void onClick(final View v) {
                 showDialog(D_PERMISSIONS);
             }

@@ -39,9 +39,9 @@ import com.mobeelizer.demos.model.SimpleSyncEntity;
 import com.mobeelizer.demos.utils.DataUtil;
 import com.mobeelizer.demos.utils.DataUtil.Movie;
 import com.mobeelizer.demos.utils.UIUtils;
+import com.mobeelizer.java.api.MobeelizerOperationError;
 import com.mobeelizer.mobile.android.Mobeelizer;
-import com.mobeelizer.mobile.android.api.MobeelizerLoginCallback;
-import com.mobeelizer.mobile.android.api.MobeelizerSyncCallback;
+import com.mobeelizer.mobile.android.api.MobeelizerOperationCallback;
 import com.mobeelizer.mobile.android.api.MobeelizerSyncStatus;
 
 /**
@@ -50,9 +50,9 @@ import com.mobeelizer.mobile.android.api.MobeelizerSyncStatus;
  * 
  * 
  * @see BaseActivity
- * @see MobeelizerLoginCallback
+ * @see MobeelizerOperationCallback
  */
-public class SimpleSyncActivity extends BaseActivity<SimpleSyncEntity> implements MobeelizerSyncCallback {
+public class SimpleSyncActivity extends BaseActivity<SimpleSyncEntity> implements MobeelizerOperationCallback {
 
     private Button mAddButton, mSyncButton;
 
@@ -143,44 +143,33 @@ public class SimpleSyncActivity extends BaseActivity<SimpleSyncEntity> implement
      * {@inheritDoc}
      */
     @Override
-    public void onSyncFinished(final MobeelizerSyncStatus status) {
-        Bundle b = null;
-        // If synchronization succeeded show examples list. Otherwise show an error dialog
-        switch (status) {
-            case FINISHED_WITH_SUCCESS:
-                // get newly synchronized items from database
-                final List<SimpleSyncEntity> newList = Mobeelizer.getDatabase().list(SimpleSyncEntity.class);
-                // get old items from list adapter
-                final List<SimpleSyncEntity> oldList = mAdapter.getItems();
-                // merge new items to old list and mark them as new,
-                // find removed items in old list and mark them as such
-                mergeLists(oldList, newList);
-                mAdapter.sort(new SimpleSyncEntity());
-                // refresh the list to display animation
-                mAdapter.notifyDataSetChanged();
-                mList.setSelection(0);
-
-                break;
-            case FINISHED_WITH_FAILURE:
-                b = new Bundle();
-                b.putBoolean(BaseActivity.IS_INFO, false);
-                b.putInt(BaseActivity.TEXT_RES_ID, R.string.e_syncFailed);
-                break;
-            case NONE:
-                b = new Bundle();
-                b.putBoolean(BaseActivity.IS_INFO, true);
-                b.putInt(BaseActivity.TEXT_RES_ID, R.string.e_syncDisabled);
-                break;
+    public void onSuccess() {
+        // get newly synchronized items from database
+        final List<SimpleSyncEntity> newList = Mobeelizer.getDatabase().list(SimpleSyncEntity.class);
+        // get old items from list adapter
+        final List<SimpleSyncEntity> oldList = mAdapter.getItems();
+        // merge new items to old list and mark them as new,
+        // find removed items in old list and mark them as such
+        mergeLists(oldList, newList);
+        mAdapter.sort(new SimpleSyncEntity());
+        // refresh the list to display animation
+        mAdapter.notifyDataSetChanged();
+        mList.setSelection(0);
+        if (mSyncDialog != null) {
+            mSyncDialog.dismiss();
         }
+    }
 
+    @Override
+    public void onFailure(final MobeelizerOperationError error) {
+        Bundle b = new Bundle();
+        b.putBoolean(BaseActivity.IS_INFO, false);
+        b.putInt(BaseActivity.TEXT_RES_ID, R.string.e_syncFailed);
         if (mSyncDialog != null) {
             mSyncDialog.dismiss();
         }
 
-        // show dialog with synchronization status
-        if (b != null) {
-            SimpleSyncActivity.this.showDialog(BaseActivity.D_CUSTOM, b);
-        }
+        SimpleSyncActivity.this.showDialog(BaseActivity.D_CUSTOM, b);
     }
 
     // =====================================================================================

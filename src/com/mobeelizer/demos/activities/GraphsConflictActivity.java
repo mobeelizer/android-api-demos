@@ -56,10 +56,10 @@ import com.mobeelizer.demos.model.GraphsConflictsOrderEntity;
 import com.mobeelizer.demos.utils.DataUtil;
 import com.mobeelizer.demos.utils.DataUtil.Movie;
 import com.mobeelizer.demos.utils.UIUtils;
+import com.mobeelizer.java.api.MobeelizerOperationError;
 import com.mobeelizer.mobile.android.Mobeelizer;
-import com.mobeelizer.mobile.android.api.MobeelizerLoginCallback;
+import com.mobeelizer.mobile.android.api.MobeelizerOperationCallback;
 import com.mobeelizer.mobile.android.api.MobeelizerRestrictions;
-import com.mobeelizer.mobile.android.api.MobeelizerSyncCallback;
 import com.mobeelizer.mobile.android.api.MobeelizerSyncStatus;
 
 /**
@@ -67,9 +67,9 @@ import com.mobeelizer.mobile.android.api.MobeelizerSyncStatus;
  * created by users modifying data at the same time.
  * 
  * @see BaseActivity
- * @see MobeelizerLoginCallback
+ * @see MobeelizerOperationCallback
  */
-public class GraphsConflictActivity extends BaseActivity<GraphsConflictsItemEntity> implements MobeelizerSyncCallback,
+public class GraphsConflictActivity extends BaseActivity<GraphsConflictsItemEntity> implements MobeelizerOperationCallback,
         OnGroupClickListener, OnChildClickListener {
 
     private static final int CHANGE_STATUS = 0x500;
@@ -239,121 +239,111 @@ public class GraphsConflictActivity extends BaseActivity<GraphsConflictsItemEnti
      * {@inheritDoc}
      */
     @Override
-    public void onSyncFinished(final MobeelizerSyncStatus status) {
-        Bundle b = null;
-        // If synchronization succeeded show examples list. Otherwise show an error dialog
-        switch (status) {
-            case FINISHED_WITH_SUCCESS:
-                final List<GraphsConflictsOrderEntity> newOrders = Mobeelizer.getDatabase()
-                        .list(GraphsConflictsOrderEntity.class);
-                final List<GraphsConflictsOrderEntity> oldOrders = mAdapter.getGroupList();
-                final List<GraphsConflictsItemEntity> newItems = Mobeelizer.getDatabase().list(GraphsConflictsItemEntity.class);
+    public void onSuccess() {
+        final List<GraphsConflictsOrderEntity> newOrders = Mobeelizer.getDatabase().list(GraphsConflictsOrderEntity.class);
+        final List<GraphsConflictsOrderEntity> oldOrders = mAdapter.getGroupList();
+        final List<GraphsConflictsItemEntity> newItems = Mobeelizer.getDatabase().list(GraphsConflictsItemEntity.class);
 
-                boolean showAnim = false;
+        boolean showAnim = false;
 
-                // mark new orders to show green overlay animation
-                List<GraphsConflictsOrderEntity> addedOrders = new ArrayList<GraphsConflictsOrderEntity>();
-                for (GraphsConflictsOrderEntity gOrder : newOrders) {
-                    if (!oldOrders.contains(gOrder)) {
-                        gOrder.setEntityState(EntityState.NEW_S);
-                        addedOrders.add(gOrder);
-                        showAnim = true;
-                    }
+        // mark new orders to show green overlay animation
+        List<GraphsConflictsOrderEntity> addedOrders = new ArrayList<GraphsConflictsOrderEntity>();
+        for (GraphsConflictsOrderEntity gOrder : newOrders) {
+            if (!oldOrders.contains(gOrder)) {
+                gOrder.setEntityState(EntityState.NEW_S);
+                addedOrders.add(gOrder);
+                showAnim = true;
+            }
+        }
+
+        // mark removed orders to show red overlay animation
+        for (GraphsConflictsOrderEntity gOrder : oldOrders) {
+            if (!newOrders.contains(gOrder)) {
+                gOrder.setEntityState(EntityState.REMOVED_S);
+                showAnim = true;
+            }
+        }
+
+        // mark new items to show green overlay animation
+        List<GraphsConflictsItemEntity> addedItems = new ArrayList<GraphsConflictsItemEntity>(newItems);
+        for (GraphsConflictsOrderEntity gOrder : oldOrders) {
+            List<GraphsConflictsItemEntity> gItems = mAdapter.getChildList(gOrder);
+            for (GraphsConflictsItemEntity gItem : gItems) {
+                if (addedItems.contains(gItem)) {
+                    addedItems.remove(gItem);
+                    showAnim = true;
+                }
+            }
+        }
+        for (int i = 0; i < addedItems.size(); i++) {
+            addedItems.get(i).setEntityState(EntityState.NEW_S);
+        }
+
+        // mark removed items to show red overlay animation
+        for (GraphsConflictsOrderEntity gOrder : oldOrders) {
+            List<GraphsConflictsItemEntity> gItems = mAdapter.getChildList(gOrder);
+            for (GraphsConflictsItemEntity gItem : gItems) {
+                if (!newItems.contains(gItem)) {
+                    gItem.setEntityState(EntityState.REMOVED_S);
+                    showAnim = true;
+                }
+            }
+        }
+
+        // add new orders to old list
+        if (addedOrders.size() > 0) {
+            mAdapter.addAllOrders(addedOrders);
+        }
+
+        // add new items to old list
+        if (addedItems.size() > 0) {
+            mAdapter.addAllItems(addedItems);
+        }
+
+        mAdapter.sort(new GraphsConflictsOrderEntity(), new GraphsConflictsItemEntity());
+        mAdapter.notifyDataSetChanged();
+        long conflictsCount = Mobeelizer.getDatabase().find(GraphsConflictsOrderEntity.class)
+                .add(MobeelizerRestrictions.isConflicted()).count();
+        conflictsCount += Mobeelizer.getDatabase().find(GraphsConflictsItemEntity.class)
+                .add(MobeelizerRestrictions.isConflicted()).count();
+        showWarning(conflictsCount > 0);
+
+        final UserType loggedUserType = mUserType;
+
+        new Handler().postDelayed(new Runnable() {
+
+            @Override
+            public void run() {
+                // skip, if user has changed
+                if (loggedUserType != mUserType) {
+                    return;
                 }
 
-                // mark removed orders to show red overlay animation
-                for (GraphsConflictsOrderEntity gOrder : oldOrders) {
-                    if (!newOrders.contains(gOrder)) {
-                        gOrder.setEntityState(EntityState.REMOVED_S);
-                        showAnim = true;
-                    }
-                }
-
-                // mark new items to show green overlay animation
-                List<GraphsConflictsItemEntity> addedItems = new ArrayList<GraphsConflictsItemEntity>(newItems);
-                for (GraphsConflictsOrderEntity gOrder : oldOrders) {
-                    List<GraphsConflictsItemEntity> gItems = mAdapter.getChildList(gOrder);
-                    for (GraphsConflictsItemEntity gItem : gItems) {
-                        if (addedItems.contains(gItem)) {
-                            addedItems.remove(gItem);
-                            showAnim = true;
-                        }
-                    }
-                }
-                for (int i = 0; i < addedItems.size(); i++) {
-                    addedItems.get(i).setEntityState(EntityState.NEW_S);
-                }
-
-                // mark removed items to show red overlay animation
-                for (GraphsConflictsOrderEntity gOrder : oldOrders) {
-                    List<GraphsConflictsItemEntity> gItems = mAdapter.getChildList(gOrder);
-                    for (GraphsConflictsItemEntity gItem : gItems) {
-                        if (!newItems.contains(gItem)) {
-                            gItem.setEntityState(EntityState.REMOVED_S);
-                            showAnim = true;
-                        }
-                    }
-                }
-
-                // add new orders to old list
-                if (addedOrders.size() > 0) {
-                    mAdapter.addAllOrders(addedOrders);
-                }
-
-                // add new items to old list
-                if (addedItems.size() > 0) {
-                    mAdapter.addAllItems(addedItems);
-                }
-
+                mAdapter.clearAllOrders();
+                mAdapter.addAllOrders(newOrders);
+                mAdapter.addAllItems(newItems);
                 mAdapter.sort(new GraphsConflictsOrderEntity(), new GraphsConflictsItemEntity());
                 mAdapter.notifyDataSetChanged();
-                long conflictsCount = Mobeelizer.getDatabase().find(GraphsConflictsOrderEntity.class)
-                        .add(MobeelizerRestrictions.isConflicted()).count();
-                conflictsCount += Mobeelizer.getDatabase().find(GraphsConflictsItemEntity.class)
-                        .add(MobeelizerRestrictions.isConflicted()).count();
-                showWarning(conflictsCount > 0);
-
-                final UserType loggedUserType = mUserType;
-
-                new Handler().postDelayed(new Runnable() {
-
-                    @Override
-                    public void run() {
-                        // skip, if user has changed
-                        if (loggedUserType != mUserType) {
-                            return;
-                        }
-
-                        mAdapter.clearAllOrders();
-                        mAdapter.addAllOrders(newOrders);
-                        mAdapter.addAllItems(newItems);
-                        mAdapter.sort(new GraphsConflictsOrderEntity(), new GraphsConflictsItemEntity());
-                        mAdapter.notifyDataSetChanged();
-                        // scroll the list to first position
-                        mList.setSelection(0);
-                    }
-                }, showAnim ? 2000 : 0);
-
-                break;
-            case FINISHED_WITH_FAILURE:
-                b = new Bundle();
-                b.putBoolean(BaseActivity.IS_INFO, false);
-                b.putInt(BaseActivity.TEXT_RES_ID, R.string.e_syncFailed);
-                break;
-            case NONE:
-                b = new Bundle();
-                b.putBoolean(BaseActivity.IS_INFO, true);
-                b.putInt(BaseActivity.TEXT_RES_ID, R.string.e_syncDisabled);
-                break;
-        }
+                // scroll the list to first position
+                mList.setSelection(0);
+            }
+        }, showAnim ? 2000 : 0);
 
         if (mSyncDialog != null) {
             mSyncDialog.dismiss();
         }
+    }
 
-        if (b != null) {
-            GraphsConflictActivity.this.showDialog(BaseActivity.D_CUSTOM, b);
+    @Override
+    public void onFailure(final MobeelizerOperationError error) {
+        Bundle b = new Bundle();
+        b.putBoolean(BaseActivity.IS_INFO, false);
+        b.putInt(BaseActivity.TEXT_RES_ID, R.string.e_syncFailed);
+        if (mSyncDialog != null) {
+            mSyncDialog.dismiss();
         }
+
+        GraphsConflictActivity.this.showDialog(BaseActivity.D_CUSTOM, b);
     }
 
     /**

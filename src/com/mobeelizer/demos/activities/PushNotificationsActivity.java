@@ -13,12 +13,12 @@ import android.view.View;
 import android.widget.ImageButton;
 
 import com.mobeelizer.demos.R;
+import com.mobeelizer.java.api.MobeelizerOperationError;
 import com.mobeelizer.mobile.android.Mobeelizer;
-import com.mobeelizer.mobile.android.api.MobeelizerSyncCallback;
-import com.mobeelizer.mobile.android.api.MobeelizerSyncStatus;
+import com.mobeelizer.mobile.android.api.MobeelizerOperationCallback;
 
 @SuppressWarnings("rawtypes")
-public class PushNotificationsActivity extends BaseActivity implements MobeelizerSyncCallback {
+public class PushNotificationsActivity extends BaseActivity implements MobeelizerOperationCallback {
 
     @Override
     protected Integer getHelpDialog() {
@@ -116,7 +116,12 @@ public class PushNotificationsActivity extends BaseActivity implements Mobeelize
      * {@inheritDoc}
      */
     @Override
-    public void onSyncFinished(final MobeelizerSyncStatus arg0) {
+    public void onSuccess() {
+        // do nothing
+    }
+
+    @Override
+    public void onFailure(final MobeelizerOperationError error) {
         // do nothing
     }
 

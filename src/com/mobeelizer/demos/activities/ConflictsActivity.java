@@ -51,10 +51,10 @@ import com.mobeelizer.demos.model.ConflictsEntity;
 import com.mobeelizer.demos.utils.DataUtil;
 import com.mobeelizer.demos.utils.DataUtil.Movie;
 import com.mobeelizer.demos.utils.UIUtils;
+import com.mobeelizer.java.api.MobeelizerOperationError;
 import com.mobeelizer.mobile.android.Mobeelizer;
-import com.mobeelizer.mobile.android.api.MobeelizerLoginCallback;
+import com.mobeelizer.mobile.android.api.MobeelizerOperationCallback;
 import com.mobeelizer.mobile.android.api.MobeelizerRestrictions;
-import com.mobeelizer.mobile.android.api.MobeelizerSyncCallback;
 import com.mobeelizer.mobile.android.api.MobeelizerSyncStatus;
 
 /**
@@ -63,9 +63,9 @@ import com.mobeelizer.mobile.android.api.MobeelizerSyncStatus;
  * the other user also modified the same value the conflict appears.
  * 
  * @see BaseActivity
- * @see MobeelizerLoginCallback
+ * @see MobeelizerOperationCallback
  */
-public class ConflictsActivity extends BaseActivity<ConflictsEntity> implements MobeelizerSyncCallback, OnItemClickListener {
+public class ConflictsActivity extends BaseActivity<ConflictsEntity> implements MobeelizerOperationCallback, OnItemClickListener {
 
     private static final int CHANGE_RATING = 0x400;
 
@@ -205,69 +205,59 @@ public class ConflictsActivity extends BaseActivity<ConflictsEntity> implements 
      * {@inheritDoc}
      */
     @Override
-    public void onSyncFinished(final MobeelizerSyncStatus status) {
-        Bundle b = null;
-        // If synchronization succeeded show examples list. Otherwise show an error dialog
-        switch (status) {
-            case FINISHED_WITH_SUCCESS:
-                // get newly synchronized items from database
-                final List<ConflictsEntity> newList = Mobeelizer.getDatabase().list(ConflictsEntity.class);
-                // get old items from list adapter
-                final List<ConflictsEntity> oldList = mAdapter.getItems();
+    public void onSuccess() {
+        // get newly synchronized items from database
+        final List<ConflictsEntity> newList = Mobeelizer.getDatabase().list(ConflictsEntity.class);
+        // get old items from list adapter
+        final List<ConflictsEntity> oldList = mAdapter.getItems();
 
-                // merge new items to old list and mark them as new,
-                // find removed items in old list and mark them as such
-                boolean showAnim = mergeLists(oldList, newList);
+        // merge new items to old list and mark them as new,
+        // find removed items in old list and mark them as such
+        boolean showAnim = mergeLists(oldList, newList);
+        mAdapter.sort(new ConflictsEntity());
+        // search for conflicts
+        long conflictsCount = Mobeelizer.getDatabase().find(ConflictsEntity.class).add(MobeelizerRestrictions.isConflicted())
+                .count();
+        showWarning(conflictsCount > 0);
+        // refresh the list to display animation
+        mAdapter.notifyDataSetChanged();
+        mList.setSelection(0);
+
+        final UserType loggedUserType = mUserType;
+
+        // wait for animation to complete
+        new Handler().postDelayed(new Runnable() {
+
+            @Override
+            public void run() {
+                // skip, if user has changed
+                if (loggedUserType != mUserType) {
+                    return;
+                }
+
+                // and switch old list to new one
+                mAdapter.clear();
+                mAdapter.addAll(newList);
                 mAdapter.sort(new ConflictsEntity());
-                // search for conflicts
-                long conflictsCount = Mobeelizer.getDatabase().find(ConflictsEntity.class)
-                        .add(MobeelizerRestrictions.isConflicted()).count();
-                showWarning(conflictsCount > 0);
-                // refresh the list to display animation
                 mAdapter.notifyDataSetChanged();
-                mList.setSelection(0);
-
-                final UserType loggedUserType = mUserType;
-
-                // wait for animation to complete
-                new Handler().postDelayed(new Runnable() {
-
-                    @Override
-                    public void run() {
-                        // skip, if user has changed
-                        if (loggedUserType != mUserType) {
-                            return;
-                        }
-
-                        // and switch old list to new one
-                        mAdapter.clear();
-                        mAdapter.addAll(newList);
-                        mAdapter.sort(new ConflictsEntity());
-                        mAdapter.notifyDataSetChanged();
-                        // then scroll the list to first position
-                    }
-                }, showAnim ? 2000 : 0);
-
-                break;
-            case FINISHED_WITH_FAILURE:
-                b = new Bundle();
-                b.putBoolean(BaseActivity.IS_INFO, false);
-                b.putInt(BaseActivity.TEXT_RES_ID, R.string.e_syncFailed);
-                break;
-            case NONE:
-                b = new Bundle();
-                b.putBoolean(BaseActivity.IS_INFO, true);
-                b.putInt(BaseActivity.TEXT_RES_ID, R.string.e_syncDisabled);
-                break;
+                // then scroll the list to first position
+            }
+        }, showAnim ? 2000 : 0);
+        if (mSyncDialog != null) {
+            mSyncDialog.dismiss();
         }
+    }
 
+    @Override
+    public void onFailure(final MobeelizerOperationError error) {
+        Bundle b = new Bundle();
+        b.putBoolean(BaseActivity.IS_INFO, false);
+        b.putInt(BaseActivity.TEXT_RES_ID, R.string.e_syncFailed);
         if (mSyncDialog != null) {
             mSyncDialog.dismiss();
         }
 
-        if (b != null) {
-            ConflictsActivity.this.showDialog(BaseActivity.D_CUSTOM, b);
-        }
+        ConflictsActivity.this.showDialog(BaseActivity.D_CUSTOM, b);
     }
 
     // =====================================================================================

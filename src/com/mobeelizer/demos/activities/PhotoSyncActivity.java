@@ -60,9 +60,9 @@ import com.mobeelizer.demos.model.FileSyncEntity;
 import com.mobeelizer.demos.utils.DataUtil;
 import com.mobeelizer.demos.utils.UIUtils;
 import com.mobeelizer.java.api.MobeelizerFile;
+import com.mobeelizer.java.api.MobeelizerOperationError;
 import com.mobeelizer.mobile.android.Mobeelizer;
-import com.mobeelizer.mobile.android.api.MobeelizerLoginCallback;
-import com.mobeelizer.mobile.android.api.MobeelizerSyncCallback;
+import com.mobeelizer.mobile.android.api.MobeelizerOperationCallback;
 import com.mobeelizer.mobile.android.api.MobeelizerSyncStatus;
 
 /**
@@ -70,9 +70,9 @@ import com.mobeelizer.mobile.android.api.MobeelizerSyncStatus;
  * and synchronize with Mobeelizer server. This picture can be then downloaded by oder users connected to the same session.
  * 
  * @see BaseActivity
- * @see MobeelizerLoginCallback
+ * @see MobeelizerOperationCallback
  */
-public class PhotoSyncActivity extends BaseActivity<FileSyncEntity> implements OnItemClickListener, MobeelizerSyncCallback {
+public class PhotoSyncActivity extends BaseActivity<FileSyncEntity> implements OnItemClickListener, MobeelizerOperationCallback {
 
     private static final int TAKE_PHOTO = 0x100;
 
@@ -241,44 +241,35 @@ public class PhotoSyncActivity extends BaseActivity<FileSyncEntity> implements O
     /**
      * {@inheritDoc}
      */
-    public void onSyncFinished(final MobeelizerSyncStatus status) {
-        Bundle b = null;
-        // If synchronization succeeded show examples list. Otherwise show an error dialog
-        switch (status) {
-            case FINISHED_WITH_SUCCESS:
-                // get newly synchronized items from database
-                final List<FileSyncEntity> newList = Mobeelizer.getDatabase().list(FileSyncEntity.class);
-                // get old items from list adapter
-                final List<FileSyncEntity> oldList = mAdapter.getItems();
+    @Override
+    public void onSuccess() {
+        // get newly synchronized items from database
+        final List<FileSyncEntity> newList = Mobeelizer.getDatabase().list(FileSyncEntity.class);
+        // get old items from list adapter
+        final List<FileSyncEntity> oldList = mAdapter.getItems();
 
-                // merge new items to old list and mark them as new,
-                // find removed items in old list and mark them as such
-                mergeLists(oldList, newList);
-                mAdapter.sort(new FileSyncEntity());
-                // refresh the list to display animation
-                mAdapter.notifyDataSetChanged();
-                mList.setSelection(0);
-
-                break;
-            case FINISHED_WITH_FAILURE:
-                b = new Bundle();
-                b.putBoolean(BaseActivity.IS_INFO, false);
-                b.putInt(BaseActivity.TEXT_RES_ID, R.string.e_syncFailed);
-                break;
-            case NONE:
-                b = new Bundle();
-                b.putBoolean(BaseActivity.IS_INFO, true);
-                b.putInt(BaseActivity.TEXT_RES_ID, R.string.e_syncDisabled);
-                break;
+        // merge new items to old list and mark them as new,
+        // find removed items in old list and mark them as such
+        mergeLists(oldList, newList);
+        mAdapter.sort(new FileSyncEntity());
+        // refresh the list to display animation
+        mAdapter.notifyDataSetChanged();
+        mList.setSelection(0);
+        if (mSyncDialog != null) {
+            mSyncDialog.dismiss();
         }
+    }
 
+    @Override
+    public void onFailure(final MobeelizerOperationError error) {
+        Bundle b = new Bundle();
+        b.putBoolean(BaseActivity.IS_INFO, false);
+        b.putInt(BaseActivity.TEXT_RES_ID, R.string.e_syncFailed);
         if (mSyncDialog != null) {
             mSyncDialog.dismiss();
         }
 
-        if (b != null) {
-            PhotoSyncActivity.this.showDialog(BaseActivity.D_CUSTOM, b);
-        }
+        PhotoSyncActivity.this.showDialog(BaseActivity.D_CUSTOM, b);
     }
 
     // =====================================================================================
@@ -292,6 +283,7 @@ public class PhotoSyncActivity extends BaseActivity<FileSyncEntity> implements O
     private View.OnClickListener getOnAddClickListener() {
         return new View.OnClickListener() {
 
+            @Override
             public void onClick(final View v) {
 
                 CharSequence[] items = { "Camera", "Photo gallery", "Random image" };
@@ -305,6 +297,7 @@ public class PhotoSyncActivity extends BaseActivity<FileSyncEntity> implements O
                 builder.setTitle("Choose source:");
                 builder.setItems(items, new DialogInterface.OnClickListener() {
 
+                    @Override
                     public void onClick(final DialogInterface dialog, final int item) {
                         if (isEmulator) {
                             if (item == 0) {
@@ -376,6 +369,7 @@ public class PhotoSyncActivity extends BaseActivity<FileSyncEntity> implements O
     private View.OnClickListener getOnSyncClickListener() {
         return new View.OnClickListener() {
 
+            @Override
             public void onClick(final View v) {
                 // show synchronization progress dialog
                 mSyncDialog = new Dialog(PhotoSyncActivity.this, R.style.MobeelizerDialogTheme);
@@ -397,6 +391,7 @@ public class PhotoSyncActivity extends BaseActivity<FileSyncEntity> implements O
     private View.OnClickListener getOnInfoClickListener() {
         return new View.OnClickListener() {
 
+            @Override
             public void onClick(final View v) {
                 showDialog(D_PHOTO_SYNC);
             }
@@ -406,6 +401,7 @@ public class PhotoSyncActivity extends BaseActivity<FileSyncEntity> implements O
     /**
      * {@inheritDoc}
      */
+    @Override
     public void onItemClick(final AdapterView<?> parent, final View view, final int position, final long id) {
         final MobeelizerFile photo = ((FileSyncEntity) parent.getItemAtPosition(position)).getPhoto();
 

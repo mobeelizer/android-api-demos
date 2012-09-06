@@ -45,9 +45,9 @@ import com.mobeelizer.demos.ApplicationStatus;
 import com.mobeelizer.demos.R;
 import com.mobeelizer.demos.custom.EntityState;
 import com.mobeelizer.demos.model.OverlayedEntity;
+import com.mobeelizer.java.api.MobeelizerOperationError;
 import com.mobeelizer.mobile.android.Mobeelizer;
-import com.mobeelizer.mobile.android.api.MobeelizerLoginCallback;
-import com.mobeelizer.mobile.android.api.MobeelizerLoginStatus;
+import com.mobeelizer.mobile.android.api.MobeelizerOperationCallback;
 
 /**
  * This is a base activity for all other activities except {@link LoginActivity} and {@link CreateSessionCodeActivity}. It is
@@ -58,10 +58,9 @@ import com.mobeelizer.mobile.android.api.MobeelizerLoginStatus;
  *            {@link OverlayedEntity#setEntityState(EntityState)} usage.
  * 
  * @see OverlayedEntity
- * @see MobeelizerLoginCallback
+ * @see MobeelizerOperationCallback
  */
-public abstract class BaseActivity<T extends OverlayedEntity> extends Activity implements OnClickListener,
-        MobeelizerLoginCallback {
+public abstract class BaseActivity<T extends OverlayedEntity> extends Activity implements OnClickListener {
 
     public static final String DISPLAY_PUSH_MESSAGE_ACTION = "DISPLAY_PUSH_MESSAGE";
 
@@ -259,6 +258,7 @@ public abstract class BaseActivity<T extends OverlayedEntity> extends Activity i
         final Dialog tmp = dialog;
         closeButton.setOnClickListener(new View.OnClickListener() {
 
+            @Override
             public void onClick(final View v) {
                 tmp.dismiss();
             }
@@ -425,6 +425,7 @@ public abstract class BaseActivity<T extends OverlayedEntity> extends Activity i
      * Called when the title bar user indicator has been clicked. It's responsible for logging out the current user and trying to
      * login as a new one.
      */
+    @Override
     public void onClick(final View paramView) {
         // check if there is synchronization in progress
         if (Mobeelizer.checkSyncStatus().isRunning()) {
@@ -457,13 +458,13 @@ public abstract class BaseActivity<T extends OverlayedEntity> extends Activity i
             case A:
                 // try to login as a user B when A was recently logged out
                 Mobeelizer.login(mSessionCode, getString(R.string.c_userBLogin), getString(R.string.c_userBPassword),
-                        BaseActivity.this);
+                        new LoginListener());
                 mUserType = UserType.B;
                 break;
             case B:
                 // try to login as a user A when B was recently logged out
                 Mobeelizer.login(mSessionCode, getString(R.string.c_userALogin), getString(R.string.c_userAPassword),
-                        BaseActivity.this);
+                        new LoginListener());
                 mUserType = UserType.A;
                 break;
         }
@@ -472,65 +473,6 @@ public abstract class BaseActivity<T extends OverlayedEntity> extends Activity i
     // ========================================================================================
     // ========================================================================================
     // ========================================================================================
-
-    /**
-     * {@inheritDoc}
-     */
-    public void onLoginFinished(final MobeelizerLoginStatus status) {
-        Editor editor = mSharedPrefs.edit();
-        boolean succeed = false;
-        Bundle err;
-        switch (status) {
-            case OK:
-                C2DMReceiver.performPushRegistration();
-
-                succeed = true;
-                // change the title bar user indicator
-                setUserType();
-                // save current user
-                editor.putString(USER_TYPE, mUserType.name());
-                break;
-
-            // if the login operation failed show error dialog
-            case MISSING_CONNECTION_FAILURE:
-                editor.remove(SESSION_CODE);
-
-                err = new Bundle();
-                err.putBoolean(IS_INFO, false);
-                err.putInt(TEXT_RES_ID, R.string.e_missingConnection);
-                showDialog(D_CUSTOM, err);
-                break;
-            case CONNECTION_FAILURE:
-            case AUTHENTICATION_FAILURE:
-            case OTHER_FAILURE:
-                editor.remove(SESSION_CODE);
-
-                err = new Bundle();
-                err.putBoolean(IS_INFO, false);
-                err.putInt(TEXT_RES_ID, R.string.e_cannotConnectToSession);
-                showDialog(D_CUSTOM, err);
-                break;
-            default:
-                editor.remove(SESSION_CODE);
-                break;
-        }
-        editor.commit();
-
-        if (!succeed) {
-            // if login operation does not succeed show login activity
-            Intent i = new Intent(getApplicationContext(), LoginActivity.class);
-            startActivity(i);
-            // and close the current one
-            finish();
-        } else {
-            // when succeed run the specific code for handling user changes
-            onUserChanged();
-        }
-
-        if (mLoginDialog != null) {
-            mLoginDialog.dismiss();
-        }
-    }
 
     /**
      * This method should contain the code that needs to be called after the user changes. In most cases this will refresh the
@@ -566,6 +508,7 @@ public abstract class BaseActivity<T extends OverlayedEntity> extends Activity i
             Button closeButton = (Button) dialog.findViewById(R.id.dialogButton);
             closeButton.setOnClickListener(new View.OnClickListener() {
 
+                @Override
                 public void onClick(final View paramView) {
                     dialog.dismiss();
                 }
@@ -574,5 +517,50 @@ public abstract class BaseActivity<T extends OverlayedEntity> extends Activity i
             dialog.show();
         }
     };
+
+    private class LoginListener implements MobeelizerOperationCallback {
+
+        @Override
+        public void onSuccess() {
+            C2DMReceiver.performPushRegistration();
+
+            // change the title bar user indicator
+            setUserType();
+            // save current user
+            Editor editor = mSharedPrefs.edit();
+            editor.putString(USER_TYPE, mUserType.name());
+            editor.commit();
+
+            onUserChanged();
+            if (mLoginDialog != null) {
+                mLoginDialog.dismiss();
+            }
+        }
+
+        @Override
+        public void onFailure(final MobeelizerOperationError error) {
+            Editor editor = mSharedPrefs.edit();
+            editor.remove(SESSION_CODE);
+
+            Bundle err = new Bundle();
+            err.putBoolean(IS_INFO, false);
+            if (error.getCode().equals("connectionFailure")) {
+                err.putInt(TEXT_RES_ID, R.string.e_missingConnection);
+            } else {
+                err.putInt(TEXT_RES_ID, R.string.e_cannotConnectToSession);
+            }
+            showDialog(D_CUSTOM, err);
+
+            // if login operation does not succeed show login activity
+            Intent i = new Intent(getApplicationContext(), LoginActivity.class);
+            startActivity(i);
+            // and close the current one
+            finish();
+            if (mLoginDialog != null) {
+                mLoginDialog.dismiss();
+            }
+        }
+
+    }
 
 }
