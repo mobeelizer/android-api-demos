@@ -36,7 +36,7 @@
                         android:drawableLeft="@drawable/ic_status_new"
                         android:drawablePadding="5dp"
                         android:gravity="fill_vertical"
-                        android:text="@string/graphsDetailsNew"
+                        android:text="@string/relationsDetailsNew"
                         android:textSize="18sp" />
 
                     <RadioButton
@@ -59,7 +59,7 @@
                         android:drawableLeft="@drawable/ic_status_pending"
                         android:drawablePadding="5dp"
                         android:gravity="center_vertical"
-                        android:text="@string/graphsDetailsPending"
+                        android:text="@string/relationsDetailsPending"
                         android:textSize="18sp" />
 
                     <RadioButton
@@ -82,7 +82,7 @@
                         android:drawableLeft="@drawable/ic_status_readytoship"
                         android:drawablePadding="5dp"
                         android:gravity="center_vertical"
-                        android:text="@string/graphsDetailsReady"
+                        android:text="@string/relationsDetailsReady"
                         android:textSize="18sp" />
 
                     <RadioButton
@@ -105,7 +105,7 @@
                         android:drawableLeft="@drawable/ic_status_shipped"
                         android:drawablePadding="5dp"
                         android:gravity="center_vertical"
-                        android:text="@string/graphsDetailsShipped"
+                        android:text="@string/relationsDetailsShipped"
                         android:textSize="18sp" />
 
                     <RadioButton
@@ -128,7 +128,7 @@
                         android:drawableLeft="@drawable/ic_status_received"
                         android:drawablePadding="5dp"
                         android:gravity="center_vertical"
-                        android:text="@string/graphsDetailsReceived"
+                        android:text="@string/relationsDetailsReceived"
                         android:textSize="18sp" />
 
                     <RadioButton

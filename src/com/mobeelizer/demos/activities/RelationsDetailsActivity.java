@@ -1,5 +1,5 @@
 //
-// GraphsConflictDetailsActivity.java
+// RelationsDetailsActivity.java
 // 
 // Copyright (C) 2012 Mobeelizer Ltd. All Rights Reserved.
 // 
@@ -33,7 +33,7 @@ import com.mobeelizer.demos.R;
 /**
  * Creates the activity used for modifying order status.
  */
-public class GraphsConflictDetailsActivity extends Activity implements OnClickListener {
+public class RelationsDetailsActivity extends Activity implements OnClickListener {
 
     /**
      * Parameter name for {@link Bundle} object used to pass information about id of the item in the expandable list view to
@@ -62,7 +62,7 @@ public class GraphsConflictDetailsActivity extends Activity implements OnClickLi
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.a_graphs_conflict_details);
+		setContentView(R.layout.a_relations_details);
 
         mTitle = (TextView) findViewById(R.id.titleBarTitle);
         mRadioGroup = (RadioGroup) findViewById(R.id.detailsRadioGroup);
@@ -107,10 +107,11 @@ public class GraphsConflictDetailsActivity extends Activity implements OnClickLi
     /**
      * {@inheritDoc} <br/>
      * <br/>
-     * When the user clicks the desired status {@link GraphsConflictDetailsActivity} finishes and the rating is returned as a
+     * When the user clicks the desired status {@link RelationsDetailsActivity} finishes and the rating is returned as a
      * result.
      */
-    public void onClick(final View v) {
+    @Override
+	public void onClick(final View v) {
         int newStatus = -1;
         switch (v.getId()) {
             case R.id.detailsStatus1:

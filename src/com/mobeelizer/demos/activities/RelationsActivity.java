@@ -1,5 +1,5 @@
 //
-// GraphsConflictActivity.java
+// RelationsActivity.java
 // 
 // Copyright (C) 2012 Mobeelizer Ltd. All Rights Reserved.
 // 
@@ -49,7 +49,7 @@ import android.widget.TextView;
 import android.widget.TextView.BufferType;
 
 import com.mobeelizer.demos.R;
-import com.mobeelizer.demos.adapters.GraphsConflictSyncAdapter;
+import com.mobeelizer.demos.adapters.RelationsSyncAdapter;
 import com.mobeelizer.demos.custom.EntityState;
 import com.mobeelizer.demos.model.GraphsConflictsItemEntity;
 import com.mobeelizer.demos.model.GraphsConflictsOrderEntity;
@@ -69,7 +69,7 @@ import com.mobeelizer.mobile.android.api.MobeelizerSyncStatus;
  * @see BaseActivity
  * @see MobeelizerOperationCallback
  */
-public class GraphsConflictActivity extends BaseActivity<GraphsConflictsItemEntity> implements MobeelizerOperationCallback,
+public class RelationsActivity extends BaseActivity<GraphsConflictsItemEntity> implements MobeelizerOperationCallback,
         OnGroupClickListener, OnChildClickListener {
 
     private static final int CHANGE_STATUS = 0x500;
@@ -82,13 +82,13 @@ public class GraphsConflictActivity extends BaseActivity<GraphsConflictsItemEnti
 
     private ExpandableListView mList;
 
-    private GraphsConflictSyncAdapter mAdapter;
+    private RelationsSyncAdapter mAdapter;
 
     private Dialog mSyncDialog = null;
 
     @Override
     protected Integer getHelpDialog() {
-        return D_GRAPHS_CONFLICT;
+        return D_RELATIONS;
     }
 
     /**
@@ -99,7 +99,7 @@ public class GraphsConflictActivity extends BaseActivity<GraphsConflictsItemEnti
         super.onCreate(savedInstanceState);
         setContentView(R.layout.a_list_expendable_with_buttons);
         initTitleBarViews();
-        setTitleBarTitle(R.string.titleBarGraphsConflicts);
+		setTitleBarTitle(R.string.titleBarRelations);
 
         mAddButton = (Button) findViewById(R.id.footerAdd);
         mSyncButton = (Button) findViewById(R.id.footerSync);
@@ -125,7 +125,7 @@ public class GraphsConflictActivity extends BaseActivity<GraphsConflictsItemEnti
                 .add(MobeelizerRestrictions.isConflicted()).count();
         showWarning(conflictsCount > 0);
 
-        mAdapter = new GraphsConflictSyncAdapter(getApplicationContext(), mList);
+        mAdapter = new RelationsSyncAdapter(getApplicationContext(), mList);
         mAdapter.addAllOrders(orders);
         mAdapter.addAllItems(items);
         mAdapter.sort(new GraphsConflictsOrderEntity(), new GraphsConflictsItemEntity());
@@ -227,7 +227,7 @@ public class GraphsConflictActivity extends BaseActivity<GraphsConflictsItemEnti
      */
     @Override
     protected void onUserChanged() {
-        mAdapter = new GraphsConflictSyncAdapter(getApplicationContext(), mList);
+        mAdapter = new RelationsSyncAdapter(getApplicationContext(), mList);
         mList.setAdapter(mAdapter);
         mAdapter.addAllOrders(Mobeelizer.getDatabase().list(GraphsConflictsOrderEntity.class));
         mAdapter.addAllItems(Mobeelizer.getDatabase().list(GraphsConflictsItemEntity.class));
@@ -343,7 +343,7 @@ public class GraphsConflictActivity extends BaseActivity<GraphsConflictsItemEnti
             mSyncDialog.dismiss();
         }
 
-        GraphsConflictActivity.this.showDialog(BaseActivity.D_CUSTOM, b);
+        RelationsActivity.this.showDialog(BaseActivity.D_CUSTOM, b);
     }
 
     /**
@@ -352,8 +352,8 @@ public class GraphsConflictActivity extends BaseActivity<GraphsConflictsItemEnti
     @Override
     protected void onActivityResult(final int requestCode, final int resultCode, final Intent data) {
         if (resultCode == RESULT_OK && requestCode == CHANGE_STATUS) {
-            int id = data.getIntExtra(GraphsConflictDetailsActivity.ID, -1);
-            int status = data.getIntExtra(GraphsConflictDetailsActivity.STATUS, -1);
+            int id = data.getIntExtra(RelationsDetailsActivity.ID, -1);
+            int status = data.getIntExtra(RelationsDetailsActivity.STATUS, -1);
 
             if (id != -1 && status != -1) {
                 // edit entity object with the new status and save it to database
@@ -450,14 +450,14 @@ public class GraphsConflictActivity extends BaseActivity<GraphsConflictsItemEnti
             @Override
             public void onClick(final View v) {
                 // show synchronization progress dialog
-                mSyncDialog = new Dialog(GraphsConflictActivity.this, R.style.MobeelizerDialogTheme);
+                mSyncDialog = new Dialog(RelationsActivity.this, R.style.MobeelizerDialogTheme);
                 mSyncDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
                 mSyncDialog.setContentView(R.layout.progress_dialog);
                 mSyncDialog.setCancelable(false);
                 mSyncDialog.show();
 
                 // start synchronization
-                Mobeelizer.sync(GraphsConflictActivity.this);
+                Mobeelizer.sync(RelationsActivity.this);
             }
         };
     }
@@ -471,7 +471,7 @@ public class GraphsConflictActivity extends BaseActivity<GraphsConflictsItemEnti
 
             @Override
             public void onClick(final View v) {
-                showDialog(D_GRAPHS_CONFLICT);
+                showDialog(D_RELATIONS);
             }
         };
     }
@@ -484,10 +484,10 @@ public class GraphsConflictActivity extends BaseActivity<GraphsConflictsItemEnti
             final long paramLong) {
         GraphsConflictsOrderEntity gOrder = (GraphsConflictsOrderEntity) mAdapter.getGroup(paramInt);
 
-        Intent i = new Intent(GraphsConflictActivity.this, GraphsConflictDetailsActivity.class);
-        i.putExtra(GraphsConflictDetailsActivity.ID, paramInt);
-        i.putExtra(GraphsConflictDetailsActivity.TITLE, gOrder.getName());
-        i.putExtra(GraphsConflictDetailsActivity.STATUS, gOrder.getStatus());
+        Intent i = new Intent(RelationsActivity.this, RelationsDetailsActivity.class);
+        i.putExtra(RelationsDetailsActivity.ID, paramInt);
+        i.putExtra(RelationsDetailsActivity.TITLE, gOrder.getName());
+        i.putExtra(RelationsDetailsActivity.STATUS, gOrder.getStatus());
         startActivityForResult(i, CHANGE_STATUS);
         return true;
     }

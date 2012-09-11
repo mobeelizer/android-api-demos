@@ -25,7 +25,7 @@
     <string name="titleBarPhotoSync">PHOTO SYNC</string>
     <string name="titleBarPermissions">PERMISSIONS</string>
     <string name="titleBarConflicts">CONFLICTS</string>
-    <string name="titleBarGraphsConflicts">GRAPH&#8217;S CONFLICTS</string>
+    <string name="titleBarRelations">RELATIONS</string>
     <string name="titleBarPushNotifications">PUSH NOTIFICATIONS</string>
     <string name="titleBarWhatNext">WHAT NEXT?</string>
     <string name="titleBarSessionCode">SESSION CODE</string>
@@ -35,12 +35,12 @@
     <string name="createSessionCreated">Demo session has been created. Your session code is:</string>
     <string name="createSessionNextDevice">You will need this code to connect to other devices.</string>
     
-    <string name="graphsConflictOrder">Order %s</string>
-    <string name="graphsDetailsNew">New</string>
-    <string name="graphsDetailsPending">Pending</string>
-    <string name="graphsDetailsReady">Ready to ship</string>
-    <string name="graphsDetailsShipped">Shipped</string>
-    <string name="graphsDetailsReceived">Received</string>
+    <string name="relationsOrder">Order %s</string>
+    <string name="relationsDetailsNew">New</string>
+    <string name="relationsDetailsPending">Pending</string>
+    <string name="relationsDetailsReady">Ready to ship</string>
+    <string name="relationsDetailsShipped">Shipped</string>
+    <string name="relationsDetailsReceived">Received</string>
     
     <string name="gettingStartedText">
         Mobeelizer is a Synchronization-as-a-Service for mobile developers. We strive to make it 
@@ -68,7 +68,7 @@
         <item>Files</item>
         <item>Permissions</item>
         <item>Conflicts</item>
-        <item>Relation Conflicts</item>
+        <item>Relations</item>
         <item>Push Notifications</item>
         <item>What to do next?</item>
     </string-array>
@@ -131,11 +131,10 @@
     <string name="dialogConflictsSyncText3">Modify the same record with another user and then synchronize…</string>
     <string name="dialogConflictsSyncText4">And… don\'t worry anymore. No data is lost! Your record is in conflict state, but it\'s easy to resolve it - although not in this demo…</string>
     
-    <string name="dialogRelationConflictsSyncTitle">Relations, conflicts - no problem at all…</string>
-    <string name="dialogRelationConflictsSyncText1">See how users can interfere with each other working on common Orders.</string>
-    <string name="dialogRelationConflictsSyncText2">As in previous example - choose one order and change it\'s status, synchronize data…</string>
-    <string name="dialogRelationConflictsSyncText3">Now using another user add or remove position in previously choosen order. Synchronize data.</string>
-    <string name="dialogRelationConflictsSyncText4">Don\'t be afraid. Your orders are secure. Conflicts can also occour in more complicated structures - like orders and positions. Of course you can feel safe, we will handle them for you…</string>
+    <string name="dialogRelationsSyncTitle">Relations - no problem at all…</string>
+    <string name="dialogRelationsSyncText1">See how users can interfere with each other working on common Orders.</string>
+    <string name="dialogRelationsSyncText2">As in previous example - choose one order and change it\'s status, synchronize data…</string>
+    <string name="dialogRelationsSyncText3">Now using another user add or remove position in previously choosen order. Synchronize data.</string>
     
     <string name="dialogPushNotificationsTitle">Notify users with minimum effort…</string>
     <string name="dialogPushNotificationsText1">You can simply send push notifications without thinking about operating systems and devices.</string>

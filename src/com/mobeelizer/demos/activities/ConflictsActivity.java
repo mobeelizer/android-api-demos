@@ -140,8 +140,8 @@ public class ConflictsActivity extends BaseActivity<ConflictsEntity> implements 
     public boolean onMenuItemSelected(final int featureId, final MenuItem item) {
         switch (item.getItemId()) {
             case R.id.m_next:
-                // change current example to Graph's Conflicts one
-                Intent i = new Intent(getApplicationContext(), GraphsConflictActivity.class);
+			// change current example to Relations one
+                Intent i = new Intent(getApplicationContext(), RelationsActivity.class);
                 startActivity(i);
                 finish();
                 return true;

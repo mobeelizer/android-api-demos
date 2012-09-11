@@ -83,7 +83,7 @@ public abstract class BaseActivity<T extends OverlayedEntity> extends Activity i
 
     /** Id of the help dialog that can be created without providing any additional data. */
     public static final int D_SIMPLE_SYNC = 0x100, D_PHOTO_SYNC = 0x101, D_PERMISSIONS = 0x102, D_CONFLICTS = 0x103,
-            D_GRAPHS_CONFLICT = 0x104, D_PUSH_NOTIFICATIONS = 0x105;
+            D_RELATIONS = 0x104, D_PUSH_NOTIFICATIONS = 0x105;
 
     /**
      * Id of the dialog that can be customized to display any information or error stored in Android {@link Resources} or
@@ -152,26 +152,32 @@ public abstract class BaseActivity<T extends OverlayedEntity> extends Activity i
     }
 
     /**
-     * Allows to display information or error dialog with specific text to the user. Round brackets contains the {@code id} value
-     * required to show each dialog.
-     * 
-     * <p>
-     * <b>Possible information dialogs:</b><br/>
-     * - Simple Sync Activity Help ({@code D_SIMPLE_SYNC})<br/>
-     * - Photo Sync Activity Help ({@code D_PHOTO_SYNC})<br/>
-     * - Permissions Activity Help ({@code D_PERMISSIONS})<br/>
-     * - Conflicts Activity Help ({@code D_CONFLICTS})<br/>
-     * - Graph's Conflict Activity Help ({@code D_GRAPHS_CONFLICT})
-     * 
-     * <p>
-     * The custom dialog ({@code D_CUSTOM}) can also be shown. In this case additional information needs to be provided. <br/>
-     * Custom dialog requires reference to {@link Bundle} object with the following fields:<br/>
-     * - type of the dialog (information or error) - {@code IS_INFO} as {@code boolean}<br/>
-     * - text to display as resource id - {@code TEXT_RES_ID} as {@code int}<br/>
-     * - text to display as String object - {@code CUSTOM_TEXT} as {@code String} <br/>
-     * <br/>
-     * The last two can be used interchangeably but when both are used resource id is preferred.
-     */
+	 * Allows to display information or error dialog with specific text to the
+	 * user. Round brackets contains the {@code id} value required to show each
+	 * dialog.
+	 * 
+	 * <p>
+	 * <b>Possible information dialogs:</b><br/>
+	 * - Simple Sync Activity Help ({@code D_SIMPLE_SYNC})<br/>
+	 * - Photo Sync Activity Help ({@code D_PHOTO_SYNC})<br/>
+	 * - Permissions Activity Help ({@code D_PERMISSIONS})<br/>
+	 * - Conflicts Activity Help ({@code D_CONFLICTS})<br/>
+	 * - Relations Activity Help ({@code D_RELATIONS})
+	 * 
+	 * <p>
+	 * The custom dialog ({@code D_CUSTOM}) can also be shown. In this case
+	 * additional information needs to be provided. <br/>
+	 * Custom dialog requires reference to {@link Bundle} object with the
+	 * following fields:<br/>
+	 * - type of the dialog (information or error) - {@code IS_INFO} as
+	 * {@code boolean}<br/>
+	 * - text to display as resource id - {@code TEXT_RES_ID} as {@code int}<br/>
+	 * - text to display as String object - {@code CUSTOM_TEXT} as
+	 * {@code String} <br/>
+	 * <br/>
+	 * The last two can be used interchangeably but when both are used resource
+	 * id is preferred.
+	 */
     @Override
     protected Dialog onCreateDialog(final int id, final Bundle args) {
         Dialog dialog = null;
@@ -186,7 +192,7 @@ public abstract class BaseActivity<T extends OverlayedEntity> extends Activity i
             case D_PHOTO_SYNC:
             case D_PERMISSIONS:
             case D_CONFLICTS:
-            case D_GRAPHS_CONFLICT:
+            case D_RELATIONS:
             case D_PUSH_NOTIFICATIONS:
                 break;
             // if the value is out of range no dialog should be shown
@@ -245,8 +251,8 @@ public abstract class BaseActivity<T extends OverlayedEntity> extends Activity i
                 case D_CONFLICTS:
                     dialog.setContentView(R.layout.info_dialog_conflicts_sync);
                     break;
-                case D_GRAPHS_CONFLICT:
-                    dialog.setContentView(R.layout.info_dialog_relation_conflicts_sync);
+                case D_RELATIONS:
+				dialog.setContentView(R.layout.info_dialog_relations_sync);
                     break;
                 case D_PUSH_NOTIFICATIONS:
                     dialog.setContentView(R.layout.info_dialog_push_notifications);

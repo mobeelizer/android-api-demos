@@ -62,10 +62,10 @@
             android:name=".activities.ConflictsDetailsActivity"
             android:configChanges="orientation|keyboardHidden" />
         <activity 
-            android:name=".activities.GraphsConflictActivity" 
+            android:name=".activities.RelationsActivity" 
             android:configChanges="orientation|keyboardHidden" />
         <activity 
-            android:name=".activities.GraphsConflictDetailsActivity" 
+            android:name=".activities.RelationsDetailsActivity" 
             android:configChanges="orientation|keyboardHidden" />
         <activity 
             android:name=".activities.PushNotificationsActivity" 

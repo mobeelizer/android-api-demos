@@ -12,37 +12,15 @@
   <models>
     <model name="graphsConflictsItemEntity">
       <fields>
-        <field name="title" required="true" type="TEXT">
-          <credentials>
-            <credential createAllowed="ALL" readAllowed="ALL" role="users-mobile" updateAllowed="ALL"/>
-          </credentials>
-        </field>
         <field name="orderGuid" required="true" type="BELONGS_TO">
           <credentials>
             <credential createAllowed="ALL" readAllowed="ALL" role="users-mobile" updateAllowed="ALL"/>
           </credentials>
           <options>
             <option name="model">graphsConflictsOrderEntity</option>
-            <option name="analyzeConflict">true</option>
           </options>
         </field>
-      </fields>
-      <credentials>
-        <credential createAllowed="ALL" deleteAllowed="ALL" readAllowed="ALL" resolveConflictAllowed="false" role="users-mobile" updateAllowed="ALL"/>
-      </credentials>
-    </model>
-    <model name="graphsConflictsOrderEntity">
-      <fields>
-        <field defaultValue="1" name="status" required="true" type="INTEGER">
-          <credentials>
-            <credential createAllowed="ALL" readAllowed="ALL" role="users-mobile" updateAllowed="ALL"/>
-          </credentials>
-          <options>
-            <option name="minValue">1</option>
-            <option name="maxValue">5</option>
-          </options>
-        </field>
-        <field name="name" required="true" type="TEXT">
+        <field name="title" required="true" type="TEXT">
           <credentials>
             <credential createAllowed="ALL" readAllowed="ALL" role="users-mobile" updateAllowed="ALL"/>
           </credentials>
@@ -52,16 +30,12 @@
         <credential createAllowed="ALL" deleteAllowed="ALL" readAllowed="ALL" resolveConflictAllowed="false" role="users-mobile" updateAllowed="ALL"/>
       </credentials>
     </model>
-    <model name="conflictsEntity">
+    <model name="permissionsEntity">
       <fields>
-        <field defaultValue="1" name="score" required="true" type="INTEGER">
+        <field name="director" required="false" type="TEXT">
           <credentials>
-            <credential createAllowed="ALL" readAllowed="ALL" role="users-mobile" updateAllowed="ALL"/>
+            <credential createAllowed="OWN" readAllowed="OWN" role="users-mobile" updateAllowed="OWN"/>
           </credentials>
-          <options>
-            <option name="minValue">1</option>
-            <option name="maxValue">5</option>
-          </options>
         </field>
         <field name="title" required="true" type="TEXT">
           <credentials>
@@ -85,6 +59,27 @@
         <credential createAllowed="ALL" deleteAllowed="ALL" readAllowed="ALL" resolveConflictAllowed="false" role="users-mobile" updateAllowed="ALL"/>
       </credentials>
     </model>
+    <model name="graphsConflictsOrderEntity">
+      <fields>
+        <field name="name" required="true" type="TEXT">
+          <credentials>
+            <credential createAllowed="ALL" readAllowed="ALL" role="users-mobile" updateAllowed="ALL"/>
+          </credentials>
+        </field>
+        <field defaultValue="1" name="status" required="true" type="INTEGER">
+          <credentials>
+            <credential createAllowed="ALL" readAllowed="ALL" role="users-mobile" updateAllowed="ALL"/>
+          </credentials>
+          <options>
+            <option name="minValue">1</option>
+            <option name="maxValue">5</option>
+          </options>
+        </field>
+      </fields>
+      <credentials>
+        <credential createAllowed="ALL" deleteAllowed="ALL" readAllowed="ALL" resolveConflictAllowed="false" role="users-mobile" updateAllowed="ALL"/>
+      </credentials>
+    </model>
     <model name="fileSyncEntity">
       <fields>
         <field name="photo" required="true" type="FILE">
@@ -97,16 +92,20 @@
         <credential createAllowed="ALL" deleteAllowed="ALL" readAllowed="ALL" resolveConflictAllowed="false" role="users-mobile" updateAllowed="ALL"/>
       </credentials>
     </model>
-    <model name="permissionsEntity">
+    <model name="conflictsEntity">
       <fields>
-        <field name="title" required="true" type="TEXT">
+        <field defaultValue="1" name="score" required="true" type="INTEGER">
           <credentials>
             <credential createAllowed="ALL" readAllowed="ALL" role="users-mobile" updateAllowed="ALL"/>
           </credentials>
+          <options>
+            <option name="minValue">1</option>
+            <option name="maxValue">5</option>
+          </options>
         </field>
-        <field name="director" required="false" type="TEXT">
+        <field name="title" required="true" type="TEXT">
           <credentials>
-            <credential createAllowed="OWN" readAllowed="OWN" role="users-mobile" updateAllowed="OWN"/>
+            <credential createAllowed="ALL" readAllowed="ALL" role="users-mobile" updateAllowed="ALL"/>
           </credentials>
         </field>
       </fields>

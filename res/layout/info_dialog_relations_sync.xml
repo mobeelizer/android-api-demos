@@ -10,7 +10,7 @@
         style="?DialogInfoTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/dialogRelationConflictsSyncTitle" />
+        android:text="@string/dialogRelationsSyncTitle" />
 
     <View
         android:layout_width="match_parent"
@@ -34,7 +34,7 @@
 		        style="?DialogText"
 		        android:layout_width="match_parent"
 		        android:layout_height="wrap_content"
-		        android:text="@string/dialogRelationConflictsSyncText1" />
+		        android:text="@string/dialogRelationsSyncText1" />
             <TextView
 		        android:id="@+id/textView1"
 		        style="@style/DialogTextPoint"
@@ -48,7 +48,7 @@
 		        style="@style/DialogTextPoint"
 		        android:layout_width="match_parent"
 		        android:layout_height="wrap_content"
-		        android:text="@string/dialogRelationConflictsSyncText2" />
+		        android:text="@string/dialogRelationsSyncText2" />
 		
 		    <LinearLayout
 		        android:layout_width="match_parent"
@@ -90,16 +90,9 @@
 		        style="@style/DialogTextPoint"
 		        android:layout_width="wrap_content"
 		        android:layout_height="wrap_content"
-		        android:text="@string/dialogRelationConflictsSyncText3" >
+		        android:text="@string/dialogRelationsSyncText3" >
 		    </TextView>
 		    
-		    <TextView
-		        android:id="@+id/dialogText3"
-		        style="?DialogText"
-		        android:layout_width="match_parent"
-		        android:layout_height="wrap_content"
-		        android:text="@string/dialogRelationConflictsSyncText4" />
-            
         </LinearLayout>
     </ScrollView>
 

@@ -117,7 +117,7 @@ public class ExploreActivity extends BaseActivity implements OnItemClickListener
                 i = new Intent(getApplicationContext(), ConflictsActivity.class);
                 break;
             case 5:
-                i = new Intent(getApplicationContext(), GraphsConflictActivity.class);
+                i = new Intent(getApplicationContext(), RelationsActivity.class);
                 break;
             case 6:
                 i = new Intent(getApplicationContext(), PushNotificationsActivity.class);
