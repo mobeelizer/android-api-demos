@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<artifactId>android-api-demos</artifactId>
 	<groupId>com.mobeelizer</groupId>
-	<version>1.4.0</version>
+	<version>1.5.0-SNAPSHOT</version>
 	<name>Mobeelizer Demos</name>
 	<packaging>apk</packaging>
 	
@@ -171,7 +171,7 @@
 	    <connection>scm:git:ssh://github.com/mobeelizer/android-api-demos.git</connection>
         <developerConnection>scm:git:git@github.com:mobeelizer/android-api-demos.git</developerConnection>
         <url>http://github.com/mobeelizer/android-api-demos</url>
-  	  <tag>1.4.0</tag>
+  	  <tag>HEAD</tag>
   </scm>
 	
 </project>
